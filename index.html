@@ -1,110 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Titanic Narrative Game – Text Object Requirements</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Titanic: A Choice of Narrative Game</title>
+
+<style>
+
+body{
+font-family:Arial, sans-serif;
+background:#081421;
+color:white;
+text-align:center;
+padding:30px;
+line-height:1.6;
+}
+
+#game{
+max-width:800px;
+margin:auto;
+padding:25px;
+background:#12253a;
+border-radius:15px;
+}
+
+button{
+padding:12px 20px;
+margin:10px;
+font-size:16px;
+cursor:pointer;
+border:none;
+border-radius:10px;
+}
+
+button:hover{
+opacity:0.85;
+}
+
+.hidden{
+display:none;
+}
+
+</style>
 </head>
+
 <body>
-  <div id="text-object-requirements">
-    <h1>Text Object Requirements – Playable Titanic Narrative Game</h1>
 
-    <h2>1. Project overview</h2>
-    <p>
-      This document defines the requirements for a playable, story-driven game based on the 1912
-      sinking of the RMS Titanic. The game centers on passengers and crew who face a sudden,
-      catastrophic disaster, the chaos of evacuation, and the human decisions made under extreme
-      pressure.
-    </p>
+<div id="game">
 
-    <h2>2. Historical basis and ethical framing</h2>
-    <ul>
-      <li><strong>Real event:</strong> The narrative is based on the real 1912 sinking of the RMS Titanic in the North Atlantic.</li>
-      <li><strong>Respectful tone:</strong> The game must acknowledge that this is a real tragedy where many people died and avoid sensationalizing suffering.</li>
-      <li><strong>Fictional POV:</strong> The player controls fictional characters, but the ship, timeline, and major events remain historically grounded.</li>
-    </ul>
+<h1>Titanic: Survive the Night</h1>
 
-    <h2>3. Core themes and sensory focus</h2>
-    <p>
-      “The story of the ship is really good because it has a lot of sensory things in it. Like the cold,
-      the darkness, the panic, heroism and how vulnerable people are.”
-    </p>
-    <ul>
-      <li><strong>Vulnerability:</strong> Show how fragile human life is against nature and structural failure.</li>
-      <li><strong>Bravery and sacrifice:</strong> Highlight difficult moral choices and acts of courage.</li>
-      <li><strong>Class and inequality:</strong> Represent different experiences across social classes, with moments of solidarity.</li>
-      <li><strong>Human connection:</strong> Focus on relationships formed or tested during the crisis.</li>
-      <li><strong>Sensory atmosphere:</strong> Use cold, darkness, sound, and silence to build tension and mood.</li>
-    </ul>
+<p>
+An interactive historical narrative based on the true events of
+April 14-15, 1912.
+</p>
 
-    <h2>4. Player role and goals</h2>
-    <ul>
-      <li><strong>Role:</strong> The player is a fictional passenger (e.g., third-class) who can move between multiple decks and encounter different classes and crew.</li>
-      <li><strong>Main goal:</strong> Survive the sinking while deciding who to help and which routes to take.</li>
-      <li><strong>Secondary goals:</strong> Help specific NPCs reach lifeboats, deliver messages, or unlock safer paths.</li>
-      <li><strong>Win/lose states:</strong> Survival and rescue = success; death or entrapment = failure, with variations based on who was helped.</li>
-    </ul>
+<div id="story">
 
-    <h2>5. Core gameplay loop</h2>
-    <ul>
-      <li><strong>Explore:</strong> Move through corridors, staircases, and decks; discover routes and blocked paths.</li>
-      <li><strong>Observe:</strong> Notice environmental changes (tilt, water, crowd density, lighting) and listen to NPC conversations.</li>
-      <li><strong>Decide:</strong> Choose dialogue options, routes, and actions under time pressure.</li>
-      <li><strong>Act:</strong> Assist NPCs, open/close doors, clear obstacles, or give up/claim lifeboat seats.</li>
-      <li><strong>Feedback:</strong> NPC reactions, access to new areas, and changing danger levels (flooding, lifeboats leaving) respond to player choices.</li>
-    </ul>
+<p>
+You are a passenger aboard the RMS Titanic during its maiden voyage.
+The ship is considered unsinkable.
+Suddenly, you feel a strange vibration.
+</p>
 
-    <h2>6. Playable setting and level structure</h2>
-    <ul>
-      <li><strong>Primary space:</strong> The RMS Titanic as a contained, explorable environment.</li>
-      <li><strong>Key playable areas:</strong> Third-class corridors, grand staircase, first-class promenade, lifeboat deck, and a service corridor connecting decks.</li>
-      <li><strong>Dynamic levels:</strong> Areas become inaccessible over time due to flooding, locked gates, or launched lifeboats, forcing new routes.</li>
-    </ul>
+<button onclick="scene1()">Investigate</button>
 
-    <h2>7. Narrative phases</h2>
-    <ul>
-      <li><strong>Phase 1 – Normalcy (tutorial):</strong> Short introduction to movement, interaction, and basic dialogue while the ship appears safe and luxurious.</li>
-      <li><strong>Phase 2 – Impact and confusion:</strong> After the iceberg strike, subtle changes (vibration, tilt, cold air) appear; information is incomplete and conflicting.</li>
-      <li><strong>Phase 3 – Evacuation gameplay:</strong> Timed lifeboat launches, crowding, blocked paths, and moral choices define the main playable segment.</li>
-      <li><strong>Phase 4 – Resolution:</strong> Epilogue summarizing the player’s fate and the consequences of their choices.</li>
-    </ul>
+</div>
 
-    <h2>8. Interaction, controls, and UI</h2>
-    <ul>
-      <li><strong>Movement:</strong> Keyboard/controller movement (WASD/analog stick) to walk/run and navigate the ship.</li>
-      <li><strong>Interaction:</strong> Single key/button (e.g., E or A) to talk, inspect, open doors, and assist NPCs.</li>
-      <li><strong>Dialogue:</strong> Simple choice-based dialogue with 2–3 options at key moments that affect trust, access, and outcomes.</li>
-      <li><strong>Minimal HUD:</strong> Use diegetic cues (shouted orders, lights, water level) instead of heavy UI; small prompts for interactable objects only.</li>
-      <li><strong>Timers:</strong> Subtle countdowns or audio cues for time-limited decisions (e.g., lifeboat about to launch).</li>
-    </ul>
+</div>
 
-    <h2>9. Tone and tragedy representation</h2>
-    <ul>
-      <li><strong>No gore focus:</strong> Avoid graphic depictions of death; emphasize emotional and situational weight.</li>
-      <li><strong>Commemoration:</strong> Final screen acknowledges the real disaster and lives lost, with a brief historical note.</li>
-      <li><strong>Serious tone:</strong> No comedic or trivializing elements that undermine the gravity of the event.</li>
-    </ul>
+<script>
 
-    <h2>10. Visual and audio direction</h2>
-    <ul>
-      <li><strong>Visual arc:</strong> Start with warm, bright interiors that gradually shift to colder, darker palettes as danger increases.</li>
-      <li><strong>Ocean and night:</strong> Use the surrounding darkness of the North Atlantic to create isolation and vulnerability.</li>
-      <li><strong>Sound design:</strong> Ambient ship noise, distant music, crowd sounds, shouted orders, creaking metal, rushing water, and eventual silence.</li>
-    </ul>
+function scene1(){
 
-    <h2>11. Learning and reflection goals</h2>
-    <ul>
-      <li><strong>Historical awareness:</strong> Encourage curiosity about the real Titanic, its design, and the investigations that followed.</li>
-      <li><strong>Empathy:</strong> Help players imagine the emotional reality of passengers and crew facing an unexpected disaster.</li>
-      <li><strong>Systems thinking:</strong> Show how class, limited lifeboats, and structural decisions shaped survival chances.</li>
-    </ul>
+document.getElementById("story").innerHTML=`
 
-    <h2>12. Scope for this project</h2>
-    <ul>
-      <li><strong>Playable prototype:</strong> A 10–15 minute vertical slice from shortly after the collision to the launch of several lifeboats.</li>
-      <li><strong>Key decision scenes:</strong> At least two scripted moments where the player must choose between self-preservation and helping others.</li>
-      <li><strong>Functional loop:</strong> Movement, interaction, dialogue choices, and at least one branching outcome (different endings or mid-level consequences).</li>
-      <li><strong>Design reflection:</strong> A short written note explaining how the game remains respectful to the real tragedy and its themes.</li>
-    </ul>
-  </div>
+<h2>The Iceberg</h2>
+
+<p>
+Crew members rush across the deck.
+You hear someone yell:
+
+"Iceberg ahead!"
+
+The ship has struck ice.
+Passengers are confused and unsure what is happening.
+</p>
+
+<p>What do you do?</p>
+
+<button onclick="lifeboat()">Find a lifeboat</button>
+
+<button onclick="help()">Help other passengers</button>
+
+`;
+
+}
+
+function lifeboat(){
+
+document.getElementById("story").innerHTML=`
+
+<h2>Lifeboat Decision</h2>
+
+<p>
+
+You move quickly toward a lifeboat.
+
+The cold air grows stronger.
+
+There are limited seats available.
+
+</p>
+
+<p>Choose:</p>
+
+<button onclick="wait()">Wait your turn</button>
+
+<button onclick="push()">Force your way aboard</button>
+
+`;
+
+}
+
+function help(){
+
+document.getElementById("story").innerHTML=`
+
+<h2>Helping Others</h2>
+
+<p>
+
+You assist children and elderly passengers.
+
+Panic spreads throughout the ship.
+
+The crew attempts to remain organized.
+
+</p>
+
+<p>Choose:</p>
+
+<button onclick="guide()">Guide families</button>
+
+<button onclick="search()">Search lower decks</button>
+
+`;
+
+}
+
+function wait(){
+
+document.getElementById("story").innerHTML=`
+
+<h2>Ending: Courage</h2>
+
+<p>
+
+You patiently wait and eventually board a lifeboat.
+
+You survive the disaster.
+
+Your actions remind us that bravery and calmness can save lives.
+
+</p>
+
+<h3>Historical Reflection</h3>
+
+<p>
+
+More than 1,500 people lost their lives during the sinking of the Titanic.
+
+This game honors the passengers and crew involved.
+
+</p>
+
+<button onclick="restart()">Play Again</button>
+
+`;
+
+}
+
+function push(){
+
+document.getElementById("story").innerHTML=`
+
+<h2>Ending: Chaos</h2>
+
+<p>
+
+Panic causes confusion.
+
+Crew members stop you and restore order.
+
+The event demonstrates how fear can make disasters worse.
+
+</p>
+
+<h3>Historical Reflection</h3>
+
+<p>
+
+Real people faced impossible decisions that night.
+
+Disasters show the importance of empathy and cooperation.
+
+</p>
+
+<button onclick="restart()">Play Again</button>
+
+`;
+
+}
+
+function guide(){
+
+document.getElementById("story").innerHTML=`
+
+<h2>Ending: Heroism</h2>
+
+<p>
+
+You guide several families safely to lifeboats.
+
+Your actions save lives.
+
+</p>
+
+<h3>Historical Reflection</h3>
+
+<p>
+
+Many passengers and crew displayed incredible bravery during the tragedy.
+
+</p>
+
+<button onclick="restart()">Play Again</button>
+
+`;
+
+}
+
+function search(){
+
+document.getElementById("story").innerHTML=`
+
+<h2>Ending: Sacrifice</h2>
+
+<p>
+
+You search the lower decks to help stranded passengers.
+
+The ship fills with freezing water.
+
+You become part of a story of sacrifice and compassion.
+
+</p>
+
+<h3>Historical Reflection</h3>
+
+<p>
+
+The Titanic disaster remains one of history's most studied tragedies.
+
+It teaches lessons about safety, human behavior, and resilience.
+
+</p>
+
+<button onclick="restart()">Play Again</button>
+
+`;
+
+}
+
+function restart(){
+
+location.reload();
+
+}
+
+</script>
+
 </body>
 </html>
