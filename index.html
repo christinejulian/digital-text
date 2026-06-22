@@ -1,212 +1,229 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Last Night on Titanic</title>
+<title>Night of Ice: An Interactive Titanic Narrative</title>
 
 <style>
 body{
+    background: linear-gradient(#001a33,#000000);
+    color:white;
     font-family: Georgia, serif;
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-    line-height: 1.8;
-    background: linear-gradient(to bottom,#001f3f,#000814);
-    color: white;
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+    line-height:1.8;
 }
 h1,h2{
     text-align:center;
 }
 a{
-    color:#7FDBFF;
+    color:gold;
+    font-weight:bold;
 }
 .section{
-    background: rgba(255,255,255,0.08);
-    padding:20px;
-    margin:20px 0;
-    border-radius:10px;
+    margin-top:80px;
 }
-blockquote{
-    border-left:4px solid #7FDBFF;
-    padding-left:15px;
+.quote{
     font-style:italic;
+    color:lightblue;
 }
 </style>
 </head>
 
 <body>
 
-<h1>The Last Night on the Titanic</h1>
-<h2>An Interactive Digital Narrative</h2>
-
-<div class="section">
+<h1>Night of Ice</h1>
+<h2>An Interactive Titanic Narrative</h2>
 
 <p>
-The night air bites at my face like thousands of tiny needles. Above me,
-the sky stretches endlessly, crowded with stars so bright they seem close
-enough to touch. Around me stands the RMS Titanic, a floating palace of
-steel and luxury. Electric lights glow warmly through the ship's windows,
-casting golden reflections across the dark Atlantic Ocean.
+April 14, 1912.
+The RMS Titanic cuts through the dark Atlantic Ocean like a glowing palace floating across black glass.
+Music drifts from the first-class lounge. Crystal chandeliers sparkle overhead. Laughter echoes through polished hallways.
+You stand near the railing, breathing in the cold night air.
+Above you, thousands of stars shimmer across the sky.
+The ocean is calm.
+Too calm.
 </p>
 
 <p>
-Only a few hours ago, laughter filled the dining rooms. Crystal glasses
-clinked together. Musicians played cheerful melodies. Wealthy passengers
-celebrated aboard what many called the greatest ship ever built. The
-Titanic felt unstoppable, almost mythical, as if it could conquer the sea
-itself.
+You are not reading history.
+You are stepping inside it.
+Your choices will determine what parts of the story you experience.
+</p>
+
+<h2>Choose Your Path</h2>
+
+<ul>
+<li><a href="#deck">Walk the Upper Deck</a></li>
+<li><a href="#dining">Visit the Dining Room</a></li>
+<li><a href="#engine">Explore Below Deck</a></li>
+</ul>
+
+<div id="deck" class="section">
+<h2>The Upper Deck</h2>
+
+<p>
+A sharp wind brushes across your face.
+The ocean stretches endlessly into darkness.
+The silence feels strange.
+There are no city lights.
+No land.
+Only water and stars.
 </p>
 
 <p>
-Then came the iceberg.
+Ahead, two lookouts scan the horizon.
+Their eyes search the darkness while frost forms on the railings.
+Suddenly, one of them stiffens.
+His posture changes.
+His expression shifts from boredom to alarm.
+</p>
+
+<p class="quote">
+"Iceberg right ahead!"
 </p>
 
 <p>
-The collision was not dramatic at first. There was no giant explosion.
-Instead, a strange shudder traveled through the ship. It felt like the
-Titanic had inhaled sharply and forgotten how to breathe. Some passengers
-barely noticed. Others stepped into hallways, exchanging uncertain glances.
-A feeling of unease began spreading through the ship like a shadow creeping
-across a room.
+A bell rings three times.
+The warning cuts through the night like a knife.
+For a moment, the entire ship seems to hold its breath.
 </p>
 
 <p>
-What happened next became one of the most famous tragedies in history.
-More than a century later, people still remember the fear, courage, and
-humanity displayed during those final hours.
+The Titanic begins to turn.
+Metal groans beneath your feet.
+Then comes a scraping vibration.
+Not a crash.
+Not an explosion.
+Just a long, unsettling scrape.
 </p>
 
 <p>
-Want to learn about the people aboard? Visit the
-<a href="#passengers">Passenger Stories</a>.
-Or continue reading to experience the sinking through the eyes of a
-fictional witness.
+You feel fear crawling into the pit of your stomach.
+Something is wrong.
 </p>
 
+<a href="#aftermath">Continue the Story</a>
 </div>
 
-<div class="section">
-
-<h2>The Growing Realization</h2>
+<div id="dining" class="section">
+<h2>The Dining Room</h2>
 
 <p>
-At first, nobody wanted to believe the truth. Crew members moved quickly
-through corridors while trying to remain calm. The ship was supposed to be
-safe. It was supposed to survive anything the ocean could throw at it.
-Yet water was already pouring into compartments below deck.
+Golden light fills the room.
+Passengers laugh and discuss travel plans.
+Silverware clinks against fine china.
+Everything feels luxurious.
+Safe.
+Permanent.
 </p>
 
 <p>
-The atmosphere changed slowly. Conversations became whispers. Whispers
-became worried questions. Questions became panic.
+A gentle shudder moves through the floor.
+Some guests pause.
+Others continue eating.
+One passenger jokes that the ship merely ran over a whale.
+The room erupts in nervous laughter.
 </p>
 
 <p>
-Mothers held children tightly. Husbands searched for wives. Friends
-gathered together, unwilling to be separated. Fear spread from person to
-person like ripples across still water.
+You notice a steward entering quietly.
+His smile appears forced.
+His shoulders are tense.
+Though he speaks calmly, his eyes reveal concern.
 </p>
 
-<blockquote>
-"The ship cannot sink," some said.
-But the ocean had already made its decision.
-</blockquote>
+<p>
+Outside these elegant walls, water has begun entering the lower compartments.
+Most passengers do not know it yet.
+The disaster has already begun.
+</p>
 
+<a href="#aftermath">Continue the Story</a>
 </div>
 
-<div class="section" id="passengers">
-
-<h2>Passenger Stories</h2>
+<div id="engine" class="section">
+<h2>Below Deck</h2>
 
 <p>
-The Titanic carried people from many different social classes. Wealthy
-business owners traveled in luxurious suites while immigrants sailed
-toward dreams of a new life in America.
+The engine rooms roar with mechanical energy.
+Massive pistons move rhythmically like the heartbeat of a giant.
+Workers shovel coal into furnaces glowing orange and red.
+Sweat shines on their faces.
 </p>
 
 <p>
-Some passengers displayed incredible bravery. Crew members continued
-helping others even as the danger increased. Musicians famously kept
-playing music to comfort frightened passengers. Their melodies drifted
-through the cold night, providing moments of peace amid chaos.
+Then the scraping sound arrives.
+The vibration travels through steel walls.
+Men exchange worried looks.
+Moments later, icy seawater bursts through damaged sections of the hull.
 </p>
 
 <p>
-Others faced impossible choices. Families became separated. Lifeboats
-filled quickly. Every decision felt heavy. Every minute mattered.
+The freezing water rushes forward with terrifying speed.
+Workers shout warnings.
+Some run.
+Others stay behind to keep power flowing to the ship.
 </p>
 
 <p>
-Click here to learn more about
-<a href="https://en.wikipedia.org/wiki/RMS_Titanic" target="_blank">
-the historical Titanic disaster
-</a>.
+History often remembers famous passengers.
+But many heroes worked below deck.
+Their actions helped keep the lights burning while others escaped.
 </p>
 
+<a href="#aftermath">Continue the Story</a>
 </div>
 
-<div class="section">
-
-<h2>The Ocean Takes Control</h2>
+<div id="aftermath" class="section">
+<h2>The Reality of Disaster</h2>
 
 <p>
-As the ship tilted, the deck transformed into a steep metal hill. The
-once-grand vessel groaned and creaked like a living creature in pain.
-Furniture slid. Dishes shattered. The cold became unbearable.
+As midnight passes, confusion spreads throughout the Titanic.
+Passengers gather on deck wearing life jackets.
+Many refuse to believe the ship can sink.
+After all, newspapers called it unsinkable.
 </p>
 
 <p>
-The Atlantic Ocean looked endless and merciless. Black water surrounded
-the ship on every side. It swallowed the ship's lights one reflection at
-a time.
+The cold becomes sharper.
+The ocean appears darker.
+The band continues playing music in an effort to calm frightened travelers.
+Some families stay together.
+Others become separated forever.
 </p>
 
 <p>
-Then came the final moments.
+Lifeboats begin lowering toward the water.
+There are not enough seats for everyone.
+Every decision suddenly matters.
+Every minute counts.
 </p>
 
 <p>
-The stern rose high into the air. For a brief instant, the Titanic seemed
-frozen between sky and sea. The stars above remained beautiful and
-indifferent. Then the ship disappeared beneath the surface.
+The story of Titanic is more than a shipwreck.
+It is a story about courage, sacrifice, fear, and hope.
+It reveals how people react when faced with the unimaginable.
 </p>
 
 <p>
-Silence followed.
+As the bow sinks lower into the ocean, you look across the freezing Atlantic one final time.
+The stars remain beautiful.
+The sea remains silent.
+Yet history is changing around you.
 </p>
-
-<p>
-Not true silence, but a terrible silence where an entire city-sized ship
-had existed only moments before.
-</p>
-
-</div>
-
-<div class="section">
 
 <h2>Reflection</h2>
 
 <p>
-The Titanic remains important because it reminds us how fragile human
-confidence can be. Technology, wealth, and ambition created one of the
-most impressive ships of its era, yet nature proved stronger. At the same
-time, the disaster revealed remarkable examples of courage, compassion,
-and sacrifice.
-</p>
-
-<p>
-More than one hundred years later, people continue telling this story
-because it is not only about a ship. It is about humanity itself. It is
-about how ordinary people respond when confronted with extraordinary
-circumstances.
-</p>
-
-<p>
-As you leave this page, consider the passengers standing beneath the cold
-stars on that April night in 1912. Their experiences became part of
-history, but their emotions—hope, fear, love, and determination—remain
-timeless.
+This interactive narrative remediates the historical story of the RMS Titanic into a digital text experience.
+Instead of reading a traditional report, readers explore different locations and perspectives through hyperlinks.
+The second-person point of view places the audience inside the event, encouraging empathy and engagement.
+Descriptive language paints sensory details including darkness, cold temperatures, sounds, emotions, and physical environments.
+By combining historical information with interactivity, the digital format allows readers to experience the tragedy through exploration while maintaining respect for the real people involved.
 </p>
 
 </div>
