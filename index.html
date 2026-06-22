@@ -1,70 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Titanic: A Choice of Narrative Game</title>
+<title>Titanic: Night of Survival</title>
 
 <style>
 
 body{
-font-family:Arial, sans-serif;
-background:#081421;
+font-family:Arial,sans-serif;
+background:#06111d;
 color:white;
-text-align:center;
 padding:30px;
-line-height:1.6;
+text-align:center;
+line-height:1.7;
 }
 
 #game{
-max-width:800px;
+
+max-width:900px;
+
 margin:auto;
-padding:25px;
-background:#12253a;
+
+padding:30px;
+
+background:#13263d;
+
 border-radius:15px;
+
 }
 
 button{
+
 padding:12px 20px;
-margin:10px;
+
+margin:8px;
+
 font-size:16px;
+
 cursor:pointer;
+
 border:none;
+
 border-radius:10px;
+
 }
 
 button:hover{
+
 opacity:0.85;
+
 }
 
-.hidden{
-display:none;
+h1{
+color:#9fd8ff;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div id="game">
 
-<h1>Titanic: Survive the Night</h1>
+<h1>Titanic: Night of Survival</h1>
 
-<p>
-An interactive historical narrative based on the true events of
-April 14-15, 1912.
-</p>
+<h3>Interactive Historical Narrative</h3>
 
 <div id="story">
 
 <p>
+
+April 14, 1912.
+
+11:40 PM.
+
 You are a passenger aboard the RMS Titanic during its maiden voyage.
-The ship is considered unsinkable.
-Suddenly, you feel a strange vibration.
+
+The ship suddenly shakes.
+
+Passengers look around in confusion.
+
+Something is wrong.
+
 </p>
 
-<button onclick="scene1()">Investigate</button>
+<button onclick="deck()">Go to the deck</button>
+
+<button onclick="stay()">Stay inside</button>
 
 </div>
 
@@ -72,27 +100,271 @@ Suddenly, you feel a strange vibration.
 
 <script>
 
-function scene1(){
+function deck(){
 
-document.getElementById("story").innerHTML=`
+story.innerHTML=`
 
-<h2>The Iceberg</h2>
+<h2>Upper Deck</h2>
 
 <p>
-Crew members rush across the deck.
-You hear someone yell:
 
-"Iceberg ahead!"
+Crew members are rushing everywhere.
 
-The ship has struck ice.
-Passengers are confused and unsure what is happening.
+You hear:
+
+"Everyone put on life jackets!"
+
+What do you do?
+
 </p>
 
-<p>What do you do?</p>
+<button onclick="family()">Look for your family</button>
+
+<button onclick="crew()">Ask a crew member</button>
+
+`;
+
+}
+
+function stay(){
+
+story.innerHTML=`
+
+<h2>Inside the Ship</h2>
+
+<p>
+
+Many people believe nothing serious has happened.
+
+The lights still work.
+
+Some continue talking and laughing.
+
+</p>
+
+<button onclick="investigate()">Investigate noises</button>
+
+<button onclick="returnDeck()">Go upstairs</button>
+
+`;
+
+}
+
+function family(){
+
+story.innerHTML=`
+
+<h2>Searching for Family</h2>
+
+<p>
+
+You search crowded hallways.
+
+Children are crying.
+
+People are confused.
+
+</p>
+
+<button onclick="foundFamily()">You find them</button>
+
+<button onclick="lostFamily()">You cannot find them</button>
+
+`;
+
+}
+
+function crew(){
+
+story.innerHTML=`
+
+<h2>Talking To Crew</h2>
+
+<p>
+
+A crew member says:
+
+"Head to the lifeboats immediately."
+
+</p>
+
+<button onclick="lifeboat()">Go now</button>
+
+<button onclick="helpCrew()">Help organize passengers</button>
+
+`;
+
+}
+
+function investigate(){
+
+story.innerHTML=`
+
+<h2>Lower Decks</h2>
+
+<p>
+
+You discover freezing water entering hallways.
+
+Panic begins spreading.
+
+</p>
+
+<button onclick="warn()">Warn everyone</button>
+
+<button onclick="escape()">Run upstairs</button>
+
+`;
+
+}
+
+function returnDeck(){
+
+deck();
+
+}
+
+function foundFamily(){
+
+story.innerHTML=`
+
+<h2>Together Again</h2>
+
+<p>
+
+You locate your family.
+
+You have very little time.
+
+</p>
+
+<button onclick="lifeboat()">Head to lifeboats</button>
+
+<button onclick="guideOthers()">Guide others too</button>
+
+`;
+
+}
+
+function lostFamily(){
+
+story.innerHTML=`
+
+<h2>Difficult Decision</h2>
+
+<p>
+
+Time is running out.
+
+Do you continue searching?
+
+</p>
+
+<button onclick="continueSearch()">Continue searching</button>
+
+<button onclick="lifeboat()">Go to lifeboats</button>
+
+`;
+
+}
+
+function helpCrew(){
+
+story.innerHTML=`
+
+<h2>Helping Crew</h2>
+
+<p>
+
+You calm frightened passengers.
+
+Your actions save valuable time.
+
+</p>
+
+<button onclick="lifeboat()">Go to lifeboats</button>
+
+`;
+
+}
+
+function warn(){
+
+story.innerHTML=`
+
+<h2>Warning Others</h2>
+
+<p>
+
+People finally realize the danger.
+
+Some listen.
+
+Others refuse to believe you.
+
+</p>
+
+<button onclick="escape()">Run upstairs</button>
+
+`;
+
+}
+
+function escape(){
+
+story.innerHTML=`
+
+<h2>Racing Against Time</h2>
+
+<p>
+
+Water rises quickly.
+
+You barely reach the upper deck.
+
+</p>
 
 <button onclick="lifeboat()">Find a lifeboat</button>
 
-<button onclick="help()">Help other passengers</button>
+`;
+
+}
+
+function guideOthers(){
+
+story.innerHTML=`
+
+<h2>Heroic Actions</h2>
+
+<p>
+
+You help elderly passengers and children.
+
+People begin following you.
+
+</p>
+
+<button onclick="heroEnding()">Continue helping</button>
+
+`;
+
+}
+
+function continueSearch(){
+
+story.innerHTML=`
+
+<h2>Last Search</h2>
+
+<p>
+
+You hear your family's voices.
+
+You reunite moments before evacuation.
+
+</p>
+
+<button onclick="lifeboat()">Go together</button>
 
 `;
 
@@ -100,79 +372,49 @@ Passengers are confused and unsure what is happening.
 
 function lifeboat(){
 
-document.getElementById("story").innerHTML=`
+story.innerHTML=`
 
-<h2>Lifeboat Decision</h2>
+<h2>The Lifeboats</h2>
 
 <p>
 
-You move quickly toward a lifeboat.
+There are very few seats left.
 
-The cold air grows stronger.
-
-There are limited seats available.
+What do you do?
 
 </p>
 
-<p>Choose:</p>
+<button onclick="waitTurn()">Wait your turn</button>
 
-<button onclick="wait()">Wait your turn</button>
+<button onclick="sacrifice()">Give up your seat</button>
 
-<button onclick="push()">Force your way aboard</button>
+<button onclick="panic()">Push through the crowd</button>
 
 `;
 
 }
 
-function help(){
+function waitTurn(){
 
-document.getElementById("story").innerHTML=`
+story.innerHTML=`
 
-<h2>Helping Others</h2>
+<h2>Ending 1: Survivor</h2>
 
 <p>
 
-You assist children and elderly passengers.
+You remain calm.
 
-Panic spreads throughout the ship.
+Eventually, you board a lifeboat.
 
-The crew attempts to remain organized.
+You survive.
 
 </p>
 
-<p>Choose:</p>
-
-<button onclick="guide()">Guide families</button>
-
-<button onclick="search()">Search lower decks</button>
-
-`;
-
-}
-
-function wait(){
-
-document.getElementById("story").innerHTML=`
-
-<h2>Ending: Courage</h2>
+<h3>Lesson:</h3>
 
 <p>
 
-You patiently wait and eventually board a lifeboat.
-
-You survive the disaster.
-
-Your actions remind us that bravery and calmness can save lives.
-
-</p>
-
-<h3>Historical Reflection</h3>
-
-<p>
-
-More than 1,500 people lost their lives during the sinking of the Titanic.
-
-This game honors the passengers and crew involved.
+Staying calm can save lives.
 
 </p>
 
@@ -182,29 +424,25 @@ This game honors the passengers and crew involved.
 
 }
 
-function push(){
+function sacrifice(){
 
-document.getElementById("story").innerHTML=`
+story.innerHTML=`
 
-<h2>Ending: Chaos</h2>
+<h2>Ending 2: Selfless Hero</h2>
 
 <p>
 
-Panic causes confusion.
+You give your seat to another passenger.
 
-Crew members stop you and restore order.
-
-The event demonstrates how fear can make disasters worse.
+Your actions save a life.
 
 </p>
 
-<h3>Historical Reflection</h3>
+<h3>Lesson:</h3>
 
 <p>
 
-Real people faced impossible decisions that night.
-
-Disasters show the importance of empathy and cooperation.
+Many people displayed extraordinary bravery that night.
 
 </p>
 
@@ -214,25 +452,27 @@ Disasters show the importance of empathy and cooperation.
 
 }
 
-function guide(){
+function panic(){
 
-document.getElementById("story").innerHTML=`
+story.innerHTML=`
 
-<h2>Ending: Heroism</h2>
+<h2>Ending 3: Chaos</h2>
 
 <p>
 
-You guide several families safely to lifeboats.
+Panic spreads.
 
-Your actions save lives.
+The crew regains control.
+
+Valuable time is lost.
 
 </p>
 
-<h3>Historical Reflection</h3>
+<h3>Lesson:</h3>
 
 <p>
 
-Many passengers and crew displayed incredible bravery during the tragedy.
+Fear can worsen emergencies.
 
 </p>
 
@@ -242,29 +482,17 @@ Many passengers and crew displayed incredible bravery during the tragedy.
 
 }
 
-function search(){
+function heroEnding(){
 
-document.getElementById("story").innerHTML=`
+story.innerHTML=`
 
-<h2>Ending: Sacrifice</h2>
-
-<p>
-
-You search the lower decks to help stranded passengers.
-
-The ship fills with freezing water.
-
-You become part of a story of sacrifice and compassion.
-
-</p>
-
-<h3>Historical Reflection</h3>
+<h2>Ending 4: Hero of the Titanic</h2>
 
 <p>
 
-The Titanic disaster remains one of history's most studied tragedies.
+You help many passengers reach safety.
 
-It teaches lessons about safety, human behavior, and resilience.
+Several families survive because of your actions.
 
 </p>
 
@@ -283,4 +511,5 @@ location.reload();
 </script>
 
 </body>
+
 </html>
