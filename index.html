@@ -1,63 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Titanic: Night of Survival</title>
+<title>RMS Titanic: A Choice of Narrative Game</title>
 
 <style>
 
 body{
 font-family:Arial,sans-serif;
-background:#06111d;
+background:#07131f;
 color:white;
-padding:30px;
 text-align:center;
-line-height:1.7;
+padding:30px;
+line-height:1.6;
 }
 
 #game{
-
 max-width:900px;
-
 margin:auto;
-
+background:#102235;
 padding:30px;
-
-background:#13263d;
-
 border-radius:15px;
-
+box-shadow:0 0 20px black;
 }
 
 button{
-
-padding:12px 20px;
-
-margin:8px;
-
-font-size:16px;
-
+padding:15px;
+margin:10px;
+font-size:18px;
 cursor:pointer;
-
+width:80%;
 border:none;
-
 border-radius:10px;
-
 }
 
 button:hover{
-
-opacity:0.85;
-
+background:#d4af37;
 }
 
-h1{
-color:#9fd8ff;
+.fact{
+background:#18324f;
+padding:15px;
+border-left:5px solid gold;
+margin:20px;
+}
+
+.ending{
+font-size:28px;
+font-weight:bold;
 }
 
 </style>
@@ -68,129 +62,73 @@ color:#9fd8ff;
 
 <div id="game">
 
-<h1>Titanic: Night of Survival</h1>
+<h1>🚢 RMS Titanic: A Choice of Narrative</h1>
 
-<h3>Interactive Historical Narrative</h3>
-
-<div id="story">
+<h3>Interactive Historical Story Game</h3>
 
 <p>
 
-April 14, 1912.
+You are a 22-year-old passenger aboard the RMS Titanic during its maiden voyage in April 1912.
 
-11:40 PM.
+Your choices determine whether you survive or perish.
 
-You are a passenger aboard the RMS Titanic during its maiden voyage.
-
-The ship suddenly shakes.
-
-Passengers look around in confusion.
-
-Something is wrong.
+Every decision changes your fate.
 
 </p>
 
-<button onclick="deck()">Go to the deck</button>
+<div id="story"></div>
 
-<button onclick="stay()">Stay inside</button>
-
-</div>
+<div id="choices"></div>
 
 </div>
 
 <script>
 
-function deck(){
+let story=document.getElementById("story");
+
+let choices=document.getElementById("choices");
+
+function startGame(){
 
 story.innerHTML=`
 
-<h2>Upper Deck</h2>
+<h2>April 14, 1912 - 11:35 PM</h2>
 
 <p>
 
-Crew members are rushing everywhere.
+You are reading in your cabin when you suddenly feel a slight vibration.
 
-You hear:
+Passengers begin whispering.
 
-"Everyone put on life jackets!"
-
-What do you do?
+Something has happened.
 
 </p>
 
-<button onclick="family()">Look for your family</button>
+<div class='fact'>
 
-<button onclick="crew()">Ask a crew member</button>
+Historical Fact:
+
+Titanic struck an iceberg at approximately 11:40 PM.
+
+Many passengers initially believed nothing serious had happened.
+
+</div>
 
 `;
 
-}
+choices.innerHTML=`
 
-function stay(){
+<button onclick='investigate()'>
 
-story.innerHTML=`
+Investigate the disturbance.
 
-<h2>Inside the Ship</h2>
+</button>
 
-<p>
+<button onclick='stayCabin()'>
 
-Many people believe nothing serious has happened.
+Stay inside your cabin.
 
-The lights still work.
-
-Some continue talking and laughing.
-
-</p>
-
-<button onclick="investigate()">Investigate noises</button>
-
-<button onclick="returnDeck()">Go upstairs</button>
-
-`;
-
-}
-
-function family(){
-
-story.innerHTML=`
-
-<h2>Searching for Family</h2>
-
-<p>
-
-You search crowded hallways.
-
-Children are crying.
-
-People are confused.
-
-</p>
-
-<button onclick="foundFamily()">You find them</button>
-
-<button onclick="lostFamily()">You cannot find them</button>
-
-`;
-
-}
-
-function crew(){
-
-story.innerHTML=`
-
-<h2>Talking To Crew</h2>
-
-<p>
-
-A crew member says:
-
-"Head to the lifeboats immediately."
-
-</p>
-
-<button onclick="lifeboat()">Go now</button>
-
-<button onclick="helpCrew()">Help organize passengers</button>
+</button>
 
 `;
 
@@ -200,171 +138,189 @@ function investigate(){
 
 story.innerHTML=`
 
-<h2>Lower Decks</h2>
+<h2>The Hallway</h2>
 
 <p>
 
-You discover freezing water entering hallways.
+Crew members rush by.
 
-Panic begins spreading.
+You hear:
+
+"Everyone please put on your lifejackets."
 
 </p>
 
-<button onclick="warn()">Warn everyone</button>
+<div class='fact'>
 
-<button onclick="escape()">Run upstairs</button>
+Historical Fact:
+
+The Titanic only carried enough lifeboats for 1,178 people.
+
+Over 2,200 people were aboard.
+
+</div>
+
+`;
+
+choices.innerHTML=`
+
+<button onclick='helpOthers()'>
+
+Help elderly passengers.
+
+</button>
+
+<button onclick='runLifeboat()'>
+
+Run to a lifeboat immediately.
+
+</button>
 
 `;
 
 }
 
-function returnDeck(){
-
-deck();
-
-}
-
-function foundFamily(){
+function stayCabin(){
 
 story.innerHTML=`
 
-<h2>Together Again</h2>
+<h2>Time Is Running Out</h2>
 
 <p>
 
-You locate your family.
+You remain inside.
 
-You have very little time.
+Water begins entering lower decks.
+
+Panic spreads.
 
 </p>
 
-<button onclick="lifeboat()">Head to lifeboats</button>
+`;
 
-<button onclick="guideOthers()">Guide others too</button>
+choices.innerHTML=`
+
+<button onclick='lateEscape()'>
+
+Try escaping now.
+
+</button>
 
 `;
 
 }
 
-function lostFamily(){
+function helpOthers(){
 
 story.innerHTML=`
 
-<h2>Difficult Decision</h2>
+<h2>Helping Others</h2>
 
 <p>
 
-Time is running out.
+You guide children and elderly passengers toward the upper deck.
 
-Do you continue searching?
+A crew member thanks you.
 
 </p>
 
-<button onclick="continueSearch()">Continue searching</button>
+<div class='fact'>
 
-<button onclick="lifeboat()">Go to lifeboats</button>
+Historical Fact:
+
+"Women and children first"
+
+was heavily enforced on many lifeboats.
+
+</div>
+
+`;
+
+choices.innerHTML=`
+
+<button onclick='lifeboat()'>
+
+Board a lifeboat.
+
+</button>
+
+<button onclick='stayBehind()'>
+
+Stay behind to continue helping.
+
+</button>
 
 `;
 
 }
 
-function helpCrew(){
+function runLifeboat(){
 
 story.innerHTML=`
 
-<h2>Helping Crew</h2>
+<h2>Upper Deck</h2>
 
 <p>
 
-You calm frightened passengers.
+You arrive early.
 
-Your actions save valuable time.
+A nearly empty lifeboat is being lowered.
 
 </p>
 
-<button onclick="lifeboat()">Go to lifeboats</button>
+`;
+
+choices.innerHTML=`
+
+<button onclick='lifeboat()'>
+
+Get aboard.
+
+</button>
+
+<button onclick='returnHelp()'>
+
+Go back and help others.
+
+</button>
 
 `;
 
 }
 
-function warn(){
+function lateEscape(){
 
 story.innerHTML=`
 
-<h2>Warning Others</h2>
+<h2>The Deck Is Flooded</h2>
 
 <p>
 
-People finally realize the danger.
+The ship is severely tilted.
 
-Some listen.
-
-Others refuse to believe you.
+Many lifeboats have already left.
 
 </p>
 
-<button onclick="escape()">Run upstairs</button>
+<div class='fact'>
+
+Historical Fact:
+
+Titanic split into two sections before sinking.
+
+It disappeared beneath the ocean at 2:20 AM.
+
+</div>
 
 `;
 
-}
+choices.innerHTML=`
 
-function escape(){
+<button onclick='badEnding()'>
 
-story.innerHTML=`
+Jump into the water.
 
-<h2>Racing Against Time</h2>
-
-<p>
-
-Water rises quickly.
-
-You barely reach the upper deck.
-
-</p>
-
-<button onclick="lifeboat()">Find a lifeboat</button>
-
-`;
-
-}
-
-function guideOthers(){
-
-story.innerHTML=`
-
-<h2>Heroic Actions</h2>
-
-<p>
-
-You help elderly passengers and children.
-
-People begin following you.
-
-</p>
-
-<button onclick="heroEnding()">Continue helping</button>
-
-`;
-
-}
-
-function continueSearch(){
-
-story.innerHTML=`
-
-<h2>Last Search</h2>
-
-<p>
-
-You hear your family's voices.
-
-You reunite moments before evacuation.
-
-</p>
-
-<button onclick="lifeboat()">Go together</button>
+</button>
 
 `;
 
@@ -374,139 +330,195 @@ function lifeboat(){
 
 story.innerHTML=`
 
-<h2>The Lifeboats</h2>
+<h2 class='ending'>
+
+🎉 GOOD ENDING
+
+</h2>
 
 <p>
-
-There are very few seats left.
-
-What do you do?
-
-</p>
-
-<button onclick="waitTurn()">Wait your turn</button>
-
-<button onclick="sacrifice()">Give up your seat</button>
-
-<button onclick="panic()">Push through the crowd</button>
-
-`;
-
-}
-
-function waitTurn(){
-
-story.innerHTML=`
-
-<h2>Ending 1: Survivor</h2>
-
-<p>
-
-You remain calm.
-
-Eventually, you board a lifeboat.
 
 You survive.
 
-</p>
+Hours later, the RMS Carpathia rescues you.
 
-<h3>Lesson:</h3>
-
-<p>
-
-Staying calm can save lives.
+You spend the rest of your life telling the story of Titanic.
 
 </p>
 
-<button onclick="restart()">Play Again</button>
+<div class='fact'>
+
+Historical Fact:
+
+RMS Carpathia rescued approximately 705 survivors.
+
+</div>
+
+`;
+
+choices.innerHTML=`
+
+<button onclick='startGame()'>
+
+Play Again
+
+</button>
 
 `;
 
 }
 
-function sacrifice(){
+function stayBehind(){
 
 story.innerHTML=`
 
-<h2>Ending 2: Selfless Hero</h2>
+<h2 class='ending'>
+
+😢 BAD ENDING
+
+</h2>
 
 <p>
 
-You give your seat to another passenger.
+You remain helping passengers.
 
-Your actions save a life.
+Eventually there are no lifeboats left.
 
-</p>
-
-<h3>Lesson:</h3>
-
-<p>
-
-Many people displayed extraordinary bravery that night.
+You perish in the freezing Atlantic Ocean.
 
 </p>
 
-<button onclick="restart()">Play Again</button>
+<div class='fact'>
+
+Historical Fact:
+
+The water temperature was about 28°F (-2°C).
+
+Most victims died from hypothermia.
+
+</div>
+
+`;
+
+choices.innerHTML=`
+
+<button onclick='startGame()'>
+
+Play Again
+
+</button>
 
 `;
 
 }
 
-function panic(){
+function returnHelp(){
 
 story.innerHTML=`
 
-<h2>Ending 3: Chaos</h2>
+<h2>The Final Moments</h2>
 
 <p>
 
-Panic spreads.
+You return below deck.
 
-The crew regains control.
+The ship suddenly begins rising vertically.
 
-Valuable time is lost.
-
-</p>
-
-<h3>Lesson:</h3>
-
-<p>
-
-Fear can worsen emergencies.
+Panic erupts.
 
 </p>
 
-<button onclick="restart()">Play Again</button>
+`;
+
+choices.innerHTML=`
+
+<button onclick='worseEnding()'>
+
+Try to climb upward.
+
+</button>
 
 `;
 
 }
 
-function heroEnding(){
+function badEnding(){
 
 story.innerHTML=`
 
-<h2>Ending 4: Hero of the Titanic</h2>
+<h2 class='ending'>
+
+😢 BAD ENDING
+
+</h2>
 
 <p>
 
-You help many passengers reach safety.
+You jump into the freezing ocean.
 
-Several families survive because of your actions.
+You cannot survive the cold.
 
 </p>
 
-<button onclick="restart()">Play Again</button>
+`;
+
+choices.innerHTML=`
+
+<button onclick='startGame()'>
+
+Play Again
+
+</button>
 
 `;
 
 }
 
-function restart(){
+function worseEnding(){
 
-location.reload();
+story.innerHTML=`
+
+<h2 class='ending'>
+
+💀 WORSE ENDING
+
+</h2>
+
+<p>
+
+You become trapped inside the sinking ship.
+
+The lights flicker one final time.
+
+Titanic disappears beneath the Atlantic.
+
+</p>
+
+<div class='fact'>
+
+Historical Fact:
+
+More than 1,500 people died during the disaster.
+
+It remains one of history's deadliest peacetime maritime disasters.
+
+</div>
+
+`;
+
+choices.innerHTML=`
+
+<button onclick='startGame()'>
+
+Play Again
+
+</button>
+
+`;
 
 }
+
+startGame();
 
 </script>
 
