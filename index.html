@@ -1,150 +1,366 @@
 ```html
-<h1 align="center">Titanic: Race for Survival (Interactive Narrative Game)</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-<h2>Text Object Requirements</h2>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<h3>Game Title</h3>
+<title>Titanic 1912: A Choice of Narrative</title>
 
-<p><strong>Titanic: Race for Survival</strong></p>
+<style>
 
-<h3>Type of Narrative</h3>
+body{
+font-family:Arial,sans-serif;
+background:#071421;
+color:white;
+max-width:900px;
+margin:auto;
+padding:30px;
+line-height:1.6;
+}
 
-<p>
-An interactive historical storytelling game based on the real events of the
-1912 sinking of the RMS Titanic.
-</p>
+h1{
+text-align:center;
+}
 
-<h3>Game Overview</h3>
+#game{
+background:#10253b;
+padding:25px;
+border-radius:10px;
+}
 
-<p>
-Players experience the final hours aboard the RMS Titanic from the perspective
-of a passenger. Throughout the game, players must make difficult choices,
-explore different sections of the ship, help other passengers, and attempt
-to survive while respecting the historical events that occurred.
-</p>
+button{
+padding:12px 20px;
+margin:10px;
+font-size:16px;
+cursor:pointer;
+border:none;
+border-radius:6px;
+}
 
-<h3>Learning Objective</h3>
+button:hover{
+opacity:.85;
+}
 
-<p>
-The purpose of this game is to educate players about the Titanic disaster,
-human decision-making during emergencies, social class differences, and
-the importance of bravery and cooperation during a crisis.
-</p>
+.choice{
+display:block;
+width:100%;
+}
 
-<h3>Story Setting</h3>
+.footer{
+margin-top:25px;
+font-size:14px;
+opacity:.8;
+}
 
-<ul>
-<li><strong>Date:</strong> April 14-15, 1912</li>
-<li><strong>Location:</strong> North Atlantic Ocean</li>
-<li><strong>Ship:</strong> RMS Titanic</li>
-<li><strong>Genre:</strong> Historical Interactive Adventure</li>
-</ul>
+</style>
 
-<h3>Player Role</h3>
+</head>
 
-<p>
-The player becomes a passenger aboard the Titanic during its maiden voyage.
-Players may choose one of three classes:
-</p>
+<body>
 
-<ul>
-<li>First Class Passenger</li>
-<li>Second Class Passenger</li>
-<li>Third Class Passenger</li>
-</ul>
+<h1>Titanic 1912: A Choice of Narrative</h1>
 
-<h3>Game Objectives</h3>
+<div id="game">
 
-<ol>
-<li>Explore the ship.</li>
-<li>Collect important information.</li>
-<li>Help other passengers.</li>
-<li>Make survival decisions.</li>
-<li>Reach a lifeboat before time runs out.</li>
-</ol>
+<h2 id="title"></h2>
 
-<h3>Gameplay Mechanics</h3>
+<p id="story"></p>
 
-<ul>
-<li>Explore rooms and corridors.</li>
-<li>Talk to passengers and crew members.</li>
-<li>Solve small puzzles.</li>
-<li>Collect historical artifacts.</li>
-<li>Manage limited time.</li>
-<li>Make branching decisions.</li>
-</ul>
+<div id="choices"></div>
 
-<h3>Player Choices</h3>
+</div>
 
-<p>Examples of decisions players may encounter:</p>
+<div class="footer">
 
-<ul>
-<li>Help a lost child or continue toward a lifeboat.</li>
-<li>Wait for family members or evacuate immediately.</li>
-<li>Follow crew instructions or search for another route.</li>
-<li>Share supplies with other passengers.</li>
-</ul>
+<p><strong>Created by:</strong> Christine Julian</p>
 
-<h3>Sensory Elements</h3>
+<p>ATCM 4326: Multimedia Storytelling</p>
 
-<ul>
-<li>Dark environments</li>
-<li>Cold temperatures</li>
-<li>Ocean sounds</li>
-<li>Panic among passengers</li>
-<li>Emergency alarms</li>
-<li>Water flooding the ship</li>
-</ul>
+<p>This interactive story is based on the real historical tragedy of RMS Titanic and is intended for educational purposes.</p>
 
-<h3>Educational Themes</h3>
+</div>
 
-<ul>
-<li>Human bravery</li>
-<li>Leadership</li>
-<li>Social class differences</li>
-<li>Teamwork</li>
-<li>Empathy</li>
-<li>Historical preservation</li>
-</ul>
+<script>
 
-<h3>Respect Statement</h3>
+const scenes = {
 
-<p>
-This game is designed to respectfully portray a real historical tragedy.
-The objective is educational storytelling and historical awareness rather
-than entertainment through disaster. The experiences are inspired by
-historical accounts, survivor testimonies, and official investigations.
-</p>
+start:{
 
-<h3>Target Audience</h3>
+title:"April 14, 1912",
 
-<p>
-Students, educators, history enthusiasts, and players interested in
-interactive historical narratives.
-</p>
+story:"You are a passenger aboard RMS Titanic during its maiden voyage. The evening is cold and calm. Suddenly, you feel a powerful jolt. The ship has struck an iceberg.",
 
-<h3>GitHub Project Structure</h3>
+choices:[
 
-<pre>
-Titanic-Race-For-Survival/
-│
-├── index.html
-├── style.css
-├── script.js
-├── assets/
-│   ├── images/
-│   ├── audio/
-│   └── maps/
-│
-└── README.md
-</pre>
+{
 
-<h3>Project Description</h3>
+text:"Go investigate the commotion",
 
-<p>
-"Titanic: Race for Survival" transforms the 1912 Titanic disaster into an
-interactive educational game where players experience the event through
-decision-making, exploration, and historical storytelling while learning
-about one of history's most significant maritime tragedies.
-</p>
+next:"investigate"
+
+},
+
+{
+
+text:"Remain in your cabin",
+
+next:"cabin"
+
+}
+
+]
+
+},
+
+investigate:{
+
+title:"Upper Deck",
+
+story:"Crew members rush around while passengers ask questions. Some believe everything is fine, but others sense danger.",
+
+choices:[
+
+{
+
+text:"Help calm passengers",
+
+next:"help"
+
+},
+
+{
+
+text:"Search for a lifeboat",
+
+next:"lifeboat"
+
+}
+
+]
+
+},
+
+cabin:{
+
+title:"Your Cabin",
+
+story:"Water begins entering lower decks. You realize waiting may be dangerous.",
+
+choices:[
+
+{
+
+text:"Gather warm clothing",
+
+next:"warm"
+
+},
+
+{
+
+text:"Run immediately to the deck",
+
+next:"lifeboat"
+
+}
+
+]
+
+},
+
+help:{
+
+title:"Helping Others",
+
+story:"You assist frightened passengers and help direct families toward lifeboats.",
+
+choices:[
+
+{
+
+text:"Continue helping",
+
+next:"hero"
+
+},
+
+{
+
+text:"Board a lifeboat",
+
+next:"survive"
+
+}
+
+]
+
+},
+
+warm:{
+
+title:"Preparing for the Cold",
+
+story:"You put on extra clothing and a life jacket before leaving.",
+
+choices:[
+
+{
+
+text:"Go to the lifeboats",
+
+next:"survive"
+
+}
+
+]
+
+},
+
+lifeboat:{
+
+title:"Lifeboat Deck",
+
+story:"The lifeboats are filling quickly. Time is running out.",
+
+choices:[
+
+{
+
+text:"Help load passengers",
+
+next:"hero"
+
+},
+
+{
+
+text:"Board an available boat",
+
+next:"survive"
+
+}
+
+]
+
+},
+
+hero:{
+
+title:"Acts of Courage",
+
+story:"Your actions help save multiple lives. Although the situation is terrifying, your bravery makes a difference.",
+
+choices:[
+
+{
+
+text:"Continue",
+
+next:"endingHero"
+
+}
+
+]
+
+},
+
+survive:{
+
+title:"Rescue",
+
+story:"You safely board a lifeboat. Hours later, survivors are rescued from the freezing Atlantic Ocean.",
+
+choices:[
+
+{
+
+text:"See Ending",
+
+next:"endingSurvive"
+
+}
+
+]
+
+},
+
+endingHero:{
+
+title:"Historical Reflection",
+
+story:"Thousands of people displayed extraordinary courage during the disaster. Their actions are remembered more than a century later. The Titanic tragedy led to major improvements in maritime safety.",
+
+choices:[
+
+{
+
+text:"Play Again",
+
+next:"start"
+
+}
+
+]
+
+},
+
+endingSurvive:{
+
+title:"Historical Reflection",
+
+story:"More than 1,500 people lost their lives during the sinking. The tragedy changed international maritime laws and improved emergency preparedness.",
+
+choices:[
+
+{
+
+text:"Play Again",
+
+next:"start"
+
+}
+
+]
+
+}
+
+};
+
+function showScene(sceneName){
+
+const scene = scenes[sceneName];
+
+document.getElementById("title").textContent = scene.title;
+
+document.getElementById("story").textContent = scene.story;
+
+const choices = document.getElementById("choices");
+
+choices.innerHTML = "";
+
+scene.choices.forEach(choice => {
+
+const button = document.createElement("button");
+
+button.className = "choice";
+
+button.textContent = choice.text;
+
+button.onclick = () => showScene(choice.next);
+
+choices.appendChild(button);
+
+});
+
+}
+
+showScene("start");
+
+</script>
+
+</body>
+
+</html>
 ```
