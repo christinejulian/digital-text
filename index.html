@@ -1,527 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>RMS Titanic: A Choice of Narrative Game</title>
+<title>Digital Text - The Forgotten Hallway</title>
 
 <style>
-
 body{
-font-family:Arial,sans-serif;
-background:#07131f;
-color:white;
-text-align:center;
-padding:30px;
-line-height:1.6;
+    margin:0;
+    font-family:"Times New Roman", serif;
+    background:linear-gradient(#111,#2f2f2f);
+    color:white;
+    line-height:1.7;
 }
 
-#game{
-max-width:900px;
-margin:auto;
-background:#102235;
-padding:30px;
-border-radius:15px;
-box-shadow:0 0 20px black;
+.container{
+    max-width:850px;
+    margin:auto;
+    padding:40px;
 }
 
-button{
-padding:15px;
-margin:10px;
-font-size:18px;
-cursor:pointer;
-width:80%;
-border:none;
-border-radius:10px;
+h1{
+    text-align:center;
+    color:gold;
 }
 
-button:hover{
-background:#d4af37;
+.story{
+    margin-top:20px;
+    font-size:20px;
 }
 
-.fact{
-background:#18324f;
-padding:15px;
-border-left:5px solid gold;
-margin:20px;
+.choice{
+    display:inline-block;
+    margin:15px 10px;
+    padding:12px 24px;
+    background:darkred;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    transition:.3s;
 }
 
-.ending{
-font-size:28px;
-font-weight:bold;
+.choice:hover{
+    background:crimson;
 }
 
+.hidden{
+    display:none;
+}
+
+.section{
+    margin-top:35px;
+}
 </style>
+
+<script>
+function show(id){
+
+document.querySelectorAll(".ending").forEach(e=>{
+e.style.display="none";
+});
+
+document.getElementById(id).style.display="block";
+window.scrollTo({
+top:document.body.scrollHeight,
+behavior:"smooth"
+});
+}
+</script>
 
 </head>
 
 <body>
 
-<div id="game">
+<div class="container">
 
-<h1>🚢 RMS Titanic: A Choice of Narrative</h1>
+<h1>The Forgotten Hallway</h1>
 
-<h3>Interactive Historical Story Game</h3>
+<div class="story">
 
 <p>
-
-You are a 22-year-old passenger aboard the RMS Titanic during its maiden voyage in April 1912.
-
-Your choices determine whether you survive or perish.
-
-Every decision changes your fate.
-
+Every game begins with a single choice. Sometimes the decision seems
+small, like opening a door or turning down a hallway. Other times the
+choice changes everything. This story explores how interactive fiction
+allows readers to become players. Instead of reading from beginning to
+end, you guide the experience. Your curiosity becomes part of the
+narrative, creating a different journey depending on the path you
+choose.
 </p>
 
-<div id="story"></div>
+<p>
+You arrive at an abandoned school after hearing rumors that strange
+voices echo through the building every night. The front entrance hangs
+open, and dusty lockers stretch across the hallway. Every step echoes
+through the silence. A cold breeze moves through broken windows even
+though none of them are open. Something feels wrong, yet something
+invites you deeper inside.
+</p>
 
-<div id="choices"></div>
+<p>
+A faded sign points in two directions. One arrow leads toward the old
+library. The other points to the basement where the lights still flicker.
+You remember stories about students disappearing years ago, but no one
+ever discovered what truly happened. The only way to uncover the truth
+is to keep moving.
+</p>
+
+<p>
+As you walk forward, you notice handwritten notes scattered across the
+floor. Some are warnings. Others are unfinished journal entries written
+by people who never returned. Every page tells part of the mystery, but
+none provide a complete answer. The missing pieces can only be found by
+continuing your exploration.
+</p>
+
+<p>
+The atmosphere grows heavier. The silence is interrupted by distant
+footsteps that stop whenever you stop walking. It feels as if something
+is watching you from the darkness. You cannot tell whether it wants to
+help or harm you. The hallway stretches farther than it should, almost
+like the building itself refuses to let visitors leave.
+</p>
+
+<p>
+Interactive stories create suspense because readers participate instead
+of simply observing. Your decisions shape the experience, making each
+ending feel personal. Even though every player begins in the same place,
+their choices produce different outcomes. This creates replay value and
+encourages exploration. Instead of asking what happens next, the player
+asks, "What if I choose differently?"
+</p>
+
+<p>
+Now the decision is yours.
+</p>
+
+<div class="section">
+
+<button class="choice" onclick="show('library')">
+Enter the Library
+</button>
+
+<button class="choice" onclick="show('basement')">
+Walk into the Basement
+</button>
+
+<button class="choice" onclick="show('leave')">
+Leave the School
+</button>
 
 </div>
 
-<script>
+<div id="library" class="ending hidden ending">
 
-let story=document.getElementById("story");
-
-let choices=document.getElementById("choices");
-
-function startGame(){
-
-story.innerHTML=`
-
-<h2>April 14, 1912 - 11:35 PM</h2>
+<h2>Ending One: Keeper of Memories</h2>
 
 <p>
-
-You are reading in your cabin when you suddenly feel a slight vibration.
-
-Passengers begin whispering.
-
-Something has happened.
-
+The library shelves are covered in dust, but one book remains perfectly
+clean. As you open it, the pages begin writing themselves. Every choice
+you made appears inside the book. You realize the school records every
+visitor's journey and preserves it forever. You escape safely, but the
+next time someone enters, they will read your story and decide whether
+to follow your footsteps.
 </p>
-
-<div class='fact'>
-
-Historical Fact:
-
-Titanic struck an iceberg at approximately 11:40 PM.
-
-Many passengers initially believed nothing serious had happened.
 
 </div>
 
-`;
+<div id="basement" class="ending hidden ending">
 
-choices.innerHTML=`
-
-<button onclick='investigate()'>
-
-Investigate the disturbance.
-
-</button>
-
-<button onclick='stayCabin()'>
-
-Stay inside your cabin.
-
-</button>
-
-`;
-
-}
-
-function investigate(){
-
-story.innerHTML=`
-
-<h2>The Hallway</h2>
+<h2>Ending Two: The Watcher</h2>
 
 <p>
-
-Crew members rush by.
-
-You hear:
-
-"Everyone please put on your lifejackets."
-
+The basement door locks behind you. The flickering lights reveal dozens
+of empty chairs facing a single mirror. Your reflection suddenly smiles
+without your permission. As the lights go dark, you understand the
+legend was true. The building was never haunted by ghosts—it creates
+new ones. The next visitor hears footsteps behind them. Those footsteps
+belong to you.
 </p>
-
-<div class='fact'>
-
-Historical Fact:
-
-The Titanic only carried enough lifeboats for 1,178 people.
-
-Over 2,200 people were aboard.
 
 </div>
 
-`;
+<div id="leave" class="ending hidden ending">
 
-choices.innerHTML=`
-
-<button onclick='helpOthers()'>
-
-Help elderly passengers.
-
-</button>
-
-<button onclick='runLifeboat()'>
-
-Run to a lifeboat immediately.
-
-</button>
-
-`;
-
-}
-
-function stayCabin(){
-
-story.innerHTML=`
-
-<h2>Time Is Running Out</h2>
+<h2>Ending Three: The Unanswered Mystery</h2>
 
 <p>
-
-You remain inside.
-
-Water begins entering lower decks.
-
-Panic spreads.
-
+You decide that some mysteries should remain unsolved. Walking back into
+the daylight feels like waking from a nightmare. Yet when you reach
+home, your pockets are filled with pages from the abandoned school that
+you never picked up. Someone—or something—followed you out. The story
+is over, but the mystery has only begun.
 </p>
-
-`;
-
-choices.innerHTML=`
-
-<button onclick='lateEscape()'>
-
-Try escaping now.
-
-</button>
-
-`;
-
-}
-
-function helpOthers(){
-
-story.innerHTML=`
-
-<h2>Helping Others</h2>
-
-<p>
-
-You guide children and elderly passengers toward the upper deck.
-
-A crew member thanks you.
-
-</p>
-
-<div class='fact'>
-
-Historical Fact:
-
-"Women and children first"
-
-was heavily enforced on many lifeboats.
 
 </div>
 
-`;
-
-choices.innerHTML=`
-
-<button onclick='lifeboat()'>
-
-Board a lifeboat.
-
-</button>
-
-<button onclick='stayBehind()'>
-
-Stay behind to continue helping.
-
-</button>
-
-`;
-
-}
-
-function runLifeboat(){
-
-story.innerHTML=`
-
-<h2>Upper Deck</h2>
-
-<p>
-
-You arrive early.
-
-A nearly empty lifeboat is being lowered.
-
-</p>
-
-`;
-
-choices.innerHTML=`
-
-<button onclick='lifeboat()'>
-
-Get aboard.
-
-</button>
-
-<button onclick='returnHelp()'>
-
-Go back and help others.
-
-</button>
-
-`;
-
-}
-
-function lateEscape(){
-
-story.innerHTML=`
-
-<h2>The Deck Is Flooded</h2>
-
-<p>
-
-The ship is severely tilted.
-
-Many lifeboats have already left.
-
-</p>
-
-<div class='fact'>
-
-Historical Fact:
-
-Titanic split into two sections before sinking.
-
-It disappeared beneath the ocean at 2:20 AM.
-
 </div>
 
-`;
-
-choices.innerHTML=`
-
-<button onclick='badEnding()'>
-
-Jump into the water.
-
-</button>
-
-`;
-
-}
-
-function lifeboat(){
-
-story.innerHTML=`
-
-<h2 class='ending'>
-
-🎉 GOOD ENDING
-
-</h2>
-
-<p>
-
-You survive.
-
-Hours later, the RMS Carpathia rescues you.
-
-You spend the rest of your life telling the story of Titanic.
-
-</p>
-
-<div class='fact'>
-
-Historical Fact:
-
-RMS Carpathia rescued approximately 705 survivors.
-
 </div>
-
-`;
-
-choices.innerHTML=`
-
-<button onclick='startGame()'>
-
-Play Again
-
-</button>
-
-`;
-
-}
-
-function stayBehind(){
-
-story.innerHTML=`
-
-<h2 class='ending'>
-
-😢 BAD ENDING
-
-</h2>
-
-<p>
-
-You remain helping passengers.
-
-Eventually there are no lifeboats left.
-
-You perish in the freezing Atlantic Ocean.
-
-</p>
-
-<div class='fact'>
-
-Historical Fact:
-
-The water temperature was about 28°F (-2°C).
-
-Most victims died from hypothermia.
-
-</div>
-
-`;
-
-choices.innerHTML=`
-
-<button onclick='startGame()'>
-
-Play Again
-
-</button>
-
-`;
-
-}
-
-function returnHelp(){
-
-story.innerHTML=`
-
-<h2>The Final Moments</h2>
-
-<p>
-
-You return below deck.
-
-The ship suddenly begins rising vertically.
-
-Panic erupts.
-
-</p>
-
-`;
-
-choices.innerHTML=`
-
-<button onclick='worseEnding()'>
-
-Try to climb upward.
-
-</button>
-
-`;
-
-}
-
-function badEnding(){
-
-story.innerHTML=`
-
-<h2 class='ending'>
-
-😢 BAD ENDING
-
-</h2>
-
-<p>
-
-You jump into the freezing ocean.
-
-You cannot survive the cold.
-
-</p>
-
-`;
-
-choices.innerHTML=`
-
-<button onclick='startGame()'>
-
-Play Again
-
-</button>
-
-`;
-
-}
-
-function worseEnding(){
-
-story.innerHTML=`
-
-<h2 class='ending'>
-
-💀 WORSE ENDING
-
-</h2>
-
-<p>
-
-You become trapped inside the sinking ship.
-
-The lights flicker one final time.
-
-Titanic disappears beneath the Atlantic.
-
-</p>
-
-<div class='fact'>
-
-Historical Fact:
-
-More than 1,500 people died during the disaster.
-
-It remains one of history's deadliest peacetime maritime disasters.
-
-</div>
-
-`;
-
-choices.innerHTML=`
-
-<button onclick='startGame()'>
-
-Play Again
-
-</button>
-
-`;
-
-}
-
-startGame();
-
-</script>
 
 </body>
-
 </html>
