@@ -3,57 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RMS Titanic: A Choice-Driven Story</title>
+<title>Echoes of the Titanic</title>
 
 <style>
 body{
     margin:0;
-    font-family:Georgia,serif;
-    background:linear-gradient(#021b3d,#063970,#0d5c8b,#000);
-    color:white;
+    font-family:Georgia, serif;
+    background:linear-gradient(#021326,#05355f,#0a5b86);
+    color:#f4f4f4;
     line-height:1.8;
 }
-
 .container{
     max-width:900px;
     margin:auto;
     padding:40px;
 }
-
-h1{
+h1,h2{
     text-align:center;
-    color:#ffe082;
 }
-
-h2{
-    color:#ffd54f;
-}
-
-button{
-    background:#ffd54f;
-    color:black;
-    border:none;
-    padding:12px 22px;
-    margin:8px;
-    font-size:16px;
-    cursor:pointer;
+.choice{
+    display:inline-block;
+    margin:10px;
+    padding:12px 20px;
+    background:#ffffff22;
+    color:white;
+    text-decoration:none;
     border-radius:8px;
+    transition:.3s;
 }
-
-button:hover{
-    background:white;
+.choice:hover{
+    background:#ffffff55;
 }
-
-.story{
-    background:rgba(0,0,0,.35);
-    padding:25px;
-    border-radius:12px;
+.section{
+    display:none;
 }
-
-footer{
-    text-align:center;
-    margin-top:30px;
-    color:#ccc;
+.section:target{
+    display:block;
+}
+#start{
+    display:block;
 }
 </style>
 </head>
@@ -62,228 +50,148 @@ footer{
 
 <div class="container">
 
-<h1>RMS Titanic</h1>
+<section id="start" class="section">
 
-<div class="story" id="story"></div>
+<h1>Echoes of the Titanic</h1>
 
-</div>
-
-<script>
-
-const pages={
-
-start:{
-title:"April 14, 1912",
-text:`You awaken aboard the RMS Titanic during its maiden voyage across the Atlantic Ocean. Around you, passengers celebrate inside elegant dining rooms while musicians perform cheerful melodies. The ship has been called unsinkable, and nearly everyone believes nothing could interrupt such a perfect journey.
-
-You spend the evening walking the decks beneath thousands of stars. The Atlantic Ocean is calm and cold, creating a mirror that reflects the night sky. Crew members continue their duties while travelers laugh, dance, and admire the luxurious ship.
-
-Suddenly, just before midnight, you feel a gentle vibration beneath your feet. It is almost too soft to notice. Conversations briefly pause before continuing as though nothing happened.
-
-Rumors spread that the Titanic has struck something in the darkness. Some passengers dismiss it as a minor inconvenience, while others quietly gather information from nearby crew members. You realize the next few minutes may determine your fate.
-
-Will you remain calm and continue enjoying the evening, or will you investigate what happened?`,
-choices:[
-["Stay inside the Grand Staircase","inside"],
-["Go outside onto the Boat Deck","deck"]
-]
-},
-
-inside:{
-title:"Inside the Ship",
-text:`The magnificent Grand Staircase remains brightly lit. Wealthy passengers continue talking while stewards reassure everyone that there is no danger. Yet something feels different. Crew members move with unusual urgency, whispering to one another before disappearing down hallways.
-
-A nearby family debates whether they should return to their cabin to collect valuables. Another passenger insists that life jackets are unnecessary because the Titanic cannot sink.
-
-You remember hearing that confidence can sometimes become a dangerous illusion. The longer you wait, the more crowded the hallways become.`,
-choices:[
-["Help the family find life jackets","help"],
-["Return to your cabin for belongings","cabin"]
-]
-},
-
-deck:{
-title:"Boat Deck",
-text:`Cold ocean air surrounds you as sailors uncover lifeboats. Officers begin giving instructions, although many passengers hesitate because the ship still appears stable. Some people laugh at the idea of leaving such a magnificent vessel.
-
-Far ahead, scattered pieces of ice float across the sea. The realization slowly spreads that the collision was more serious than anyone expected.
-
-You must decide quickly before the lifeboats begin leaving.`,
-choices:[
-["Board a lifeboat immediately","boat"],
-["Remain with friends and wait","wait"]
-]
-},
-
-help:{
-title:"Ending: Courage",
-text:`You assist several frightened passengers, helping children fasten life jackets and guiding older travelers toward the deck. Although precious minutes pass, your actions allow others to reach safety.
-
-Eventually, an officer directs you into one of the last available lifeboats. As dawn approaches, you watch the Titanic disappear beneath the Atlantic Ocean. The silence after the ship sinks is unforgettable.
-
-You survived because you chose compassion instead of panic. History remembers not only disasters, but also the courage shown by ordinary people during extraordinary moments.
-
-THE END`,
-choices:[["Play Again","start"]]
-},
-
-boat:{
-title:"Ending: Survivor",
-text:`You immediately enter one of the early lifeboats despite uncertainty surrounding the evacuation. Many passengers hesitate, believing the danger has been exaggerated.
-
-Hours later, the impossible becomes reality as the Titanic breaks apart before disappearing beneath the freezing Atlantic Ocean. From a distance, you hear cries echo across the water before silence returns.
-
-Your decision to act early saved your life. Sometimes survival depends less on certainty and more on recognizing when every minute matters.
-
-THE END`,
-choices:[["Play Again","start"]]
-},
-
-wait:{
-title:"Ending: Lost Opportunity",
-text:`You decide to remain aboard, believing there will always be another lifeboat. Unfortunately, time disappears faster than expected. As the deck tilts sharply, panic replaces confidence.
-
-The remaining lifeboats launch already filled with passengers. Freezing seawater rushes across the decks as the once magnificent ocean liner slips beneath the surface.
-
-History records the tragedy of more than fifteen hundred lives lost that night. Your story becomes one of countless voices remembered through photographs, journals, and the memories of survivors.
-
-THE END`,
-choices:[["Play Again","start"]]
-},
-
-cabin:{
-title:"Ending: Too Late",
-text:`You return to your cabin to retrieve jewelry, letters, and treasured belongings. The corridors become increasingly confusing as crew members redirect passengers toward higher decks.
-
-By the time you reach the boat deck again, nearly every lifeboat has departed. The realization is heartbreaking: possessions can never replace time.
-
-The Titanic's legacy reminds future generations that human life is more valuable than wealth. The ocean keeps your belongings forever while history remembers the lessons learned from that tragic voyage.
-
-THE END`,
-choices:[["Play Again","start"]]
-}
-
-};
-
-function load(page){
-
-let p=pages[page];
-
-let html="<h2>"+p.title+"</h2>";
-
-html+="<p>"+p.text+"</p>";
-
-p.choices.forEach(choice=>{
-html+=`<button onclick="load('${choice[1]}')">${choice[0]}</button>`;
-});
-
-document.getElementById("story").innerHTML=html;
-
-}
-
-load("start");
-
-</script>
-
-<footer>
-Christine Julian | Digital Text Project | First Version
-</footer>
-
-</body>
-</html>ever discovered what truly happened. The only way to uncover the truth
-is to keep moving.
+<p>
+April 1912. The Atlantic Ocean stretches endlessly beneath a sky filled with
+stars. The RMS Titanic glides across calm water with confidence. Music drifts
+through polished hallways while conversations echo through luxurious dining
+rooms. Wealthy travelers celebrate new opportunities in America, families
+dream about better futures, and crew members quietly keep the enormous ship
+running. Every passenger believes they are aboard the safest vessel ever
+constructed.
 </p>
 
 <p>
-As you walk forward, you notice handwritten notes scattered across the
-floor. Some are warnings. Others are unfinished journal entries written
-by people who never returned. Every page tells part of the mystery, but
-none provide a complete answer. The missing pieces can only be found by
-continuing your exploration.
+You stand near the Grand Staircase with only a small suitcase in your hand.
+Nothing seems unusual. A steward smiles politely before disappearing into the
+crowd. Somewhere below deck engineers feed coal into roaring boilers while the
+orchestra prepares another performance. Every decision you make will shape your
+experience aboard the ship.
 </p>
 
 <p>
-The atmosphere grows heavier. The silence is interrupted by distant
-footsteps that stop whenever you stop walking. It feels as if something
-is watching you from the darkness. You cannot tell whether it wants to
-help or harm you. The hallway stretches farther than it should, almost
-like the building itself refuses to let visitors leave.
+Where will you go first?
+</p>
+
+<a class="choice" href="#deck">Walk onto the upper deck.</a>
+<a class="choice" href="#ballroom">Explore the grand interior.</a>
+
+</section>
+
+<section id="deck" class="section">
+
+<h2>The Silent Deck</h2>
+
+<p>
+Cold ocean air surrounds you as the ship slices through gentle waves. The sea
+is strangely peaceful. A sailor studies the horizon before adjusting his
+telescope. Nearby, passengers laugh while taking photographs, unaware of how
+fragile the moment truly is. The stars reflect across the water so clearly
+that the ocean almost disappears into darkness.
 </p>
 
 <p>
-Interactive stories create suspense because readers participate instead
-of simply observing. Your decisions shape the experience, making each
-ending feel personal. Even though every player begins in the same place,
-their choices produce different outcomes. This creates replay value and
-encourages exploration. Instead of asking what happens next, the player
-asks, "What if I choose differently?"
+Hours pass. Suddenly, a faint scraping vibration travels through the deck
+beneath your feet. It lasts only seconds before everything becomes quiet once
+again. Confused whispers spread among the passengers, yet many dismiss the
+strange sensation as nothing important.
 </p>
 
 <p>
-Now the decision is yours.
+Do you investigate or remain outside?
 </p>
 
-<div class="section">
+<a class="choice" href="#crew">Look for a crew member.</a>
+<a class="choice" href="#stay">Stay and watch the sea.</a>
 
-<button class="choice" onclick="show('library')">
-Enter the Library
-</button>
+</section>
 
-<button class="choice" onclick="show('basement')">
-Walk into the Basement
-</button>
+<section id="ballroom" class="section">
 
-<button class="choice" onclick="show('leave')">
-Leave the School
-</button>
-
-</div>
-
-<div id="library" class="ending hidden ending">
-
-<h2>Ending One: Keeper of Memories</h2>
+<h2>The Grand Interior</h2>
 
 <p>
-The library shelves are covered in dust, but one book remains perfectly
-clean. As you open it, the pages begin writing themselves. Every choice
-you made appears inside the book. You realize the school records every
-visitor's journey and preserves it forever. You escape safely, but the
-next time someone enters, they will read your story and decide whether
-to follow your footsteps.
+Warm lights reflect from polished wood and elegant decorations. Laughter fills
+the dining room while the orchestra performs cheerful music. Wealthy guests
+discuss investments, immigrants exchange hopeful stories, and children chase
+one another across the carpet before their parents gently call them back.
 </p>
-
-</div>
-
-<div id="basement" class="ending hidden ending">
-
-<h2>Ending Two: The Watcher</h2>
 
 <p>
-The basement door locks behind you. The flickering lights reveal dozens
-of empty chairs facing a single mirror. Your reflection suddenly smiles
-without your permission. As the lights go dark, you understand the
-legend was true. The building was never haunted by ghosts—it creates
-new ones. The next visitor hears footsteps behind them. Those footsteps
-belong to you.
+Then a strange pause interrupts the evening. Glasses rattle softly. The music
+briefly falters before continuing. Some passengers look around with concern,
+but most return to their conversations, convinced that nothing serious has
+happened.
 </p>
-
-</div>
-
-<div id="leave" class="ending hidden ending">
-
-<h2>Ending Three: The Unanswered Mystery</h2>
 
 <p>
-You decide that some mysteries should remain unsolved. Walking back into
-the daylight feels like waking from a nightmare. Yet when you reach
-home, your pockets are filled with pages from the abandoned school that
-you never picked up. Someone—or something—followed you out. The story
-is over, but the mystery has only begun.
+Will you remain inside or search for answers?
 </p>
 
-</div>
+<a class="choice" href="#crew">Ask a crew member what happened.</a>
+<a class="choice" href="#stay">Ignore the disturbance.</a>
 
-</div>
+</section>
+
+<section id="crew" class="section">
+
+<h2>Ending One: Survival</h2>
+
+<p>
+A nervous officer calmly instructs everyone to put on life jackets. His voice
+remains controlled, but his eyes reveal the truth. Water has entered several
+compartments after the ship struck an iceberg. The Titanic, once believed to
+be nearly unsinkable, is slowly sinking.
+</p>
+
+<p>
+Because you acted early, you reach a lifeboat before panic spreads across the
+ship. As the ropes lower your boat toward the freezing Atlantic, you watch the
+towering vessel lean farther into the darkness. The orchestra continues to
+play while lights flicker across every deck.
+</p>
+
+<p>
+Hours later the Titanic disappears beneath the ocean. The silence afterward is
+more frightening than the sinking itself. Rescue eventually arrives, but the
+memory of that night remains forever. You survived because curiosity overcame
+complacency.
+</p>
+
+<a class="choice" href="#start">Play Again</a>
+
+</section>
+
+<section id="stay" class="section">
+
+<h2>Ending Two: Lost to History</h2>
+
+<p>
+You convince yourself there is nothing to fear. After all, this magnificent
+ship was designed with advanced engineering and watertight compartments. Surely
+the rumors are exaggerated.
+</p>
+
+<p>
+Minutes become an hour. The hallways slowly tilt. People begin running through
+the corridors while crew members desperately direct passengers toward the
+lifeboats. By the time you reach the deck, most boats have already departed.
+The freezing air bites against your face as the bow sinks lower into the sea.
+</p>
+
+<p>
+The final lights fade before darkness consumes the ship. The Atlantic closes
+over the wreckage, preserving countless stories beneath its surface. Your
+journey becomes another silent chapter remembered only through history, faded
+photographs, and the lasting legacy of the RMS Titanic.
+</p>
+
+<a class="choice" href="#start">Play Again</a>
+
+</section>
 
 </div>
 
