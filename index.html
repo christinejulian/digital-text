@@ -1,142 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Echoes of the Titanic</title>
 
 <style>
-
-*{
-box-sizing:border-box;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
 body{
-
-margin:0;
-font-family:Georgia,serif;
-background:linear-gradient(#021326,#083b68,#0c6da3);
-color:white;
-line-height:1.8;
-
+    margin:0;
+    font-family:Georgia,serif;
+    background:linear-gradient(#02142b,#0b4f87,#08365d);
+    color:white;
+    line-height:1.7;
 }
 
 .container{
-
-max-width:1000px;
-margin:auto;
-padding:40px;
-
+    max-width:900px;
+    margin:auto;
+    padding:40px;
 }
 
-h1{
-
-font-size:3rem;
-text-align:center;
-margin-bottom:15px;
-
-}
-
-h2{
-
-text-align:center;
-font-size:2.2rem;
-
-}
-
-.hero{
-
-width:100%;
-border-radius:12px;
-box-shadow:0 0 20px black;
-margin-bottom:25px;
-
-}
-
-.scene{
-
-display:block;
-width:100%;
-max-width:700px;
-margin:20px auto;
-border-radius:12px;
-box-shadow:0 0 15px black;
-
+h1,h2{
+    text-align:center;
 }
 
 .section{
-
-display:none;
-animation:fade .8s;
-
+    display:none;
 }
 
 .section:target{
-
-display:block;
-
+    display:block;
 }
 
 #start{
-
-display:block;
-
+    display:block;
 }
 
 .choice{
-
-display:inline-block;
-padding:14px 24px;
-margin:10px;
-background:#0e518b;
-border:2px solid white;
-border-radius:8px;
-color:white;
-text-decoration:none;
-font-size:18px;
-transition:.3s;
-
+    display:inline-block;
+    margin:10px;
+    padding:12px 22px;
+    background:#0f6ab8;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    transition:.3s;
 }
 
 .choice:hover{
-
-background:#3183c8;
-transform:scale(1.05);
-
+    background:#3b95df;
 }
 
-.center{
-
-text-align:center;
-
+.fact{
+    background:rgba(255,255,255,.15);
+    padding:15px;
+    border-left:5px solid gold;
+    margin-top:25px;
+    border-radius:8px;
 }
 
 footer{
-
-text-align:center;
-margin-top:40px;
-opacity:.8;
-
+    margin-top:40px;
+    text-align:center;
+    opacity:.8;
 }
-
-@keyframes fade{
-
-from{
-opacity:0;
-}
-
-to{
-opacity:1;
-}
-
-}
-
 </style>
 
 </head>
@@ -149,291 +76,233 @@ opacity:1;
 
 <h1>Echoes of the Titanic</h1>
 
-<img src="images/home.png" class="hero" alt="Titanic">
-
 <p>
 
-April 10, 1912.
+April 14, 1912.
 
-The largest passenger ship ever built begins her maiden voyage from
-Southampton.
+The RMS Titanic sails across the calm North Atlantic beneath a sky filled with
+stars. Music echoes through the ship while passengers enjoy what seems like an
+ordinary evening.
 
-Passengers from every walk of life fill her magnificent halls.
+You are one of them.
 
-Some seek fortune.
-
-Some seek adventure.
-
-Some seek a new beginning.
-
-No one knows that history will remember this voyage forever.
-
-Tonight you are one of those passengers.
-
-Every choice you make shapes your fate.
+Every decision changes your story.
 
 </p>
 
-<div class="center">
+<h3>Where do you go?</h3>
 
-<a class="choice" href="#deck">
-Walk the Upper Deck
-</a>
+<a class="choice" href="#deck">Walk the Deck</a>
 
-<a class="choice" href="#interior">
-Explore the Grand Staircase
-</a>
+<a class="choice" href="#stairs">Visit the Grand Staircase</a>
 
+<a class="choice" href="#third">Explore Third Class</a>
+
+<div class="fact">
+<b>Titanic Fact:</b><br>
+The RMS Titanic was about 882 feet (269 meters) long and was the largest passenger ship in the world when she entered service.
 </div>
 
 </section>
 
 <section id="deck" class="section">
 
-<h2>The Upper Deck</h2>
-
-<img src="images/deck.png" class="scene" alt="Deck">
+<h2>The Boat Deck</h2>
 
 <p>
 
-The Atlantic is calm.
+The sea is perfectly calm.
 
-Moonlight dances across the sea while cold air surrounds the ship.
+The cold air bites your face as you admire thousands of stars.
 
-Passengers admire the stars.
+Suddenly...
 
-Crew members quietly continue their duties.
+You feel a gentle vibration beneath your feet.
 
-Hours later...
-
-A strange vibration runs beneath your feet.
-
-Then silence.
-
-Something feels wrong.
+Passengers exchange confused looks.
 
 </p>
 
-<div class="center">
+<a class="choice" href="#crew">Find an Officer</a>
 
-<a class="choice" href="#crew">
-Find a Crew Member
-</a>
+<a class="choice" href="#wait">Stay Outside</a>
 
-<a class="choice" href="#wireless">
-Go to the Wireless Room
-</a>
-
-<a class="choice" href="#stay">
-Remain Outside
-</a>
-
+<div class="fact">
+<b>Titanic Fact:</b><br>
+Because the ocean was unusually calm, spotting the iceberg was more difficult than normal.
 </div>
 
 </section>
 
-<section id="interior" class="section">
+<section id="stairs" class="section">
 
 <h2>The Grand Staircase</h2>
 
 <p>
 
-Crystal chandeliers sparkle overhead.
+The orchestra plays while guests laugh.
 
-Music echoes through elegant corridors.
+Then glasses rattle.
 
-Children laugh.
+The music briefly stops.
 
-Couples dance.
-
-Stewards continue serving dinner.
-
-Then...
-
-Glasses gently shake.
-
-The orchestra briefly pauses.
-
-Guests exchange puzzled looks before returning to their conversations.
-
-What do you do?
+A steward quickly walks past without answering questions.
 
 </p>
 
-<div class="center">
+<a class="choice" href="#wireless">Follow the Steward</a>
 
-<a class="choice" href="#crew">
-Ask an Officer
-</a>
+<a class="choice" href="#wait">Ignore the Rumors</a>
 
-<a class="choice" href="#wireless">
-Visit the Wireless Room
-</a>
+<div class="fact">
+<b>Titanic Fact:</b><br>
+The Grand Staircase became one of the most famous parts of the ship because of its elegant woodwork and glass dome.
+</div>
 
-<a class="choice" href="#stay">
-Ignore It
-</a>
+</section>
 
+<section id="third" class="section">
+
+<h2>Third Class</h2>
+
+<p>
+
+Families gather together, unaware of what has happened.
+
+A child asks why the engines have stopped.
+
+The corridors slowly become crowded.
+
+</p>
+
+<a class="choice" href="#help">Help Families</a>
+
+<a class="choice" href="#wait">Find Your Cabin</a>
+
+<div class="fact">
+<b>Titanic Fact:</b><br>
+Many third-class passengers were immigrants hoping to begin new lives in North America.
 </div>
 
 </section>
 
 <section id="crew" class="section">
 
-<h2>Ending One</h2>
-
-<h2>Saved</h2>
+<h2>Ending: Survivor</h2>
 
 <p>
 
-A First Officer calmly tells everyone to wear life jackets.
+You quickly find an officer.
 
-You immediately follow instructions.
+He calmly orders everyone into life jackets.
 
-Because you acted quickly, you reach one of the first lifeboats.
+Because you act early, you board one of the first lifeboats.
 
-As your boat lowers into the freezing Atlantic, you watch the great ship slowly disappear beneath the stars.
-
-Hours later the RMS Carpathia rescues you.
-
-The memories of that night never fade.
+Hours later, the RMS Carpathia rescues you.
 
 </p>
 
-<div class="center">
-
-<a class="choice" href="#start">
-Play Again
-</a>
-
+<div class="fact">
+<b>Fact:</b><br>
+The Carpathia rescued approximately 710 survivors after receiving Titanic's distress calls.
 </div>
+
+<a class="choice" href="#start">Play Again</a>
 
 </section>
 
 <section id="wireless" class="section">
 
-<h2>The Marconi Wireless Room</h2>
-
-<img src="images/call.png" class="scene" alt="Wireless">
+<h2>Ending: The Wireless Room</h2>
 
 <p>
 
-Inside the cramped room, wireless operators Jack Phillips and Harold Bride work tirelessly.
+You arrive outside the Marconi Wireless Room.
 
-Their Morse key never stops.
+Operators continuously send:
 
-CQD.
+CQD...
 
-SOS.
+SOS...
 
-CQD.
+CQD...
 
-SOS.
+SOS...
 
-Messages race across the Atlantic.
+The signals reach nearby ships.
 
-Nearby ships begin answering.
+You spend the night helping the crew carry messages and supplies.
 
-You help deliver blankets, life jackets, and messages throughout the ship while hope slowly returns.
-
-Eventually rescue arrives.
-
-You survive after helping others during the disaster.
+You survive.
 
 </p>
 
-<div class="center">
-
-<a class="choice" href="#start">
-Play Again
-</a>
-
+<div class="fact">
+<b>Fact:</b><br>
+Titanic was one of the first major disasters where wireless communication played a vital role in saving lives.
 </div>
+
+<a class="choice" href="#start">Play Again</a>
 
 </section>
 
-<section id="stay" class="section">
+<section id="help" class="section">
 
-<h2>Ending Three</h2>
-
-<h2>Too Late</h2>
+<h2>Ending: Hero</h2>
 
 <p>
 
-You decide everything is fine.
+Instead of thinking only about yourself, you help children and families reach
+lifeboats.
 
-After all...
+Your courage gives others a chance to live.
 
-The Titanic was called unsinkable.
-
-Minutes become an hour.
-
-The decks tilt.
-
-Passengers begin running.
-
-Crew members shout for everyone to reach the lifeboats.
-
-By the time you arrive...
-
-Most have already left.
-
-The freezing Atlantic claims the great liner.
-
-Your story becomes another lost voice remembered only through history.
+Whether or not history remembers your name, your actions make a difference.
 
 </p>
 
-<div class="center">
-
-<a class="choice" href="#start">
-Play Again
-</a>
-
+<div class="fact">
+<b>Fact:</b><br>
+Many passengers and crew gave up seats in lifeboats so others could survive.
 </div>
+
+<a class="choice" href="#start">Play Again</a>
 
 </section>
 
-<section id="hero" class="section">
+<section id="wait" class="section">
 
-<h2>Ending Four</h2>
-
-<h2>Acts of Courage</h2>
+<h2>Ending: Lost to the Atlantic</h2>
 
 <p>
 
-Instead of searching for a boat immediately, you help frightened families find safety.
+You believe everything will be fine.
 
-Children are lifted into lifeboats.
+Minutes pass.
 
-Life jackets are shared.
+The ship begins to tilt.
 
-Even as the deck tilts, you continue helping strangers.
+Panic spreads.
 
-Although you do not survive, your bravery saves many lives.
+By the time you reach the lifeboats, they are gone.
 
-History never records your name, but your actions echo through every survivor's story.
+The freezing Atlantic becomes your final resting place.
 
 </p>
 
-<div class="center">
-
-<a class="choice" href="#start">
-Play Again
-</a>
-
+<div class="fact">
+<b>Fact:</b><br>
+The water temperature was about 28°F (-2°C), cold enough to cause hypothermia within minutes.
 </div>
+
+<a class="choice" href="#start">Play Again</a>
 
 </section>
 
 <footer>
 
 <p>
-
-Historical note:
-
-The RMS Titanic struck an iceberg late on April 14, 1912, and sank in the early hours of April 15. More than 1,500 people lost their lives, while approximately 710 survived after being rescued by the RMS Carpathia.
-
+Historical Note: The RMS Titanic struck an iceberg late on April 14, 1912, and sank during the early hours of April 15, 1912. More than 1,500 people lost their lives, making it one of the deadliest peacetime maritime disasters in history.
 </p>
 
 </footer>
@@ -441,5 +310,4 @@ The RMS Titanic struck an iceberg late on April 14, 1912, and sank in the early 
 </div>
 
 </body>
-
 </html>
