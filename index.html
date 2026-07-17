@@ -1,65 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Titanic: Atlantic Echoes</title>
+
+<title>Echoes of the Titanic</title>
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
 body{
-    margin:0;
-    font-family:Georgia, serif;
-    background:linear-gradient(#020b1a,#041f3a,#0a4a6b);
-    color:#f4f4f4;
-    line-height:1.7;
+font-family:Georgia,serif;
+background:linear-gradient(#021326,#063766,#0b6fa4);
+color:white;
+line-height:1.8;
 }
 
 .container{
-    max-width:900px;
-    margin:auto;
-    padding:40px;
+width:90%;
+max-width:900px;
+margin:auto;
+padding:40px 20px 120px;
 }
 
 h1,h2{
-    text-align:center;
-    letter-spacing:1px;
-}
-
-.choice{
-    display:inline-block;
-    margin:10px;
-    padding:12px 18px;
-    background:#ffffff22;
-    color:white;
-    text-decoration:none;
-    border-radius:10px;
-    transition:0.3s;
-}
-
-.choice:hover{
-    background:#ffffff55;
+text-align:center;
+margin-bottom:20px;
 }
 
 .section{
-    display:none;
-}
-
-.section:target{
-    display:block;
+display:none;
+animation:fade .8s;
 }
 
 #start{
-    display:block;
+display:block;
 }
 
-.fact{
-    margin-top:20px;
-    padding:12px;
-    border-left:3px solid #ffffff55;
-    background:#ffffff10;
-    font-size:0.95em;
+.section:target{
+display:block;
 }
+
+.section:target~#start{
+display:none;
+}
+
+p{
+margin:20px 0;
+font-size:1.1em;
+}
+
+.choice{
+
+display:inline-block;
+margin:15px 10px;
+padding:14px 22px;
+background:#ffffff22;
+color:white;
+text-decoration:none;
+border-radius:8px;
+transition:.3s;
+
+}
+
+.choice:hover{
+
+background:#ffffff55;
+
+}
+
+footer{
+
+margin-top:60px;
+text-align:center;
+opacity:.8;
+
+}
+
+.music{
+
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#000;
+padding:8px;
+
+}
+
+iframe{
+
+width:100%;
+height:120px;
+border:none;
+
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(15px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
 </style>
+
 </head>
 
 <body>
@@ -67,209 +125,163 @@ h1,h2{
 <div class="container">
 
 <section id="start" class="section">
-<h1>Titanic: Atlantic Echoes</h1>
+
+<h1>Echoes of the Titanic</h1>
 
 <p>
-April 14, 1912. The RMS Titanic moves like a floating city of glass and steel,
-cutting through the North Atlantic under a sky scattered with ice-cold stars.
-Music hums through the corridors, chandeliers glow like trapped suns, and the
-sea feels almost too calm to be real.
+
+April 1912.
+
+The RMS Titanic begins another calm evening across the Atlantic Ocean.
+Passengers fill the luxurious hallways while music echoes through elegant
+rooms. Some travelers dream of beginning a new life in America while others
+simply enjoy the comfort of the world's largest passenger ship. Officers move
+quietly across the decks, engineers keep the engines roaring below, and the
+crew confidently serves hundreds of guests.
+
+You stand near the famous Grand Staircase holding a small suitcase. Around
+you, conversations, laughter, and music blend together into an unforgettable
+memory. Everyone believes the voyage will be remembered as one of the greatest
+achievements of modern engineering.
+
+You decide where to begin exploring.
+
 </p>
 
-<p>
-You are aboard as a passenger with no assigned expectations except one:
-decide how you experience this night. Every corridor holds a different future.
-Every choice bends your story.
-</p>
+<a class="choice" href="#deck">Walk to the Upper Deck</a>
 
-<p>Where do you go first?</p>
+<a class="choice" href="#inside">Explore the Interior</a>
 
-<a class="choice" href="#deck">Step onto the open deck</a>
-<a class="choice" href="#ballroom">Enter the first-class lounge</a>
-<a class="choice" href="#engine">Head below deck</a>
-
-<div class="fact">
-FACT: The Titanic carried over 2,200 passengers and crew, but only enough lifeboats for about 1,178 people.
-</div>
 </section>
 
 <section id="deck" class="section">
-<h2>The Cold Open Deck</h2>
+
+<h2>The Quiet Ocean</h2>
 
 <p>
-Wind cuts across the Atlantic like a whispering blade. Ice-dark waves roll
-endlessly beneath the ship. A few passengers laugh near the railings, unaware
-of how vast and indifferent the ocean really is.
+
+The night sky is perfectly clear. Thousands of stars stretch across the sky
+while the Atlantic reflects their light like glass. The cold breeze reminds
+you how isolated the ship truly is. Passengers admire the view while others
+wrap themselves in blankets.
+
+Suddenly a faint vibration travels beneath your feet.
+
+The ship becomes silent for only a moment before conversations slowly begin
+again.
+
+Do you investigate?
+
 </p>
+
+<a class="choice" href="#survive">Find a Crew Member</a>
+
+<a class="choice" href="#lost">Ignore It</a>
+
+</section>
+
+<section id="inside" class="section">
+
+<h2>The Grand Staircase</h2>
 
 <p>
-A faint shudder runs through the hull. It is subtle, almost like the ship
-hesitating mid-step.
+
+The polished wood shines beneath enormous chandeliers.
+
+The orchestra performs another beautiful song while guests laugh over dinner.
+Children run across the carpet before being called back by their parents.
+
+Then every glass on the table gently shakes.
+
+The musicians briefly stop playing before continuing as though nothing
+happened.
+
+You notice several crew members walking much faster than before.
+
+Will you follow them?
+
 </p>
 
-<p>Do you follow it or stay above the sea?</p>
+<a class="choice" href="#survive">Follow the Officers</a>
 
-<a class="choice" href="#wireless">Investigate toward the wireless room</a>
-<a class="choice" href="#staydeck">Stay and observe the ocean</a>
+<a class="choice" href="#lost">Stay Inside</a>
 
-<div class="fact">
-FACT: The Titanic received multiple iceberg warnings that night but continued at near full speed.
+</section>
+
+<section id="survive" class="section">
+
+<h2>Ending One — Hope</h2>
+
+<p>
+
+You quickly locate an officer who calmly hands you a life jacket.
+
+Although panic has not yet begun, lifeboats are already being prepared.
+Following instructions allows you to board one of the earliest boats leaving
+the ship.
+
+From the dark Atlantic you watch the once magnificent liner slowly disappear
+beneath the freezing water.
+
+The silence that follows remains with you forever.
+
+You survive because you chose curiosity instead of comfort.
+
+Years later your story reminds others that paying attention, asking questions,
+and acting early can make all the difference.
+
+</p>
+
+<a class="choice" href="#start">Play Again</a>
+
+</section>
+
+<section id="lost" class="section">
+
+<h2>Ending Two — The Atlantic</h2>
+
+<p>
+
+You decide everything will be fine.
+
+After all, everyone has been told the Titanic is nearly unsinkable.
+
+Time slips away.
+
+Soon frightened voices echo through the hallways as the ship begins tilting.
+Passengers rush toward the remaining lifeboats, but most have already left.
+
+The freezing Atlantic grows closer.
+
+The lights slowly disappear before the great ship finally slips beneath the
+surface.
+
+History remembers the Titanic not only for its engineering but also for the
+thousands of individual stories that ended that night.
+
+Your journey becomes one of them.
+
+</p>
+
+<a class="choice" href="#start">Play Again</a>
+
+</section>
+
+<footer>
+
+<p>Choose wisely. Every decision changes the story.</p>
+
+</footer>
+
 </div>
-</section>
 
-<section id="ballroom" class="section">
-<h2>The Grand Lounge</h2>
+<div class="music">
 
-<p>
-Crystal glasses reflect golden light. The orchestra plays softly, pretending
-nothing in the world can go wrong. Conversations drift between ambition,
-migration, and dreams of America.
-</p>
-
-<p>
-Then, a pause. The music stumbles for half a breath before continuing.
-A few heads turn. Most ignore it.
-</p>
-
-<p>What now?</p>
-
-<a class="choice" href="#wireless">Ask a steward about the disturbance</a>
-<a class="choice" href="#staylounge">Ignore it and continue the night</a>
-
-<div class="fact">
-FACT: The Titanic’s interior was designed to resemble luxury hotels of London, not typical ships of the era.
-</div>
-</section>
-
-<section id="engine" class="section">
-<h2>Below Deck: The Iron Heart</h2>
-
-<p>
-Heat, noise, and motion. The engine rooms pulse like a mechanical heartbeat.
-Coal dust clings to the air as workers feed the furnaces that keep the ship
-moving through the freezing Atlantic.
-</p>
-
-<p>
-A worker mutters about an impact earlier. No one knows what it was yet.
-</p>
-
-<p>Do you investigate further or return topside?</p>
-
-<a class="choice" href="#wireless">Go find the officers</a>
-<a class="choice" href="#stayengine">Stay and observe the machinery</a>
-
-<div class="fact">
-FACT: Titanic’s engines required around 600 tons of coal per day to operate.
-</div>
-</section>
-
-<section id="wireless" class="section">
-<h2>The Wireless Room</h2>
-
-<p>
-Operators move quickly, sending and receiving coded messages across the ocean.
-The atmosphere has shifted. Urgency replaces routine.
-</p>
-
-<p>
-Ice reports confirm what the crew feared. The ship has struck something.
-The situation is not minor.
-</p>
-
-<p>Do you act immediately or wait for confirmation?</p>
-
-<a class="choice" href="#lifeboat">Head for the lifeboats</a>
-<a class="choice" href="#hero">Stay to help others first</a>
-
-<div class="fact">
-FACT: The distress call “CQD” was used alongside the newer “SOS” during Titanic’s final hours.
-</div>
-</section>
-
-<section id="staydeck" class="section">
-<h2>Ending: Frozen Witness</h2>
-
-<p>
-You remain on deck as the truth unfolds too slowly to escape. The ocean rises
-like a dark verdict. Lights flicker across the ship’s vast body before fading
-into deep silence.
-</p>
-
-<p>
-History remembers the Titanic. It remembers the cold. It remembers the night
-the sea refused to let go.
-</p>
-
-<a class="choice" href="#start">Restart</a>
-</section>
-
-<section id="staylounge" class="section">
-<h2>Ending: The Music Continues</h2>
-
-<p>
-You choose comfort over uncertainty. The orchestra plays on even as tension
-creeps through the corridors.
-</p>
-
-<p>
-By the time reality becomes undeniable, distance to safety has already been
-lost. The night becomes a memory carved into the Atlantic.
-</p>
-
-<a class="choice" href="#start">Restart</a>
-</section>
-
-<section id="stayengine" class="section">
-<h2>Ending: Beneath the Steel Giant</h2>
-
-<p>
-You stay below too long. The rhythm of machines becomes the last constant in a
-world quietly shifting above.
-</p>
-
-<p>
-When the truth finally reaches you, the paths upward are already changing.
-The ship no longer feels stable. It feels final.
-</p>
-
-<a class="choice" href="#start">Restart</a>
-</section>
-
-<section id="hero" class="section">
-<h2>Ending: The Lifeboat Decision</h2>
-
-<p>
-You help others first. Lifeboats lower into the darkness as chaos spreads
-across the decks. Some are saved. Many are not.
-</p>
-
-<p>
-Your choice lingers in memory longer than survival itself.
-</p>
-
-<a class="choice" href="#start">Restart</a>
-</section>
-
-<section id="lifeboat" class="section">
-<h2>Ending: Survivor of the Night</h2>
-
-<p>
-You reach a lifeboat before panic fully consumes the decks. The ropes creak as
-the vessel lowers into freezing water.
-</p>
-
-<p>
-Above, the Titanic stands tall for a final moment before surrendering to the
-Atlantic.
-</p>
-
-<p>
-Silence follows. Then history.
-</p>
-
-<a class="choice" href="#start">Restart</a>
-</section>
+<iframe
+src="https://www.youtube.com/embed/dLRzzj7pCPM?autoplay=1&loop=1&playlist=dLRzzj7pCPM"
+title="Titanic Music"
+allow="autoplay">
+</iframe>
 
 </div>
 
