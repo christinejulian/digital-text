@@ -12,6 +12,7 @@ body{
     background:linear-gradient(#010b17,#042a4f,#010b17);
     color:white;
     text-align:center;
+    transition:transform 0.2s ease-in-out;
 }
 
 .container{
@@ -138,6 +139,46 @@ footer{
     100% { transform: translateY(110vh) translateX(20px); }
 }
 
+/* Wind gust overlay */
+#windGusts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9996;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    background: repeating-linear-gradient(
+        to right,
+        rgba(255,255,255,0.05) 0px,
+        rgba(255,255,255,0.03) 2px,
+        rgba(255,255,255,0.02) 4px,
+        rgba(255,255,255,0) 6px
+    );
+    animation: windMove 6s linear infinite;
+}
+
+@keyframes windMove {
+    0% { transform: translateX(-10px); }
+    100% { transform: translateX(20px); }
+}
+
+/* Camera shake effect */
+.cameraShake {
+    animation: shakeCamera 0.6s ease-in-out;
+}
+
+@keyframes shakeCamera {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(-10px, -5px); }
+    40% { transform: translate(8px, 6px); }
+    60% { transform: translate(-6px, 4px); }
+    80% { transform: translate(4px, -6px); }
+    100% { transform: translate(0, 0); }
+}
+
 /* Hide audio element */
 #oceanAudio{
     display:none;
@@ -147,6 +188,9 @@ footer{
 </head>
 
 <body>
+
+<!-- Wind gust overlay -->
+<div id="windGusts"></div>
 
 <!-- Snow particle overlay -->
 <div id="snowParticles"></div>
@@ -529,15 +573,34 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<!-- Ocean audio autoplay script -->
+<!-- Wind gust + camera shake script -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    const audio = document.getElementById("oceanAudio");
-    audio.play().catch(() => {
-        document.body.addEventListener("click", () => audio.play(), { once:true });
-    });
-});
-</script>
 
-</body>
-</html>
+    /* WIND GUSTS */
+    const wind = document.getElementById("windGusts");
+
+    const windyScenes = [
+        "deck", "explore"
+    ];
+
+    window.addEventListener("hashchange", () => {
+        const current = window.location.hash.replace("#", "");
+        if (windyScenes.includes(current)) {
+            wind.style.opacity = "1";
+        } else {
+            wind.style.opacity = "0";
+        }
+    });
+
+    /* CAMERA SHAKE ON ICEBERG IMPACT */
+    const icebergScenes = [
+        "deck", "hall", "explore"
+    ];
+
+    window.addEventListener("hashchange", () => {
+        const current = window.location.hash.replace("#", "");
+        if (icebergScenes.includes(current)) {
+            document.body.classList.add("cameraShake");
+            setTimeout(() => {
+                document.body.classList.remove
