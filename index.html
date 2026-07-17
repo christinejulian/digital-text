@@ -3,48 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Echoes of the Titanic</title>
+<title>Echoes of the Titanic — Dark Historical Edition</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 body{
-    font-family:Georgia,serif;
-    background:linear-gradient(#02142c,#063d72,#01101f);
+    margin:0;
+    font-family:Georgia, serif;
+    background:linear-gradient(#010b17,#042a4f,#010b17);
     color:white;
     text-align:center;
 }
 
 .container{
-    width:80%;
+    width:85%;
     max-width:900px;
     margin:auto;
     padding:40px;
 }
 
 h1{
-    font-size:50px;
-    margin-bottom:20px;
+    font-size:48px;
+    margin-bottom:10px;
 }
 
 h2{
-    margin-bottom:20px;
+    color:#9fd9ff;
 }
 
 p{
-    font-size:20px;
+    font-size:19px;
     line-height:1.8;
-    margin-bottom:25px;
+    text-align:left;
 }
 
 .choice{
     display:inline-block;
-    margin:10px;
-    padding:15px 30px;
+    margin:12px;
+    padding:14px 28px;
     background:#0d6efd;
     color:white;
     text-decoration:none;
@@ -53,7 +48,7 @@ p{
 }
 
 .choice:hover{
-    background:#0b4ca8;
+    background:#084298;
 }
 
 .music{
@@ -80,8 +75,7 @@ p{
 
 footer{
     margin-top:50px;
-    color:#ccc;
-    font-size:15px;
+    color:#cfcfcf;
 }
 </style>
 
@@ -93,150 +87,380 @@ footer{
 
 <section id="start" class="section">
 
-<h1>Echoes of the Titanic</h1>
+<h1>Echoes of the Titanic — Dark Historical Edition</h1>
 
 <p>
-The RMS Titanic sails across the Atlantic on a calm April night.
-Passengers laugh, musicians perform, and crew members move through
-the ship with confidence. Everyone believes this voyage will become
-a symbol of modern engineering and luxury.
+April 14, 1912. The RMS Titanic cuts through the Atlantic at 22 knots, ignoring
+multiple ice warnings. You stand near the Grand Staircase, its gilded ironwork
+glowing beneath electric lamps. The air smells of perfume, polished oak, and
+ambition.
 </p>
 
 <p>
-You stand near the Grand Staircase carrying a small suitcase.
-The ocean outside is calm, the stars are bright, and nothing feels
-out of place.
+A gentle vibration trembles beneath your feet. It lasts only seconds. Most
+passengers ignore it, unaware that at 11:40 PM, the Titanic has just brushed
+against an iceberg long enough to open a 300-foot gash along her starboard side.
+Five compartments flood — one more than she can survive.
 </p>
 
-<a class="music" href="https://youtu.be/dLRzzj7pCPM?si=3a67BGqjOpUYEZ7p" target="_blank">
-🎵 Play Titanic Music
+<a class="music"
+href="https://youtu.be/dLRzzj7pCPM?si=3a67BGqjOpUYEZ7p"
+target="_blank">
+🎵 Play Music
 </a>
 
-<br><br>
+<br>
 
-<a class="choice" href="#deck">Go to the Deck</a>
-
-<a class="choice" href="#hall">Explore the Interior</a>
+<a class="choice" href="#deck">Walk onto the Deck</a>
+<a class="choice" href="#hall">Stay Inside</a>
+<a class="choice" href="#footnotes">Historical Footnotes</a>
+<a class="choice" href="#map">Branching Map</a>
 
 </section>
 
 <section id="deck" class="section">
 
-<h2>The Upper Deck</h2>
+<h2>The Open Deck</h2>
 
 <p>
-A cold wind blows across the Atlantic.
-The moon reflects across the water while passengers admire the stars.
-Suddenly, a slight vibration travels through the ship.
-Some people stop talking.
-Others continue as though nothing happened.
+The night is brutally cold — 28°F, cold enough to kill within minutes in the
+water. Passengers gather along the railings, staring at a faint white smear on
+the horizon. The iceberg drifts silently, indifferent to the chaos it has caused.
 </p>
 
 <p>
-What will you do?
+An officer hurries toward the bridge. His face is pale. You overhear him mutter
+about “watertight doors” and “the mail room flooding.”
 </p>
 
-<a class="choice" href="#officer">
-Find a Crew Officer
-</a>
+<p>
+Do you follow him or remain where you are?
+</p>
 
-<a class="choice" href="#ignore">
-Ignore It
-</a>
+<a class="choice" href="#officer">Follow the Officer</a>
+<a class="choice" href="#ignore">Stay on Deck</a>
+<a class="choice" href="#explore">Explore the Forward Deck</a>
 
 </section>
 
 <section id="hall" class="section">
 
-<h2>The Grand Hall</h2>
+<h2>The Interior</h2>
 
 <p>
-Inside, elegant lights glow above polished wood.
-The orchestra briefly pauses before continuing.
-You notice several crew members quietly walking with urgency.
-Something feels different.
+Inside, the orchestra plays <em>“Alexander’s Ragtime Band.”</em> Their leader,
+Wallace Hartley, already knows the ship is sinking. A steward urges passengers
+to fetch life jackets, but many refuse — convinced Titanic is unsinkable.
 </p>
 
 <p>
-How do you respond?
+Will you listen to the steward or return to your cabin?
 </p>
 
-<a class="choice" href="#officer">
-Follow the Crew
-</a>
+<a class="choice" href="#officer">Listen to the Steward</a>
+<a class="choice" href="#cabin">Return to Your Cabin</a>
+<a class="choice" href="#engine">Head Toward the Engine Rooms</a>
 
-<a class="choice" href="#room">
-Return to Your Cabin
-</a>
+</section>
 
+<section id="explore" class="section">
+
+<h2>The Forward Deck</h2>
+
+<p>
+You approach the bow. The ship is already dipping slightly. Crewmen rush past
+carrying axes to free lifeboats frozen to their davits.
+</p>
+
+<p>
+A crewman spots you.
+</p>
+
+<p><em>“Get to the lifeboats. The collision tore open the hull.”</em></p>
+
+<a class="choice" href="#officer">Follow His Advice</a>
+<a class="choice" href="#ignore">Stay and Watch</a>
+<a class="choice" href="#heroic">Help the Crew</a>
+<a class="choice" href="#wireless">Head to the Wireless Room</a>
+
+</section>
+
+<section id="engine" class="section">
+
+<h2>The Lower Decks</h2>
+
+<p>
+You descend into the belly of the ship. Water surges through the mail room and
+boiler rooms. Engineers shovel coal desperately, trying to keep the lights on.
+</p>
+
+<p>
+A young boy cries near a stairwell, separated from his family.
+</p>
+
+<a class="choice" href="#rescue">Help the Boy</a>
+<a class="choice" href="#officer">Return to the Upper Deck</a>
+<a class="choice" href="#trapped">Search for Another Exit</a>
+<a class="choice" href="#boiler">Investigate the Boilers</a>
+
+</section>
+
+<section id="wireless" class="section">
+
+<h2>The Wireless Room</h2>
+
+<p>
+Operators Jack Phillips and Harold Bride send frantic distress signals:
+<em>“CQD… CQD… SOS… Come at once.”</em>
+</p>
+
+<p>
+Bride gestures to a spare life jacket.
+</p>
+
+<a class="choice" href="#officer">Take the Life Jacket</a>
+<a class="choice" href="#ignore">Leave Without It</a>
+<a class="choice" href="#radioending">Stay and Assist</a>
+<a class="choice" href="#lastsignal">Stay Until the End</a>
+
+</section>
+
+<section id="radioending" class="section">
+
+<h2>Ending Six — The Last Message</h2>
+
+<p>
+You help relay messages as the ship’s bow sinks lower. Water creeps into the
+wireless room. Phillips refuses to stop transmitting.
+</p>
+
+<p>
+A final wave crashes through the doorway, sweeping you and the operators into
+the freezing Atlantic.
+</p>
+
+<a class="choice" href="#start">Play Again</a>
+</section>
+
+<section id="heroic" class="section">
+
+<h2>Ending Seven — The Hero’s Farewell</h2>
+
+<p>
+You help the crew break ice from lifeboat davits and guide passengers toward
+safety. But as the bow plunges deeper, a massive wave sweeps across the deck,
+dragging you into the sea.
+</p>
+
+<a class="choice" href="#start">Play Again</a>
+</section>
+
+<section id="rescue" class="section">
+
+<h2>Ending Five — A Life Saved</h2>
+
+<p>
+You carry the boy through rising water. His mother spots him and collapses into
+tears. An officer sees your courage and ushers you into a lifeboat.
+</p>
+
+<a class="choice" href="#start">Play Again</a>
+</section>
+
+<section id="trapped" class="section">
+
+<h2>Ending Eight — Below Deck</h2>
+
+<p>
+You search for another exit, but water floods the corridor faster than you can
+move. A locked gate blocks your path — many third‑class passengers faced the same.
+</p>
+
+<p>
+Darkness swallows you as the Atlantic claims the lower decks.
+</p>
+
+<a class="choice" href="#start">Play Again</a>
+</section>
+
+<section id="freeze" class="section">
+
+<h2>Ending Nine — The Freezing Silence</h2>
+
+<p>
+You leap from the ship as the stern rises. The water hits you like knives.
+Within minutes, your limbs stiffen. Around you, hundreds scream — then fall
+silent.
+</p>
+
+<a class="choice" href="#start">Play Again</a>
+</section>
+
+<section id="boiler" class="section">
+
+<h2>Ending Ten — The Boiler Room Collapse</h2>
+
+<p>
+You rush deeper into the ship. A sudden explosion tears through Boiler Room 5.
+Steam scalds your skin. The lights flicker, then die.
+</p>
+
+<a class="choice" href="#start">Play Again</a>
+</section>
+
+<section id="gate" class="section">
+
+<h2>Ending Eleven — The Locked Gate</h2>
+
+<p>
+You try to reach the upper decks, but a locked gate blocks your path. Water
+rises around your knees. You shout for help, but no one hears you.
+</p>
+
+<a class="choice" href="#start">Play Again</a>
+</section>
+
+<section id="lastsignal" class="section">
+
+<h2>Ending Twelve — The Last Signal</h2>
+
+<p>
+You stay in the wireless room as water bursts through the doorway. Your final
+act is pressing the telegraph key one last time — a message that never reaches
+anyone.
+</p>
+
+<a class="choice" href="#start">Play Again</a>
+</section>
+
+<section id="orchestra" class="section">
+
+<h2>Ending Thirteen — The Orchestra’s Last Note</h2>
+
+<p>
+You remain near the band as they play <em>“Nearer, My God, to Thee.”</em> The
+deck tilts sharply. Instruments slide. A wave crashes over the bow, sweeping
+you and the musicians into the sea.
+</p>
+
+<a class="choice" href="#start">Play Again</a>
 </section>
 
 <section id="officer" class="section">
 
-<h2>Ending One - Survivor</h2>
+<h2>Ending One — Safe Escape</h2>
 
 <p>
-You stop an officer and ask what happened.
-He calmly tells you to put on a life jacket and proceed to the
-lifeboats immediately.
-Because you acted quickly, you board one of the first boats.
-Hours later you watch from a distance as the Titanic disappears
-beneath the Atlantic.
-You survive and spend the rest of your life remembering that
-one decision saved you.
+You trust the crew and reach a lifeboat early. Only 20 lifeboats exist — enough
+for barely half the people aboard.
 </p>
 
-<a class="choice" href="#start">
-Play Again
-</a>
-
+<a class="choice" href="#epilogue">Survivor’s Epilogue</a>
+<a class="choice" href="#start">Play Again</a>
 </section>
 
 <section id="ignore" class="section">
 
-<h2>Ending Two - Too Late</h2>
+<h2>Ending Two — Lost at Sea</h2>
 
 <p>
-You decide everything is fine.
-After all, everyone said the Titanic was nearly unsinkable.
-By the time you realize the danger, the remaining lifeboats have
-already left.
-The freezing ocean surrounds the ship as its lights fade into
-darkness.
-History remembers another life lost on that tragic night.
+You stay on deck, convinced the ship cannot sink. But as the bow plunges deeper,
+panic erupts. The ship rises vertically, then disappears beneath the surface.
 </p>
 
-<a class="choice" href="#start">
-Play Again
-</a>
-
+<a class="choice" href="#start">Play Again</a>
 </section>
 
-<section id="room" class="section">
+<section id="cabin" class="section">
 
-<h2>Ending Three - Hidden Escape</h2>
+<h2>Ending Three — Fortune Smiles</h2>
 
 <p>
-You return to your cabin to collect your belongings.
-Along the way you discover a nearly empty corridor leading to a
-small emergency exit.
-A crew member guides a handful of passengers to the final lifeboat.
-You escape just before the bow slips beneath the water.
-Sometimes luck arrives only once.
+You return to your cabin and gather your belongings. A crew member guides you
+through a hidden passageway to a lifeboat.
 </p>
 
-<a class="choice" href="#start">
-Play Again
-</a>
+<a class="choice" href="#epilogue">Survivor’s Epilogue</a>
+<a class="choice" href="#start">Play Again</a>
+</section>
 
+<section id="footnotes" class="section">
+
+<h2>Historical Footnotes</h2>
+
+<p><strong>• Speed:</strong> Titanic traveled at 22 knots despite ice warnings.</p>
+<p><strong>• Lifeboats:</strong> Only 20 lifeboats — enough for about half aboard.</p>
+<p><strong>• Compartments:</strong> Titanic could survive 4 flooded compartments; she suffered 5.</p>
+<p><strong>• Water Temperature:</strong> 28°F — cold enough to kill within minutes.</p>
+<p><strong>• Wireless:</strong> Titanic was among the first ships to use SOS.</p>
+<p><strong>• Breakup:</strong> The ship split in two, confirmed in 1985.</p>
+<p><strong>• Engineers:</strong> The engineering crew stayed at their posts until the end.</p>
+<p><strong>• Orchestra:</strong> Musicians played until the ship sank.</p>
+
+<a class="choice" href="#start">Return</a>
+</section>
+
+<section id="epilogue" class="section">
+
+<h2>Survivor’s Epilogue</h2>
+
+<p>
+You sit aboard the Carpathia as dawn breaks. The sea is calm, as if nothing
+happened. But the horizon feels emptier — a void where the Titanic once stood.
+</p>
+
+<p>
+Out of more than 2,200 souls aboard, only about 705 survived.
+</p>
+
+<a class="choice" href="#start">Return to Start</a>
+</section>
+
+<section id="map" class="section">
+
+<h2>Branching Map of Choices</h2>
+
+<pre style="text-align:left; white-space:pre-wrap;">
+
+START
+ ├── Deck
+ │    ├── Follow Officer → Ending 1
+ │    ├── Stay on Deck → Ending 2
+ │    ├── Explore Forward Deck
+ │    │      ├── Follow Advice → Ending 1
+ │    │      ├── Stay → Ending 2
+ │    │      ├── Help Crew → Ending 7
+ │    │      └── Wireless Room
+ │    │             ├── Take Jacket → Ending 1
+ │    │             ├── Leave It → Ending 2
+ │    │             ├── Assist → Ending 6
+ │    │             └── Last Signal → Ending 12
+ │
+ └── Interior
+      ├── Listen to Steward → Ending 1
+      ├── Return to Cabin → Ending 3
+      └── Engine Rooms
+             ├── Help Boy → Ending 5
+             ├── Return Up → Ending 1
+             ├── Search Exit → Ending 8
+             └── Boiler Collapse → Ending 10
+
+Additional Endings:
+ ├── Freeze → Ending 9
+ ├── Locked Gate → Ending 11
+ └── Orchestra → Ending 13
+
+Extras:
+ ├── Historical Footnotes
+ └── Survivor’s Epilogue
+
+</pre>
+
+<a class="choice" href="#start">Return</a>
 </section>
 
 <footer>
-
-<p>
-Choose carefully. Every decision changes your story.
-</p>
-
+<p>Every choice creates a different ending.</p>
 </footer>
 
 </div>
