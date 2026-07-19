@@ -185,7 +185,7 @@ background:#1a1414;
 box-shadow:0 0 30px rgba(0,0,0,.9);
 }
 
-/* COUNTDOWN SCREEN — FADE BETWEEN NUMBERS */
+/* EXTRA-SLOW COUNTDOWN SCREEN */
 #countdownScreen{
 position:fixed;
 top:0;left:0;
@@ -199,27 +199,26 @@ font-family:"Times New Roman",serif;
 font-size:120px;
 letter-spacing:8px;
 z-index:20000;
-animation:countFadeOut 6s forwards;
+animation:countFadeOut 12s forwards;
 }
 
 .countNumber{
 opacity:0;
-animation:countNumberFade 1s forwards;
+animation:countNumberFade 2.4s forwards;
 }
 
-/* Each number fades in → flickers → fades out */
+/* Smooth dissolve */
 @keyframes countNumberFade{
 0%{opacity:0; transform:scale(1);}
-20%{opacity:1; transform:scale(1.15);}
-50%{opacity:.85; transform:scale(1);}
-80%{opacity:1;}
+30%{opacity:1; transform:scale(1.03);}
+60%{opacity:.92;}
 100%{opacity:0;}
 }
 
 /* Entire countdown fades away */
 @keyframes countFadeOut{
 0%{opacity:1;}
-95%{opacity:0;}
+98%{opacity:0;}
 100%{opacity:0; visibility:hidden;}
 }
 
@@ -606,7 +605,4 @@ Unfortunately, every passing minute makes escape more difficult.
 The hallways tilt dramatically.
 Water pours through lower decks.
 The opportunity slips away forever.
-</p>
-
-<div class="fact">
-<b>Historical Fact:</
+</
