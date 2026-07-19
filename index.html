@@ -185,43 +185,6 @@ background:#1a1414;
 box-shadow:0 0 30px rgba(0,0,0,.9);
 }
 
-/* EXTRA-SLOW COUNTDOWN SCREEN */
-#countdownScreen{
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:black;
-color:#f5e9d4;
-display:flex;
-justify-content:center;
-align-items:center;
-font-family:"Times New Roman",serif;
-font-size:120px;
-letter-spacing:8px;
-z-index:20000;
-animation:countFadeOut 12s forwards;
-}
-
-.countNumber{
-opacity:0;
-animation:countNumberFade 2.4s forwards;
-}
-
-/* Smooth dissolve */
-@keyframes countNumberFade{
-0%{opacity:0; transform:scale(1);}
-30%{opacity:1; transform:scale(1.03);}
-60%{opacity:.92;}
-100%{opacity:0;}
-}
-
-/* Entire countdown fades away */
-@keyframes countFadeOut{
-0%{opacity:1;}
-98%{opacity:0;}
-100%{opacity:0; visibility:hidden;}
-}
-
 /* TITLE SCREEN */
 #titleScreen{
 position:fixed;
@@ -330,11 +293,6 @@ animation:titleSlide 1.8s ease-out;
   <div class="intertitle-frame">
     <div id="intertitleText"></div>
   </div>
-</div>
-
-<!-- COUNTDOWN SCREEN -->
-<div id="countdownScreen">
-  <div class="countNumber" id="countNum">5</div>
 </div>
 
 <!-- TITLE SCREEN -->
@@ -605,4 +563,33 @@ Unfortunately, every passing minute makes escape more difficult.
 The hallways tilt dramatically.
 Water pours through lower decks.
 The opportunity slips away forever.
-</
+</p>
+
+<div class="fact">
+<b>Historical Fact:</b><br>
+Titanic sank completely around 2:20 AM on April 15, 1912.
+</div>
+
+<a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
+</section>
+
+<section id="heroic" class="section">
+<div class="frame-border">
+<h2>Ending Five<br>The Hero</h2>
+</div>
+
+<p>
+You help frightened passengers find life jackets and guide children toward waiting lifeboats.
+Your courage saves several lives.
+Your own rescue comes at the very last moment.
+</p>
+
+<p>
+Years later, your story becomes one remembered alongside countless acts of bravery witnessed aboard the Titanic.
+</p>
+
+<a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
+</section>
+
+<section id="romantic" class="section">
+<div class="
