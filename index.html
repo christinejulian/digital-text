@@ -3,60 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Echoes of the Titanic</title>
+<title>Echoes of the Titanic — Extended Edition</title>
+
 <style>
-body{margin:0;font-family:Georgia,serif;background:linear-gradient(#021428,#063c73,#021428);color:#fff}
-.container{max-width:900px;margin:auto;padding:40px}
-.section{display:none}.section:target{display:block}#start{display:block}
-p{line-height:1.8;font-size:18px}
-.choice{display:inline-block;margin:10px;padding:12px 22px;background:#0d6efd;color:#fff;text-decoration:none;border-radius:8px}
-.choice:hover{background:#084298}
-audio{width:100%;margin:20px 0}
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    background: linear-gradient(#021428, #063c73, #021428);
+    color: #fff;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 40px;
+}
+
+.section {
+    display: none;
+}
+
+.section:target {
+    display: block;
+}
+
+#start {
+    display: block;
+}
+
+p {
+    line-height: 1.8;
+    font-size: 18px;
+}
+
+.choice {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 22px;
+    background: #0d6efd;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.choice:hover {
+    background: #084298;
+}
+
+audio {
+    width: 100%;
+    margin: 20px 0;
+}
 </style>
 </head>
+
 <body>
 <div class="container">
+
 <section id="start" class="section">
 <h1>Echoes of the Titanic</h1>
+
 <audio controls loop>
-<source src="JulianChristine_Sound_Object.mp3" type="audio/mpeg">
+    <source src="JulianChristine_Sound_Object.mp3" type="audio/mpeg">
 </audio>
-<p>April 14, 1912. The RMS Titanic moves confidently across a calm Atlantic beneath a sky filled with brilliant stars. Inside the ship, music echoes through elegant halls while passengers enjoy dinner, conversation, and dreams of arriving in New York. Crew members perform their duties with quiet confidence because the ship is celebrated as a masterpiece of engineering. You pause beside the Grand Staircase, admiring polished wood, glowing lights, and the excitement surrounding the voyage. Suddenly, a gentle vibration passes beneath your feet. It lasts only a moment, yet whispers spread among nearby passengers. Some dismiss it as a routine movement, while others glance toward the windows with growing concern. You must decide what to do next.</p>
+
+<p>
+April 14, 1912. The RMS Titanic glides across the Atlantic with the serene confidence of a vessel believed to be invincible. The night sky is a velvet dome scattered with stars so bright they seem close enough to touch. Inside, the ship hums with life: laughter drifting from the dining saloons, the soft clinking of crystal glasses, and the warm glow of electric lamps reflecting off polished brass and carved oak.
+</p>
+
+<p>
+You pause beside the Grand Staircase, admiring its sweeping curves and the gentle shimmer of the glass dome overhead. Passengers move past you in elegant attire, exchanging stories of their travels, their hopes, their futures waiting across the ocean. The air smells faintly of perfume, polished wood, and the lingering aroma of a lavish dinner.
+</p>
+
+<p>
+Then—barely perceptible—a tremor passes beneath your feet. It is subtle, almost polite, like the ship clearing its throat. Conversations falter. A few passengers glance toward the windows. Others dismiss the sensation entirely, confident in the Titanic’s reputation. Yet something inside you tightens, a quiet instinct urging you to pay attention.
+</p>
+
+<p>
+The moment stretches. You must decide what to do next.
+</p>
+
 <a class="choice" href="#deck">Go to the Deck</a>
 <a class="choice" href="#inside">Stay Inside</a>
 </section>
 
 <section id="deck" class="section">
 <h2>The Open Deck</h2>
-<p>Cold air greets you as you step outside. The ocean is unusually still, making the silence feel unsettling. An officer quickly walks toward the bridge while several sailors stare into the darkness ahead. A few passengers laugh and continue their evening, convinced nothing could threaten such a magnificent ship.</p>
+
+<p>
+Cold air wraps around you the moment you step outside. The ocean is unnervingly calm—so still it resembles a sheet of black glass stretching endlessly in every direction. The ship’s lights cast long reflections across the water, shimmering like distant lanterns floating on the surface.
+</p>
+
+<p>
+An officer strides quickly toward the bridge, his expression tight and focused. Several sailors lean over the rail, peering into the darkness ahead. Their breath forms pale clouds in the frigid air. A few passengers join you on deck, laughing lightly, insisting the vibration was nothing more than ice scraping harmlessly along the hull.
+</p>
+
+<p>
+But the silence feels heavier now. The ship seems to be listening.
+</p>
+
 <a class="choice" href="#escape">Follow the Officer</a>
 <a class="choice" href="#lost">Ignore the Warning</a>
 </section>
 
 <section id="inside" class="section">
 <h2>The Grand Interior</h2>
-<p>The orchestra resumes playing, but the music feels different now. A steward politely asks guests to wear life jackets. Some obey immediately while others smile and refuse, believing there is no danger. You hesitate, wondering whether to trust the warning or return to your cabin.</p>
+
+<p>
+You remain inside, where the warmth of the ship feels suddenly fragile. The orchestra resumes playing, but the melody carries a strange tension, as though the musicians sense something amiss. A steward approaches guests with a polite but urgent request: <em>“Please put on your life jackets, just as a precaution.”</em>
+</p>
+
+<p>
+Some passengers comply immediately, fastening the bulky cork-filled vests over their evening clothes. Others laugh, refusing to believe anything could be wrong with the Titanic. The contrast is unsettling—calm elegance on one side, quiet fear on the other.
+</p>
+
+<p>
+You hesitate. The steward’s eyes meet yours, steady and sincere. You must choose whether to trust the warning or return to your cabin to gather your belongings.
+</p>
+
 <a class="choice" href="#escape">Trust the Steward</a>
 <a class="choice" href="#luck">Return to Your Cabin</a>
 </section>
 
 <section id="escape" class="section">
 <h2>Ending One — Safe Escape</h2>
-<p>You follow the crew without hesitation. Your quick decision allows you to board a lifeboat before panic spreads across the decks. From the freezing Atlantic you watch the Titanic slowly disappear beneath the waves. Rescue eventually arrives, and although the memory of that night never leaves you, your courage and willingness to act gave you a second chance.</p>
+
+<p>
+You follow the crew without hesitation, moving swiftly through corridors now filled with rising tension. The air grows colder as you reach the lifeboat stations. Crew members work with urgent precision, lowering boats into the dark water below. Your quick decision places you among the first to board.
+</p>
+
+<p>
+From the lifeboat, you watch the Titanic’s massive silhouette against the star-filled sky. The ship’s lights flicker as the bow dips lower. A deep, mournful groan echoes across the ocean—metal straining against fate. Moments later, the great vessel begins its final descent.
+</p>
+
+<p>
+Hours pass before rescue arrives. The memory of that night will never leave you, but your willingness to act gave you a second chance. You carry the story forward, honoring those who were not as fortunate.
+</p>
+
 <a class="choice" href="#start">Play Again</a>
 </section>
 
 <section id="lost" class="section">
 <h2>Ending Two — Lost to History</h2>
-<p>Believing the ship is unsinkable, you remain on deck until chaos erupts. Lifeboats are gone before you realize the truth. The lights fade, the bow slips beneath the water, and the Atlantic becomes silent once again. Your story joins the countless lives remembered from one of history's greatest maritime tragedies.</p>
+
+<p>
+You remain on deck, convinced the ship is too mighty to fail. But the calm façade shatters as officers begin shouting orders. Lifeboats fill rapidly. The tilt of the deck becomes unmistakable. Panic spreads like wildfire.
+</p>
+
+<p>
+By the time you seek escape, the lifeboats are gone. The ship’s bow plunges downward, pulling you toward the freezing water. The lights flicker, then vanish. A final roar of collapsing steel fills the night before the Atlantic swallows the Titanic whole.
+</p>
+
+<p>
+Your story becomes one of the many remembered in whispers and memorials—one more life claimed by a tragedy that reshaped history.
+</p>
+
 <a class="choice" href="#start">Play Again</a>
 </section>
 
 <section id="luck" class="section">
 <h2>Ending Three — Fortune Smiles</h2>
-<p>While collecting your belongings, you discover a narrow service corridor where a crew member leads a handful of passengers to one of the final lifeboats. As dawn breaks, you look back across the empty sea. The voyage ended in tragedy, yet your story continues, carrying the lessons of courage, preparation, and hope into the future.</p>
+
+<p>
+You return to your cabin, intending only to gather your belongings. But as you move through a quiet service corridor, you encounter a crew member guiding a small group of passengers toward a hidden lifeboat station. His voice is firm: <em>“This way—quickly.”</em>
+</p>
+
+<p>
+You follow, heart pounding. The corridor opens to a narrow exterior platform where one of the final lifeboats waits. The crew member ushers you aboard just as the ship’s tilt becomes severe. Moments later, the lifeboat descends into the icy water.
+</p>
+
+<p>
+As dawn breaks, the horizon glows with pale gold. You look back at the empty sea where the Titanic once stood proud. The tragedy is immense, yet you survived—carrying lessons of courage, preparation, and the fragile nature of certainty.
+</p>
+
 <a class="choice" href="#start">Play Again</a>
 </section>
+
 </div>
 </body>
 </html>
