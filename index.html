@@ -1,556 +1,542 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Echoes of the Titanic — Silent Film Edition</title>
+<meta charset="UTF-8">
+<title>Echoes of the Titanic — Silent Film Edition</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- INLINE CSS FOR 1912 SILENT-FILM STYLE + CURTAIN TRANSITION -->
-  <style>
-    /* BASIC PAGE STYLING */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Cinzel", "Georgia", serif;
-      background: #000;
-      color: #f5f5f5;
-      scroll-behavior: smooth;
-    }
+<style>
+  body {
+    margin: 0;
+    background: #000;
+    color: #f5f5f5;
+    font-family: "Cinzel", Georgia, serif;
+    scroll-behavior: smooth;
+  }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px 80px;
-    }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
 
-    h1, h2 {
-      text-align: center;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
+  h1, h2 {
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
 
-    p {
-      line-height: 1.6;
-      font-size: 18px;
-    }
+  p {
+    line-height: 1.6;
+    font-size: 18px;
+  }
 
-    /* SILENT FILM FRAME BORDER */
-    .frame-border {
-      border: 6px double #f5f5f5;
-      padding: 20px;
-      margin-bottom: 20px;
-      background: #111;
-      box-shadow: 0 0 20px rgba(0,0,0,0.8);
-    }
+  .frame-border {
+    border: 6px double #f5f5f5;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: #111;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  }
 
-    /* FACT BOX */
-    .fact {
-      border: 2px solid #ccc;
-      padding: 10px 15px;
-      margin: 20px 0;
-      font-size: 16px;
-      background: #111;
-    }
+  .fact {
+    border: 2px solid #ccc;
+    padding: 10px 15px;
+    margin: 20px 0;
+    font-size: 16px;
+    background: #111;
+  }
 
-    /* CHOICE LINKS */
-    .choice {
-      display: inline-block;
-      margin: 10px 10px 0 0;
-      padding: 10px 18px;
-      border: 2px solid #f5f5f5;
-      text-decoration: none;
-      color: #f5f5f5;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 14px;
-      background: #000;
-      transition: background 0.3s, color 0.3s;
-    }
+  .choice {
+    display: inline-block;
+    margin: 10px 10px 0 0;
+    padding: 10px 18px;
+    border: 2px solid #f5f5f5;
+    text-decoration: none;
+    color: #f5f5f5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+    background: #000;
+    transition: background 0.3s, color 0.3s;
+  }
 
-    .choice:hover {
-      background: #f5f5f5;
-      color: #000;
-    }
+  .choice:hover {
+    background: #f5f5f5;
+    color: #000;
+  }
 
-    /* SECTIONS */
-    .section {
-      margin-top: 60px;
-    }
+  .section {
+    margin-top: 60px;
+  }
 
-    /* TITLE SCREEN */
-    #titleScreen {
-      position: relative;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(circle at center, #222 0%, #000 60%);
-      color: #f5f5f5;
-      text-align: center;
-      overflow: hidden;
-    }
+  /* TITLE SCREEN */
+  #titleScreen {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #222 0%, #000 60%);
+    color: #f5f5f5;
+    text-align: center;
+    overflow: hidden;
+  }
 
-    .intertitle-frame {
-      border: 8px double #f5f5f5;
-      padding: 30px;
-      background: #000;
-      box-shadow: 0 0 40px rgba(0,0,0,0.9);
-    }
+  .intertitle-frame {
+    border: 8px double #f5f5f5;
+    padding: 30px;
+    background: #000;
+    box-shadow: 0 0 40px rgba(0,0,0,0.9);
+  }
 
+  .intertitle-text {
+    font-size: 32px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  .beginBtn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 24px;
+    border: 3px solid #f5f5f5;
+    text-decoration: none;
+    color: #f5f5f5;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 16px;
+    background: #000;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .beginBtn:hover {
+    background: #f5f5f5;
+    color: #000;
+  }
+
+  /* CURTAINS */
+  #curtainLeft,
+  #curtainRight {
+    position: fixed;
+    top: 0;
+    width: 50%;
+    height: 100vh;
+    background: linear-gradient(90deg, #3b0000 0%, #7a0000 50%, #3b0000 100%);
+    z-index: 999;
+    transition: transform 2.5s ease-in-out;
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.8);
+  }
+
+  #curtainLeft {
+    left: 0;
+    transform: translateX(0);
+  }
+
+  #curtainRight {
+    right: 0;
+    transform: translateX(0);
+  }
+
+  .curtain-open-left {
+    transform: translateX(-100%);
+  }
+
+  .curtain-open-right {
+    transform: translateX(100%);
+  }
+
+  /* INTERTITLE OVERLAY */
+  #intertitleTransition {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease-in-out;
+    z-index: 900;
+  }
+
+  #intertitleTransition.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #intertitleText {
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
     .intertitle-text {
-      font-size: 32px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      line-height: 1.4;
+      font-size: 24px;
     }
-
-    .beginBtn {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 12px 24px;
-      border: 3px solid #f5f5f5;
-      text-decoration: none;
-      color: #f5f5f5;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+    p {
       font-size: 16px;
-      background: #000;
-      transition: background 0.3s, color 0.3s;
     }
-
-    .beginBtn:hover {
-      background: #f5f5f5;
-      color: #000;
+    .frame-border {
+      padding: 15px;
     }
-
-    /* CURTAINS */
-    #curtainLeft,
-    #curtainRight {
-      position: fixed;
-      top: 0;
-      width: 50%;
-      height: 100vh;
-      background: linear-gradient(90deg, #3b0000 0%, #7a0000 50%, #3b0000 100%);
-      z-index: 999;
-      transition: transform 2.5s ease-in-out;
-      box-shadow: inset 0 0 40px rgba(0,0,0,0.8);
-    }
-
-    #curtainLeft {
-      left: 0;
-      transform: translateX(0);
-    }
-
-    #curtainRight {
-      right: 0;
-      transform: translateX(0);
-    }
-
-    /* CURTAIN OPEN STATE */
-    .curtain-open-left {
-      transform: translateX(-100%);
-    }
-
-    .curtain-open-right {
-      transform: translateX(100%);
-    }
-
-    /* INTERTITLE TRANSITION OVERLAY */
-    #intertitleTransition {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.8s ease-in-out;
-      z-index: 900;
-    }
-
-    #intertitleTransition.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    #intertitleText {
-      font-size: 30px;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      text-align: center;
-    }
-
-    /* SMALL SCREEN ADJUSTMENTS */
-    @media (max-width: 600px) {
-      .intertitle-text {
-        font-size: 24px;
-      }
-      p {
-        font-size: 16px;
-      }
-      .frame-border {
-        padding: 15px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
 
-  <!-- CURTAINS -->
-  <div id="curtainLeft"></div>
-  <div id="curtainRight"></div>
+<!-- CURTAINS -->
+<div id="curtainLeft"></div>
+<div id="curtainRight"></div>
 
-  <!-- INTERTITLE TRANSITION -->
-  <div id="intertitleTransition">
-    <div class="intertitle-frame">
-      <div id="intertitleText"></div>
+<!-- INTERTITLE TRANSITION -->
+<div id="intertitleTransition">
+  <div class="intertitle-frame">
+    <div id="intertitleText"></div>
+  </div>
+</div>
+
+<!-- TITLE SCREEN -->
+<div id="titleScreen">
+  <div class="intertitle-frame">
+    <div class="intertitle-text">
+      Echoes of the Titanic<br>
+      <span style="font-size:26px;">An Interactive Silent‑Era Experience</span>
     </div>
   </div>
 
-  <!-- TITLE SCREEN -->
-  <div id="titleScreen">
-    <div class="intertitle-frame">
-      <div class="intertitle-text">
-        Echoes of the Titanic<br>
-        <span style="font-size:26px;">An Interactive Silent‑Era Experience</span>
-      </div>
+  <a href="#start"
+     class="beginBtn"
+     onclick="openCurtains(); startAudio(); showIntertitle('THE JOURNEY BEGINS')">
+    Begin Journey
+  </a>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- START -->
+  <section id="start" class="section">
+    <div class="frame-border">
+      <h1>Echoes of the Titanic</h1>
     </div>
 
-    <a href="#start"
-       class="beginBtn"
-       onclick="openCurtains(); startAudio(); showIntertitle('THE JOURNEY BEGINS')">
-      Begin Journey
-    </a>
-  </div>
+    <audio id="titanicAudio" loop>
+      <source src="JulianChristine_SoundObject.mp3" type="audio/mpeg">
+      Your browser does not support audio.
+    </audio>
 
-  <!-- MAIN CONTENT -->
-  <div class="container">
+    <p>
+      April 14, 1912. The RMS Titanic sails across a calm Atlantic Ocean beneath a sky overflowing with stars.
+      Passengers admire the elegance of the world's newest luxury liner while enjoying music, fine dining, and lively conversation.
+      No one imagines history is only hours away.
+    </p>
 
-    <!-- START -->
-    <section id="start" class="section">
-      <div class="frame-border">
-        <h1>Echoes of the Titanic</h1>
-      </div>
+    <p>
+      You stand beneath the magnificent Grand Staircase. Its polished oak, glittering chandelier, and sweeping staircase make it feel like a floating palace.
+      Nearby, children laugh while wealthy travelers discuss business opportunities awaiting them in New York.
+    </p>
 
-      <audio id="titanicAudio" loop>
-        <source src="JulianChristine_SoundObject.mp3" type="audio/mpeg">
-        Your browser does not support audio.
-      </audio>
+    <p>
+      Suddenly... a faint vibration travels through the floor. The engines slow. Silence spreads through the ship.
+    </p>
 
-      <p>
-        April 14, 1912. The RMS Titanic sails across a calm Atlantic Ocean beneath a sky overflowing with stars.
-        Passengers admire the elegance of the world's newest luxury liner while enjoying music, fine dining, and lively conversation.
-        No one imagines history is only hours away.
-      </p>
+    <div class="fact">
+      <b>Historical Fact:</b><br>
+      Titanic struck an iceberg at approximately <strong>11:40 PM</strong> on April 14, 1912.
+    </div>
 
-      <p>
-        You stand beneath the magnificent Grand Staircase. Its polished oak, glittering chandelier, and sweeping staircase make it feel like a floating palace.
-        Nearby, children laugh while wealthy travelers discuss business opportunities awaiting them in New York.
-      </p>
+    <p>What will you do?</p>
 
-      <p>
-        Suddenly... a faint vibration travels through the floor. The engines slow. Silence spreads through the ship.
-      </p>
+    <a class="choice" href="#deck" onclick="showIntertitle('THE BOAT DECK')">Go Outside</a>
+    <a class="choice" href="#inside" onclick="showIntertitle('THE GRAND STAIRCASE')">Stay Inside</a>
+    <a class="choice" href="#wireless" onclick="showIntertitle('THE WIRELESS ROOM')">Visit the Wireless Room</a>
+    <a class="choice" href="#engine" onclick="showIntertitle('THE ENGINE ROOM')">Go to the Engine Room</a>
+    <a class="choice" href="#mystery" onclick="showIntertitle('THE ECHO BELOW')">Investigate the Strange Noise</a>
+  </section>
 
-      <div class="fact">
-        <b>Historical Fact:</b><br>
-        Titanic struck an iceberg at approximately <strong>11:40 PM</strong> on April 14, 1912.
-      </div>
+  <!-- BOAT DECK -->
+  <section id="deck" class="section">
+    <div class="frame-border">
+      <h2>The Boat Deck</h2>
+    </div>
 
-      <p>What will you do?</p>
+    <p>
+      Cold air rushes across your face. Ice floats silently nearby while crew members hurry toward the bridge.
+      Passengers gather along the railings trying to understand what happened.
+    </p>
 
-      <a class="choice" href="#deck" onclick="showIntertitle('THE BOAT DECK')">Go Outside</a>
-      <a class="choice" href="#inside" onclick="showIntertitle('THE GRAND STAIRCASE')">Stay Inside</a>
-      <a class="choice" href="#wireless" onclick="showIntertitle('THE WIRELESS ROOM')">Visit the Wireless Room</a>
-      <a class="choice" href="#engine" onclick="showIntertitle('THE ENGINE ROOM')">Go to the Engine Room</a>
-      <a class="choice" href="#mystery" onclick="showIntertitle('THE ECHO BELOW')">Investigate the Strange Noise</a>
-    </section>
+    <p>
+      One officer begins uncovering lifeboats. Many people laugh. Some refuse to believe anything could threaten the world's largest ship.
+    </p>
 
-    <!-- BOAT DECK -->
-    <section id="deck" class="section">
-      <div class="frame-border">
-        <h2>The Boat Deck</h2>
-      </div>
+    <div class="fact">
+      <b>Historical Fact:</b><br>
+      Titanic carried only 20 lifeboats for more than 2,200 people.
+    </div>
 
-      <p>
-        Cold air rushes across your face. Ice floats silently nearby while crew members hurry toward the bridge.
-        Passengers gather along the railings trying to understand what happened.
-      </p>
+    <a class="choice" href="#lifeboat" onclick="showIntertitle('SAFE ESCAPE')">Help the Crew</a>
+    <a class="choice" href="#explore" onclick="showIntertitle('TOO LATE')">Keep Exploring</a>
+    <a class="choice" href="#heroic" onclick="showIntertitle('THE HERO')">Help Passengers</a>
+  </section>
 
-      <p>
-        One officer begins uncovering lifeboats. Many people laugh. Some refuse to believe anything could threaten the world's largest ship.
-      </p>
+  <!-- GRAND STAIRCASE -->
+  <section id="inside" class="section">
+    <div class="frame-border">
+      <h2>The Grand Staircase</h2>
+    </div>
 
-      <div class="fact">
-        <b>Historical Fact:</b><br>
-        Titanic carried only 20 lifeboats for more than 2,200 people.
-      </div>
+    <p>
+      Inside, the warmth continues. The orchestra quietly resumes playing. A steward politely asks everyone to wear life jackets.
+      Some passengers obey. Others return to their cabins, convinced this is merely a precaution.
+    </p>
 
-      <a class="choice" href="#lifeboat" onclick="showIntertitle('SAFE ESCAPE')">Help the Crew</a>
-      <a class="choice" href="#explore" onclick="showIntertitle('TOO LATE')">Keep Exploring</a>
-      <a class="choice" href="#heroic" onclick="showIntertitle('THE HERO')">Help Passengers</a>
-    </section>
+    <p>You must choose quickly.</p>
 
-    <!-- GRAND STAIRCASE -->
-    <section id="inside" class="section">
-      <div class="frame-border">
-        <h2>The Grand Staircase</h2>
-      </div>
+    <a class="choice" href="#cabin" onclick="showIntertitle('YOUR CABIN')">Return to Cabin</a>
+    <a class="choice" href="#lifeboat" onclick="showIntertitle('SAFE ESCAPE')">Trust the Crew</a>
+    <a class="choice" href="#romantic" onclick="showIntertitle('A PROMISE IN THE COLD')">Find Someone You Care About</a>
+  </section>
 
-      <p>
-        Inside, the warmth continues. The orchestra quietly resumes playing. A steward politely asks everyone to wear life jackets.
-        Some passengers obey. Others return to their cabins, convinced this is merely a precaution.
-      </p>
+  <!-- WIRELESS ROOM -->
+  <section id="wireless" class="section">
+    <div class="frame-border">
+      <h2>The Wireless Room</h2>
+    </div>
 
-      <p>You must choose quickly.</p>
+    <p>
+      You enter the Marconi wireless room. Operators frantically send distress signals:
+      <strong>"CQD... CQD... SOS..."</strong>
+    </p>
 
-      <a class="choice" href="#cabin" onclick="showIntertitle('YOUR CABIN')">Return to Cabin</a>
-      <a class="choice" href="#lifeboat" onclick="showIntertitle('SAFE ESCAPE')">Trust the Crew</a>
-      <a class="choice" href="#romantic" onclick="showIntertitle('A PROMISE IN THE COLD')">Find Someone You Care About</a>
-    </section>
+    <p>
+      The urgency is unmistakable. You realize the situation is far worse than most passengers believe.
+    </p>
 
-    <!-- WIRELESS ROOM -->
-    <section id="wireless" class="section">
-      <div class="frame-border">
-        <h2>The Wireless Room</h2>
-      </div>
+    <a class="choice" href="#lifeboat" onclick="showIntertitle('SAFE ESCAPE')">Warn Others</a>
+    <a class="choice" href="#mystery" onclick="showIntertitle('THE ECHO BELOW')">Investigate the Lower Decks</a>
+  </section>
 
-      <p>
-        You enter the Marconi wireless room. Operators frantically send distress signals:
-        <strong>"CQD... CQD... SOS..."</strong>
-      </p>
+  <!-- ENGINE ROOM -->
+  <section id="engine" class="section">
+    <div class="frame-border">
+      <h2>The Engine Room</h2>
+    </div>
 
-      <p>
-        The urgency is unmistakable. You realize the situation is far worse than most passengers believe.
-      </p>
+    <p>
+      Heat and noise surround you. Engineers rush between massive machinery. Water begins pouring into the lower compartments.
+      Their faces reveal the truth: the ship is dying.
+    </p>
 
-      <a class="choice" href="#lifeboat" onclick="showIntertitle('SAFE ESCAPE')">Warn Others</a>
-      <a class="choice" href="#mystery" onclick="showIntertitle('THE ECHO BELOW')">Investigate the Lower Decks</a>
-    </section>
+    <a class="choice" href="#heroic" onclick="showIntertitle('THE HERO')">Help the Engineers</a>
+    <a class="choice" href="#stay" onclick="showIntertitle('WAITING TOO LONG')">Return to Safety</a>
+  </section>
 
-    <!-- ENGINE ROOM -->
-    <section id="engine" class="section">
-      <div class="frame-border">
-        <h2>The Engine Room</h2>
-      </div>
+  <!-- MYSTERY ENDING -->
+  <section id="mystery" class="section">
+    <div class="frame-border">
+      <h2>Mystery Ending<br>The Echo Below</h2>
+    </div>
 
-      <p>
-        Heat and noise surround you. Engineers rush between massive machinery. Water begins pouring into the lower compartments.
-        Their faces reveal the truth: the ship is dying.
-      </p>
+    <p>
+      You follow the strange noise into a dark cargo corridor. The sound grows louder—metal groaning, echoing like a voice.
+      Lights flicker. A cold wind sweeps through the hallway.
+    </p>
 
-      <a class="choice" href="#heroic" onclick="showIntertitle('THE HERO')">Help the Engineers</a>
-      <a class="choice" href="#stay" onclick="showIntertitle('WAITING TOO LONG')">Return to Safety</a>
-    </section>
+    <p>
+      A shadow moves behind you. When you turn, nothing is there. But the whisper remains:
+      <strong>"Not all stories end on the surface."</strong>
+    </p>
 
-    <!-- MYSTERY ENDING -->
-    <section id="mystery" class="section">
-      <div class="frame-border">
-        <h2>Mystery Ending<br>The Echo Below</h2>
-      </div>
+    <p>
+      You vanish into the lower decks, becoming a legend whispered by survivors.
+    </p>
 
-      <p>
-        You follow the strange noise into a dark cargo corridor. The sound grows louder—metal groaning, echoing like a voice.
-        Lights flicker. A cold wind sweeps through the hallway.
-      </p>
+    <a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
+  </section>
 
-      <p>
-        A shadow moves behind you. When you turn, nothing is there. But the whisper remains:
-        <strong>"Not all stories end on the surface."</strong>
-      </p>
+  <!-- ENDING 1: SAFE ESCAPE -->
+  <section id="lifeboat" class="section">
+    <div class="frame-border">
+      <h2>Ending One<br>Safe Escape</h2>
+    </div>
 
-      <p>
-        You vanish into the lower decks, becoming a legend whispered by survivors.
-      </p>
+    <p>
+      You trust the officers and immediately make your way to the lifeboats. You escape safely.
+      Hours later, the RMS Carpathia rescues the survivors.
+    </p>
 
-      <a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
-    </section>
+    <div class="fact">
+      <b>Historical Fact:</b><br>
+      The RMS Carpathia rescued approximately 705 survivors.
+    </div>
 
-    <!-- ENDING 1: SAFE ESCAPE -->
-    <section id="lifeboat" class="section">
-      <div class="frame-border">
-        <h2>Ending One<br>Safe Escape</h2>
-      </div>
+    <a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
+  </section>
 
-      <p>
-        You trust the officers and immediately make your way to the lifeboats. You escape safely.
-        Hours later, the RMS Carpathia rescues the survivors.
-      </p>
+  <!-- ENDING 2: TOO LATE -->
+  <section id="explore" class="section">
+    <div class="frame-border">
+      <h2>Ending Two<br>Too Late</h2>
+    </div>
 
-      <div class="fact">
-        <b>Historical Fact:</b><br>
-        The RMS Carpathia rescued approximately 705 survivors.
-      </div>
+    <p>
+      Curiosity delays your escape. By the time you return to the deck, every lifeboat has already departed.
+      The Titanic begins its final plunge.
+    </p>
 
-      <a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
-    </section>
+    <div class="fact">
+      <b>Historical Fact:</b><br>
+      Water temperatures were about 28°F (-2°C), cold enough to cause hypothermia within minutes.
+    </div>
 
-    <!-- ENDING 2: TOO LATE -->
-    <section id="explore" class="section">
-      <div class="frame-border">
-        <h2>Ending Two<br>Too Late</h2>
-      </div>
+    <a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
+  </section>
 
-      <p>
-        Curiosity delays your escape. By the time you return to the deck, every lifeboat has already departed.
-        The Titanic begins its final plunge.
-      </p>
+  <!-- CABIN -->
+  <section id="cabin" class="section">
+    <div class="frame-border">
+      <h2>Your Cabin</h2>
+    </div>
 
-      <div class="fact">
-        <b>Historical Fact:</b><br>
-        Water temperatures were about 28°F (-2°C), cold enough to cause hypothermia within minutes.
-      </div>
+    <p>
+      You hurry back for your luggage. A crew member knocks urgently, urging evacuation.
+    </p>
 
-      <a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
-    </section>
+    <a class="choice" href="#hidden" onclick="showIntertitle('THE LAST LIFEBOAT')">Follow the Crew Member</a>
+    <a class="choice" href="#stay" onclick="showIntertitle('WAITING TOO LONG')">Wait Longer</a>
+  </section>
 
-    <!-- CABIN -->
-    <section id="cabin" class="section">
-      <div class="frame-border">
-        <h2>Your Cabin</h2>
-      </div>
+  <!-- ENDING 3: LAST LIFEBOAT -->
+  <section id="hidden" class="section">
+    <div class="frame-border">
+      <h2>Ending Three<br>The Last Lifeboat</h2>
+    </div>
 
-      <p>
-        You hurry back for your luggage. A crew member knocks urgently, urging evacuation.
-      </p>
+    <p>
+      The crew member guides you through a narrow passageway. You reach one of the final lifeboats,
+      crowded with anxious passengers. As the boat is lowered into the freezing darkness, you watch
+      the Titanic’s lights flicker against the night sky.
+    </p>
 
-      <a class="choice" href="#hidden" onclick="showIntertitle('THE LAST LIFEBOAT')">Follow the Crew Member</a>
-      <a class="choice" href="#stay" onclick="showIntertitle('WAITING TOO LONG')">Wait Longer</a>
-    </section>
+    <p>
+      Hours later, you drift among stars and ice, waiting. A distant glow appears on the horizon—the
+      RMS Carpathia, answering the call of distress. Your story becomes one of the last escapes from
+      the great ship.
+    </p>
 
-    <!-- ENDING 3: LAST LIFEBOAT -->
-    <section id="hidden" class="section">
-      <div class="frame-border">
-        <h2>Ending Three<br>The Last Lifeboat</h2>
-      </div>
+    <a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
+  </section>
 
-      <p>
-        The crew member guides you through a narrow passageway. You reach one of the final lifeboats,
-        crowded with anxious passengers. As the boat is lowered into the freezing darkness, you watch
-        the Titanic’s lights flicker against the night sky.
-      </p>
+  <!-- ENDING 4: WAITING TOO LONG -->
+  <section id="stay" class="section">
+    <div class="frame-border">
+      <h2>Ending Four<br>Waiting Too Long</h2>
+    </div>
 
-      <p>
-        Hours later, you drift among stars and ice, waiting. A distant glow appears on the horizon—the
-        RMS Carpathia, answering the call of distress. Your story becomes one of the last escapes from
-        the great ship.
-      </p>
+    <p>
+      You decide to wait, believing the danger will pass. Time slips away. When you finally step onto
+      the deck, the tilt of the ship is unmistakable. Lifeboats swing empty above the water.
+    </p>
 
-      <a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
-    </section>
+    <p>
+      As the bow sinks deeper, you cling to the rail, surrounded by others who waited too long.
+      The orchestra plays its final hymn while the Atlantic rises to meet the ship.
+    </p>
 
-    <!-- ENDING 4: WAITING TOO LONG -->
-    <section id="stay" class="section">
-      <div class="frame-border">
-        <h2>Ending Four<br>Waiting Too Long</h2>
-      </div>
+    <a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
+  </section>
 
-      <p>
-        You decide to wait, believing the danger will pass. Time slips away. When you finally step onto
-        the deck, the tilt of the ship is unmistakable. Lifeboats swing empty above the water.
-      </p>
+  <!-- ROMANTIC PATH -->
+  <section id="romantic" class="section">
+    <div class="frame-border">
+      <h2>A Promise in the Cold</h2>
+    </div>
 
-      <p>
-        As the bow sinks deeper, you cling to the rail, surrounded by others who waited too long.
-        The orchestra plays its final hymn while the Atlantic rises to meet the ship.
-      </p>
+    <p>
+      You search the decks until you find someone you care about—a friend, a lover, a family member.
+      Together, you face the unfolding disaster, hands clasped against the cold.
+    </p>
 
-      <a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
-    </section>
+    <p>
+      You promise not to leave each other, no matter what happens. The choice now is not only about
+      survival, but about how your story will be remembered.
+    </p>
 
-    <!-- ROMANTIC PATH -->
-    <section id="romantic" class="section">
-      <div class="frame-border">
-        <h2>A Promise in the Cold</h2>
-      </div>
+    <a class="choice" href="#lifeboat" onclick="showIntertitle('SAFE ESCAPE TOGETHER')">Seek a Lifeboat Together</a>
+    <a class="choice" href="#explore" onclick="showIntertitle('TOO LATE')">Stay and Watch the Ship</a>
+  </section>
 
-      <p>
-        You search the decks until you find someone you care about—a friend, a lover, a family member.
-        Together, you face the unfolding disaster, hands clasped against the cold.
-      </p>
+  <!-- HEROIC PATH -->
+  <section id="heroic" class="section">
+    <div class="frame-border">
+      <h2>The Hero</h2>
+    </div>
 
-      <p>
-        You promise not to leave each other, no matter what happens. The choice now is not only about
-        survival, but about how your story will be remembered.
-      </p>
+    <p>
+      You choose to help—guiding passengers to lifeboats, assisting crew, and calming frightened families.
+      Your actions save lives, even as the ship’s fate becomes clear.
+    </p>
 
-      <a class="choice" href="#lifeboat" onclick="showIntertitle('SAFE ESCAPE TOGETHER')">Seek a Lifeboat Together</a>
-      <a class="choice" href="#explore" onclick="showIntertitle('TOO LATE')">Stay and Watch the Ship</a>
-    </section>
+    <p>
+      Whether you survive or not, your courage echoes in the memories of those who live to tell the tale.
+    </p>
 
-    <!-- HEROIC PATH -->
-    <section id="heroic" class="section">
-      <div class="frame-border">
-        <h2>The Hero</h2>
-      </div>
+    <a class="choice" href="#lifeboat" onclick="showIntertitle('SAFE ESCAPE')">Take a Chance to Escape</a>
+    <a class="choice" href="#explore" onclick="showIntertitle('TOO LATE')">Stay Until the End</a>
+  </section>
 
-      <p>
-        You choose to help—guiding passengers to lifeboats, assisting crew, and calming frightened families.
-        Your actions save lives, even as the ship’s fate becomes clear.
-      </p>
+</div>
 
-      <p>
-        Whether you survive or not, your courage echoes in the memories of those who live to tell the tale.
-      </p>
+<script>
+  const curtainLeft = document.getElementById('curtainLeft');
+  const curtainRight = document.getElementById('curtainRight');
+  const intertitleOverlay = document.getElementById('intertitleTransition');
+  const intertitleText = document.getElementById('intertitleText');
+  const audioEl = document.getElementById('titanicAudio');
 
-      <a class="choice" href="#lifeboat" onclick="showIntertitle('SAFE ESCAPE')">Take a Chance to Escape</a>
-      <a class="choice" href="#explore" onclick="showIntertitle('TOO LATE')">Stay Until the End</a>
-    </section>
+  function openCurtains() {
+    curtainLeft.classList.add('curtain-open-left');
+    curtainRight.classList.add('curtain-open-right');
+  }
 
-  </div>
+  function closeCurtains() {
+    curtainLeft.classList.remove('curtain-open-left');
+    curtainRight.classList.remove('curtain-open-right');
+  }
 
-  <!-- JAVASCRIPT: CURTAIN OPEN + INTERTITLE TRANSITION + AUDIO CONTROL -->
-  <script>
-    const curtainLeft = document.getElementById('curtainLeft');
-    const curtainRight = document.getElementById('curtainRight');
-    const intertitleOverlay = document.getElementById('intertitleTransition');
-    const intertitleText = document.getElementById('intertitleText');
-    const audioEl = document.getElementById('titanicAudio');
+  function showIntertitle(text) {
+    if (!intertitleOverlay || !intertitleText) return;
+    intertitleText.textContent = text;
+    intertitleOverlay.classList.add('active');
 
-    function openCurtains() {
-      curtainLeft.classList.add('curtain-open-left');
-      curtainRight.classList.add('curtain-open-right');
+    setTimeout(() => {
+      intertitleOverlay.classList.remove('active');
+    }, 1800);
+  }
+
+  function startAudio() {
+    if (!audioEl) return;
+    audioEl.play().catch(() => {});
+  }
+
+  function resetAudio() {
+    if (!audioEl) return;
+    audioEl.currentTime = 0;
+    audioEl.play().catch(() => {});
+  }
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY || window.pageYOffset;
+    if (scrollY < 50) {
+      closeCurtains();
     }
+  });
+</script>
 
-    function closeCurtains() {
-      curtainLeft.classList.remove('curtain-open-left');
-      curtainRight.classList.remove('curtain-open-right');
-    }
-
-    function showIntertitle(text) {
-      intertitleText.textContent = text;
-      intertitleOverlay.classList.add('active');
-
-      // Hide after a short silent-film style pause
-      setTimeout(() => {
-        intertitleOverlay.classList.remove('active');
-      }, 1800);
-    }
-
-    function startAudio() {
-      if (audioEl) {
-        audioEl.play().catch(() => {
-          // autoplay might be blocked; user interaction will trigger later
-        });
-      }
-    }
-
-    function resetAudio() {
-      if (audioEl) {
-        audioEl.currentTime = 0;
-        audioEl.play().catch(() => {});
-      }
-    }
-
-    // Optional: close curtains again when user scrolls back to top (for replay effect)
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY || window.pageYOffset;
-      if (scrollY < 50) {
-        closeCurtains();
-      }
-    });
-  </script>
 </body>
 </html>
