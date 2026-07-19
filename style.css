@@ -102,7 +102,7 @@ body:after{
 }
 
 
-/* Title Screen */
+/* Title Screen — NO FADE */
 #titleScreen{
     position:fixed;
     top:0;left:0;
@@ -114,16 +114,8 @@ body:after{
     justify-content:center;
     align-items:center;
     z-index:10000;
-    opacity:0;
-    animation:titleFadeIn 4s ease-in-out forwards;
-    animation-delay:2.5s;
+    opacity:1; /* always visible */
 }
-
-@keyframes titleFadeIn{
-    0%{opacity:0;}
-    100%{opacity:1;}
-}
-
 
 /* Intertitle Frame */
 .intertitle-frame{
