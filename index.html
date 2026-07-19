@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Echoes of the Titanic — Silent Film Edition</title>
-
 <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -40,7 +39,6 @@
 
 <!-- START -->
 <section id="start" class="section">
-
 <div class="frame-border">
 <h1>Echoes of the Titanic</h1>
 </div>
@@ -77,7 +75,6 @@ Titanic struck an iceberg at approximately <strong>11:40 PM</strong> on April 14
 <a class="choice" href="#wireless" onclick="showIntertitle('THE WIRELESS ROOM')">Visit the Wireless Room</a>
 <a class="choice" href="#engine" onclick="showIntertitle('THE ENGINE ROOM')">Go to the Engine Room</a>
 <a class="choice" href="#mystery" onclick="showIntertitle('THE ECHO BELOW')">Investigate the Strange Noise</a>
-
 </section>
 
 <!-- BOAT DECK -->
@@ -238,95 +235,4 @@ You hurry back for your luggage. A crew member knocks urgently, urging evacuatio
 </div>
 
 <p>
-The crew member guides you through a narrow passageway. You reach one of the final lifeboats just in time.
-You survive.
-</p>
-
-<a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
-</section>
-
-<!-- ENDING 4: WAITING TOO LONG -->
-<section id="stay" class="section">
-<div class="frame-border">
-<h2>Ending Four<br>Waiting Too Long</h2>
-</div>
-
-<p>
-You hesitate. Water pours through lower decks. The opportunity slips away forever.
-</p>
-
-<div class="fact">
-<b>Historical Fact:</b><br>
-Titanic sank completely around 2:20 AM on April 15, 1912.
-</div>
-
-<a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
-</section>
-
-<!-- ENDING 5: THE HERO -->
-<section id="heroic" class="section">
-<div class="frame-border">
-<h2>Ending Five<br>The Hero</h2>
-</div>
-
-<p>
-You help frightened passengers find life jackets and guide children toward lifeboats.
-Your courage saves several lives.
-</p>
-
-<a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
-</section>
-
-<!-- ENDING 6: ROMANTIC -->
-<section id="romantic" class="section">
-<div class="frame-border">
-<h2>Ending Six<br>A Promise in the Cold</h2>
-</div>
-
-<p>
-You search the ship for someone you care about. You find them near the lifeboats.
-Together, you face the night—united by fear, hope, and love.
-</p>
-
-<a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
-</section>
-
-</div>
-
-<script>
-function startAudio(){
-    let audio=document.getElementById("titanicAudio");
-    audio.volume=0;
-    audio.currentTime=0;
-    audio.play();
-
-    let fade=setInterval(function(){
-        if(audio.volume<1){
-            audio.volume+=0.02;
-        } else {
-            clearInterval(fade);
-        }
-    },150);
-}
-
-function resetAudio(){
-    let audio=document.getElementById("titanicAudio");
-    audio.pause();
-    audio.currentTime=0;
-}
-
-function showIntertitle(text){
-    const card = document.getElementById("intertitleTransition");
-    const label = document.getElementById("intertitleText");
-
-    label.textContent = text;
-    card.classList.add("show");
-
-    setTimeout(()=>{
-        card.classList.remove("show");
-    }, 1800);
-}
-</script>
-
-</body>
-</html>
+The crew member guides you through a narrow passageway. You reach one of the final lif
