@@ -1,6 +1,6 @@
 # digital-text
 this is for my class
-digital-text
+digital-text/
 ├── index.html
-├── JulianChristine_Sound_Object.mp3
+├── JulianChristine_SoundObject.mp3
 └── README.md
