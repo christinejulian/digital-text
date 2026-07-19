@@ -14,7 +14,7 @@ padding:0;
 box-sizing:border-box;
 }
 
-/* BODY — 1912 SILENT FILM LOOK, NO IMAGES */
+/* BODY — 1912 SILENT FILM LOOK */
 body{
 font-family:"Times New Roman",serif;
 background:radial-gradient(circle at center,#3b2f2f,#1a1414 70%);
@@ -70,7 +70,7 @@ animation:grain 0.4s steps(2) infinite;
 100%{transform:translate(0,0);}
 }
 
-/* FRAME JITTER (STRONGER) */
+/* FRAME JITTER */
 @keyframes filmJitter{
 0%{transform:translateY(0);}
 20%{transform:translateY(-2px);}
@@ -185,7 +185,7 @@ background:#1a1414;
 box-shadow:0 0 30px rgba(0,0,0,.9);
 }
 
-/* FILM-REEL COUNTDOWN INTRO */
+/* COUNTDOWN SCREEN — FADE BETWEEN NUMBERS */
 #countdownScreen{
 position:fixed;
 top:0;left:0;
@@ -199,26 +199,31 @@ font-family:"Times New Roman",serif;
 font-size:120px;
 letter-spacing:8px;
 z-index:20000;
-animation:countFade 3s forwards;
+animation:countFadeOut 6s forwards;
 }
 
 .countNumber{
-animation:countPulse 1s infinite;
+opacity:0;
+animation:countNumberFade 1s forwards;
 }
 
-@keyframes countPulse{
-0%{opacity:1; transform:scale(1);}
-50%{opacity:.5; transform:scale(1.2);}
-100%{opacity:1; transform:scale(1);}
+/* Each number fades in → flickers → fades out */
+@keyframes countNumberFade{
+0%{opacity:0; transform:scale(1);}
+20%{opacity:1; transform:scale(1.15);}
+50%{opacity:.85; transform:scale(1);}
+80%{opacity:1;}
+100%{opacity:0;}
 }
 
-@keyframes countFade{
+/* Entire countdown fades away */
+@keyframes countFadeOut{
 0%{opacity:1;}
-90%{opacity:0;}
+95%{opacity:0;}
 100%{opacity:0; visibility:hidden;}
 }
 
-/* TITLE SCREEN — SILENT ERA INTERTITLE */
+/* TITLE SCREEN */
 #titleScreen{
 position:fixed;
 top:0;left:0;
@@ -239,12 +244,6 @@ animation:filmFadeIn 2.5s ease-in-out;
 100%{opacity:1;}
 }
 
-/* TITLE CARD TRANSITION */
-@keyframes titleSlide{
-0%{opacity:0; transform:translateY(40px);}
-100%{opacity:1; transform:translateY(0);}
-}
-
 .intertitle-frame{
 border:8px solid #f5e9d4;
 padding:40px 60px;
@@ -252,6 +251,11 @@ display:inline-block;
 background:#1a1414;
 box-shadow:0 0 40px rgba(0,0,0,.9);
 animation:titleSlide 1.8s ease-out;
+}
+
+@keyframes titleSlide{
+0%{opacity:0; transform:translateY(40px);}
+100%{opacity:1; transform:translateY(0);}
 }
 
 .intertitle-text{
@@ -329,12 +333,12 @@ animation:titleSlide 1.8s ease-out;
   </div>
 </div>
 
-<!-- FILM-REEL COUNTDOWN -->
+<!-- COUNTDOWN SCREEN -->
 <div id="countdownScreen">
-  <div class="countNumber">3</div>
+  <div class="countNumber" id="countNum">5</div>
 </div>
 
-<!-- SILENT-FILM TITLE SCREEN -->
+<!-- TITLE SCREEN -->
 <div id="titleScreen">
   <div class="intertitle-frame">
     <div class="intertitle-text">
@@ -605,91 +609,4 @@ The opportunity slips away forever.
 </p>
 
 <div class="fact">
-<b>Historical Fact:</b><br>
-Titanic sank completely around 2:20 AM on April 15, 1912.
-</div>
-
-<a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
-</section>
-
-<section id="heroic" class="section">
-<div class="frame-border">
-<h2>Ending Five<br>The Hero</h2>
-</div>
-
-<p>
-You help frightened passengers find life jackets and guide children toward waiting lifeboats.
-Your courage saves several lives.
-Your own rescue comes at the very last moment.
-</p>
-
-<p>
-Years later, your story becomes one remembered alongside countless acts of bravery witnessed aboard the Titanic.
-</p>
-
-<a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
-</section>
-
-<section id="romantic" class="section">
-<div class="frame-border">
-<h2>Ending Six<br>A Promise in the Cold</h2>
-</div>
-
-<p>
-You search for someone you care about.
-Together, you navigate the chaos, refusing to leave each other behind.
-When a lifeboat finally appears, you both climb aboard.
-</p>
-
-<p>
-Your bond becomes a story passed down through generations—a reminder that even in tragedy, love endures.
-</p>
-
-<a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
-</section>
-
-<footer>
-Echoes of the Titanic • Interactive Silent‑Era Historical Story
-</footer>
-
-</div>
-
-<script>
-function startAudio(){
-let audio=document.getElementById("titanicAudio");
-audio.volume=0;
-audio.currentTime=0;
-audio.play();
-
-let fade=setInterval(function(){
-if(audio.volume<1){
-audio.volume+=0.02;
-}else{
-clearInterval(fade);
-}
-},150);
-
-document.getElementById("titleScreen").style.display="none";
-}
-
-function resetAudio(){
-let audio=document.getElementById("titanicAudio");
-audio.pause();
-audio.currentTime=0;
-}
-
-function showIntertitle(text){
-  const card = document.getElementById("intertitleTransition");
-  const label = document.getElementById("intertitleText");
-
-  label.textContent = text;
-  card.classList.add("show");
-
-  setTimeout(()=>{
-    card.classList.remove("show");
-  }, 1800);
-}
-</script>
-
-</body>
-</html>
+<b>Historical Fact:</
