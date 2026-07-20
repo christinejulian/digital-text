@@ -2,113 +2,66 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Echoes of the Titanic — Silent Film Game Edition</title>
+<title>Echoes of the Titanic — Silent Film Game</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-  body {
+  html, body {
     margin: 0;
+    padding: 0;
     background: #000;
     color: #f5f5f5;
     font-family: "Cinzel", Georgia, serif;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+    height: 100%;
+    overflow: hidden;
   }
 
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px 80px;
-    position: relative;
-    z-index: 5;
-  }
-
-  h1, h2 {
-    text-align: center;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  p {
-    line-height: 1.6;
-    font-size: 18px;
-  }
-
-  .frame-border {
-    border: 6px double #f5f5f5;
-    padding: 20px;
-    margin-bottom: 20px;
-    background: #111;
-    box-shadow: 0 0 20px rgba(0,0,0,0.8);
-  }
-
-  .choice {
-    display: block;
-    margin: 15px 0;
-    padding: 12px 20px;
-    border: 2px solid #f5f5f5;
-    color: #f5f5f5;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    background: #000;
-    transition: 0.3s;
-    width: fit-content;
-  }
-
-  .choice:hover {
-    background: #f5f5f5;
-    color: #000;
-  }
-
-  /* TITLE SCREEN */
-  #titleScreen {
-    height: 100vh;
+  #screen {
+    position: fixed;
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     background: radial-gradient(circle at center, #222 0%, #000 60%);
     text-align: center;
-    z-index: 5;
+    padding: 40px;
   }
 
-  .intertitle-frame {
+  .card {
     border: 8px double #f5f5f5;
     padding: 30px;
     background: #000;
     box-shadow: 0 0 40px rgba(0,0,0,0.9);
-    margin: 60px auto;
-    max-width: 700px;
+    max-width: 800px;
     opacity: 0;
-    transition: opacity 1.8s ease-in-out;
+    transition: opacity 1.5s ease-in-out;
   }
 
-  .intertitle-text {
+  .title {
     font-size: 32px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    text-align: center;
+    margin-bottom: 20px;
   }
 
-  .beginBtn {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 12px 24px;
-    border: 3px solid #f5f5f5;
-    color: #f5f5f5;
-    background: #000;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+  .text {
+    font-size: 20px;
+    line-height: 1.6;
+  }
+
+  .choices {
+    margin-top: 25px;
+    font-size: 18px;
+    white-space: pre-line;
+  }
+
+  .hint {
+    margin-top: 20px;
     font-size: 16px;
-    text-decoration: none;
+    opacity: 0.7;
   }
 
-  .beginBtn:hover {
-    background: #f5f5f5;
-    color: #000;
-  }
-
-  /* FILM EFFECTS */
+  /* film overlays */
   .film-grain {
     pointer-events: none;
     position: fixed;
@@ -172,86 +125,227 @@
     0% { transform: translateY(0); }
     100% { transform: translateY(-100%); }
   }
-
-  .ending {
-    display: none;
-  }
 </style>
 </head>
 
 <body>
 
-<!-- OVERLAYS -->
 <div class="sepia"></div>
 <div class="scratches"></div>
 <div class="film-grain"></div>
 <div class="vignette"></div>
 
-<!-- TITLE SCREEN -->
-<div id="titleScreen">
-  <div class="intertitle-frame" id="titleCard">
-    <div class="intertitle-text">
-      Echoes of the Titanic<br>
-      <span style="font-size:26px;">Silent‑Era Game Edition</span>
-    </div>
+<div id="screen">
+  <div class="card" id="card">
+    <div class="title" id="cardTitle"></div>
+    <div class="text" id="cardText"></div>
+    <div class="choices" id="cardChoices"></div>
+    <div class="hint" id="cardHint"></div>
   </div>
-
-  <a href="#story" class="beginBtn" onclick="startGame()">Begin Journey</a>
 </div>
 
-<!-- MAIN CONTENT -->
-<div class="container">
+<audio id="titanicAudio" loop>
+  <source src="JulianChristine_SoundObject.mp3" type="audio/mpeg">
+</audio>
 
-  <section id="story" class="section">
-    <div class="frame-border">
-      <h1>Echoes of the Titanic</h1>
-    </div>
+<script>
+  const card = document.getElementById("card");
+  const cardTitle = document.getElementById("cardTitle");
+  const cardText = document.getElementById("cardText");
+  const cardChoices = document.getElementById("cardChoices");
+  const cardHint = document.getElementById("cardHint");
+  const audioEl = document.getElementById("titanicAudio");
 
-    <audio id="titanicAudio" loop>
-      <source src="JulianChristine_SoundObject.mp3" type="audio/mpeg">
-    </audio>
+  let courage = 0;
+  let awareness = 0;
+  let compassion = 0;
+  let luck = 0;
+  let resolve = 0;
 
-    <p>
-      April 14, 1912. The RMS Titanic glides across a calm Atlantic. A faint vibration travels through the floor.
-    </p>
+  let step = 0;
 
-    <h2>Your First Choice</h2>
-    <p>The ship has struck something. What do you do?</p>
+  function fadeInCard() {
+    card.style.opacity = "1";
+  }
 
-    <a class="choice" onclick="choose('awareness', 2)">Go investigate the noise</a>
-    <a class="choice" onclick="choose('courage', 2)">Head to the deck to help</a>
-    <a class="choice" onclick="choose('compassion', 2)">Check on nearby passengers</a>
+  function playAudio() {
+    audioEl.play().catch(() => {});
+  }
 
-    <h2>Your Second Choice</h2>
-    <p>The ship begins to list. Crew members uncover lifeboats.</p>
+  function showCard(title, text, choices, hint) {
+    cardTitle.textContent = title;
+    cardText.textContent = text;
+    cardChoices.textContent = choices || "";
+    cardHint.textContent = hint || "";
+    card.style.opacity = "0";
+    setTimeout(fadeInCard, 100);
+  }
 
-    <a class="choice" onclick="choose('awareness', 2)">Find the nearest lifeboat</a>
-    <a class="choice" onclick="choose('courage', 2)">Help load women and children</a>
-    <a class="choice" onclick="choose('compassion', 2)">Comfort a crying child</a>
+  function startGame() {
+    playAudio();
+    step = 1;
+    showCard(
+      "Echoes of the Titanic",
+      "A silent‑era interactive film.\nYour fate will be shaped by your choices.",
+      "",
+      "Press any key to begin."
+    );
+  }
 
-    <h2>Your Final Choice</h2>
-    <p>The bow sinks lower. Time is running out.</p>
+  function nextStep() {
+    if (step === 1) {
+      step = 2;
+      showCard(
+        "First Choice",
+        "A faint vibration travels through the floor.\nPassengers whisper.\nThe air feels wrong.",
+        "1 — Investigate the noise (Awareness)\n2 — Head to the deck (Courage)\n3 — Check on passengers (Compassion)\n4 — Stay still and observe (Luck)\n5 — Brace yourself (Resolve)",
+        "Press 1–5"
+      );
+    }
 
-    <a class="choice" onclick="choose('awareness', 3)">Escape immediately</a>
-    <a class="choice" onclick="choose('courage', 3)">Stay to help others</a>
-    <a class="choice" onclick="choose('compassion', 3)">Search for missing passengers</a>
+    else if (step === 2) {
+      step = 3;
+      showCard(
+        "Second Choice",
+        "The ship begins to list.\nCrew uncover lifeboats.\nPanic spreads.",
+        "1 — Find a lifeboat (Awareness)\n2 — Help load women/children (Courage)\n3 — Comfort a child (Compassion)\n4 — Follow a crew member (Luck)\n5 — Hold your ground (Resolve)",
+        "Press 1–5"
+      );
+    }
 
-    <div class="frame-border">
-      <p>Scroll down to reveal your fate…</p>
-    </div>
-  </section>
+    else if (step === 3) {
+      step = 4;
+      showCard(
+        "Final Choice",
+        "The bow sinks lower.\nTime is running out.",
+        "1 — Escape immediately (Awareness)\n2 — Stay to help (Courage)\n3 — Search for missing passengers (Compassion)\n4 — Take a risky shortcut (Luck)\n5 — Prepare for the worst (Resolve)",
+        "Press 1–5"
+      );
+    }
 
-  <!-- ENDING AREA -->
-  <div id="endingContainer">
-    <div class="intertitle-frame ending" id="endingCard"></div>
-    <div class="frame-border ending" id="endingText"></div>
-  </div>
+    else if (step === 4) {
+      step = 5;
+      showEnding();
+    }
+  }
 
-  <a class="beginBtn" href="#titleScreen" onclick="resetAudio()">Replay</a>
+  function applyChoice(key) {
+    const amount = step === 3 ? 3 : 2;
 
-</div>
+    if (key === "1") awareness += amount;
+    if (key === "2") courage += amount;
+    if (key === "3") compassion += amount;
+    if (key === "4") luck += amount;
+    if (key === "5") resolve += amount;
 
-<script src="main.js"></script>
+    nextStep();
+  }
+
+  function determineEnding() {
+    // Awareness endings
+    if (awareness >= 6) {
+      const endings = [
+        ["Ending A1 — The Watchful Survivor", "Your vigilance guides you to safety."],
+        ["Ending A2 — The Early Escape", "You act before others realize the danger."],
+        ["Ending A3 — The Navigator", "You find a hidden route to a lifeboat."]
+      ];
+      return endings[Math.floor(Math.random() * endings.length)];
+    }
+
+    // Courage endings
+    if (courage >= 6) {
+      const endings = [
+        ["Ending C1 — The Hero", "You save lives as the ship sinks beneath you."],
+        ["Ending C2 — The Last Stand", "You refuse to leave until the final moment."],
+        ["Ending C3 — The Guardian", "Your bravery shields others from panic."]
+      ];
+      return endings[Math.floor(Math.random() * endings.length)];
+    }
+
+    // Compassion endings
+    if (compassion >= 6) {
+      const endings = [
+        ["Ending P1 — The Last Lifeboat", "Your kindness earns you a place in the final boat."],
+        ["Ending P2 — The Caretaker", "You stay with frightened passengers until rescue arrives."],
+        ["Ending P3 — The Gentle Soul", "Your empathy shapes your fate in the icy night."]
+      ];
+      return endings[Math.floor(Math.random() * endings.length)];
+    }
+
+    // Luck endings
+    if (luck >= 6) {
+      const endings = [
+        ["Ending L1 — The Coin Flip", "Chance favors you in the chaos."],
+        ["Ending L2 — The Lucky Break", "A crew member pulls you aboard at the last second."],
+        ["Ending L3 — The Narrow Escape", "You survive by pure fortune."]
+      ];
+      return endings[Math.floor(Math.random() * endings.length)];
+    }
+
+    // Resolve endings
+    if (resolve >= 6) {
+      const endings = [
+        ["Ending R1 — The Stoic", "You face the end with unwavering calm."],
+        ["Ending R2 — The Iron Will", "Your resolve carries you through impossible odds."],
+        ["Ending R3 — The Survivor's Spirit", "You endure the night through sheer determination."]
+      ];
+      return endings[Math.floor(Math.random() * endings.length)];
+    }
+
+    // Dark endings
+    const dark = [
+      ["Ending D1 — Too Late", "You hesitate too long. The Atlantic claims the ship."],
+      ["Ending D2 — The Echo Below", "You wander into the lower decks. Shadows move."],
+      ["Ending D3 — The Silent Depths", "Your fate disappears beneath the waves."]
+    ];
+    return dark[Math.floor(Math.random() * dark.length)];
+  }
+
+  function showEnding() {
+    const [title, text] = determineEnding();
+    showCard(title, text, "", "Press R to replay.");
+  }
+
+  function resetGame() {
+    courage = 0;
+    awareness = 0;
+    compassion = 0;
+    luck = 0;
+    resolve = 0;
+    step = 0;
+    startGame();
+  }
+
+  document.addEventListener("keydown", (e) => {
+    const key = e.key;
+
+    if (step === 0) {
+      startGame();
+      return;
+    }
+
+    if (step === 1) {
+      nextStep();
+      return;
+    }
+
+    if (["1","2","3","4","5"].includes(key) && step >= 2 && step <= 4) {
+      applyChoice(key);
+      return;
+    }
+
+    if (key.toLowerCase() === "r" && step === 5) {
+      resetGame();
+      return;
+    }
+  });
+
+  showCard(
+    "Echoes of the Titanic",
+    "A silent‑era interactive ending game.\nPress any key to begin.",
+    ""
+  );
+</script>
 
 </body>
 </html>
