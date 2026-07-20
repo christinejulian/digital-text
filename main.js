@@ -1,39 +1,36 @@
 // main.js
 
-console.log("1900 film‑grain cinema mode active");
+console.log("1900 silent‑film mode active (sepia + scratches + grain)");
 
-// ---------------------------------------------------------
-// FILM GRAIN + VIGNETTE SETUP (NO FLICKER)
-// ---------------------------------------------------------
+/* ---------------------------------------------------------
+   CREATE OVERLAY ELEMENTS
+--------------------------------------------------------- */
 
-// Create film grain layer
+// Sepia tint overlay
+const sepiaLayer = document.createElement("div");
+sepiaLayer.className = "sepia";
+document.body.appendChild(sepiaLayer);
+
+// Film scratches overlay
+const scratchLayer = document.createElement("div");
+scratchLayer.className = "scratches";
+document.body.appendChild(scratchLayer);
+
+// Film grain overlay
 const grainLayer = document.createElement("div");
 grainLayer.className = "film-grain";
 document.body.appendChild(grainLayer);
 
-// Create vignette layer
+// Vignette overlay
 const vignetteLayer = document.createElement("div");
 vignetteLayer.className = "vignette";
 document.body.appendChild(vignetteLayer);
 
-// ---------------------------------------------------------
-// INTERTITLE SYSTEM
-// ---------------------------------------------------------
-const intertitleOverlay = document.getElementById("intertitleTransition");
-const intertitleText = document.getElementById("intertitleText");
 
-function showIntertitle(text) {
-  intertitleText.textContent = text;
-  intertitleOverlay.classList.add("active");
+/* ---------------------------------------------------------
+   AUDIO SYSTEM
+--------------------------------------------------------- */
 
-  setTimeout(() => {
-    intertitleOverlay.classList.remove("active");
-  }, 1800);
-}
-
-// ---------------------------------------------------------
-// AUDIO SYSTEM
-// ---------------------------------------------------------
 const audioEl = document.getElementById("titanicAudio");
 
 function startAudio() {
@@ -49,12 +46,33 @@ function resetAudio() {
   audioEl.play().catch(() => {});
 }
 
-// ---------------------------------------------------------
-// OPTIONAL: Adjust film grain intensity dynamically
-// ---------------------------------------------------------
-function setFilmGrainIntensity(level = 0.25) {
+
+/* ---------------------------------------------------------
+   OPTIONAL CONTROLS
+--------------------------------------------------------- */
+
+// Adjust sepia tint strength
+function setSepia(level = 0.25) {
+  sepiaLayer.style.background = `rgba(112, 66, 20, ${level})`;
+}
+
+// Adjust scratch visibility
+function setScratchIntensity(level = 0.35) {
+  scratchLayer.style.opacity = level;
+}
+
+// Adjust grain visibility
+function setGrainIntensity(level = 0.25) {
   grainLayer.style.opacity = level;
 }
 
-// Initialize grain level
-setFilmGrainIntensity(0.25);
+
+/* ---------------------------------------------------------
+   DEFAULT LOOK
+--------------------------------------------------------- */
+
+setSepia(0.25);           // warm sepia wash
+setScratchIntensity(0.35); // visible scratches
+setGrainIntensity(0.25);   // subtle grain
+
+console.log("Silent‑film overlays initialized.");
