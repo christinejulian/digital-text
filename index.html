@@ -176,13 +176,13 @@
   }
 
   function playAudio() {
-    audioEl.currentTime = 0;
+    audioEl.currentTime = 0;   // FULL RESET
     audioEl.play().catch(() => {});
   }
 
   function stopAudio() {
     audioEl.pause();
-    audioEl.currentTime = 0;
+    audioEl.currentTime = 0;   // FULL RESET
   }
 
   function showCard(title, text, buttons = []) {
@@ -341,8 +341,8 @@
   }
 
   function resetGame() {
-    stopAudio();
-    playAudio();
+    stopAudio();   // FULL STOP + RESET
+    playAudio();   // START FRESH
 
     courage = 0;
     awareness = 0;
