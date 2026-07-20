@@ -1,9 +1,9 @@
 // main.js
 
-console.log("1900 silent‑film effects active");
+console.log("1900 film‑grain cinema mode active");
 
 // ---------------------------------------------------------
-// FILM GRAIN + FLICKER + VIGNETTE SETUP
+// FILM GRAIN + VIGNETTE SETUP (NO FLICKER)
 // ---------------------------------------------------------
 
 // Create film grain layer
@@ -15,13 +15,6 @@ document.body.appendChild(grainLayer);
 const vignetteLayer = document.createElement("div");
 vignetteLayer.className = "vignette";
 document.body.appendChild(vignetteLayer);
-
-// Add flicker class to everything that should flicker
-function applyFlicker() {
-  document.querySelectorAll(".flicker-target").forEach(el => {
-    el.classList.add("flicker");
-  });
-}
 
 // ---------------------------------------------------------
 // INTERTITLE SYSTEM
@@ -63,16 +56,5 @@ function setFilmGrainIntensity(level = 0.25) {
   grainLayer.style.opacity = level;
 }
 
-// ---------------------------------------------------------
-// OPTIONAL: Adjust flicker speed
-// ---------------------------------------------------------
-function setFlickerSpeed(seconds = 2.5) {
-  document.documentElement.style.setProperty("--flicker-speed", `${seconds}s`);
-}
-
-// ---------------------------------------------------------
-// INITIALIZE EFFECTS
-// ---------------------------------------------------------
-applyFlicker();
+// Initialize grain level
 setFilmGrainIntensity(0.25);
-setFlickerSpeed(2.5);
