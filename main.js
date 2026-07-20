@@ -1,6 +1,6 @@
 // main.js
 
-console.log("Silent‑era overlays active (sepia + scratches + grain + vignette)");
+console.log("Silent‑film mode active: sepia, scratches, grain, vignette, title cards");
 
 /* ---------------------------------------------------------
    CREATE OVERLAY ELEMENTS
@@ -48,6 +48,28 @@ function resetAudio() {
 
 
 /* ---------------------------------------------------------
+   TITLE CARD FADE‑IN EFFECT
+--------------------------------------------------------- */
+
+function fadeInTitleCards() {
+  const cards = document.querySelectorAll(".intertitle-frame");
+
+  cards.forEach((card, index) => {
+    card.style.opacity = "0";
+    card.style.transition = "opacity 1.8s ease-in-out";
+
+    // Delay each card slightly for a reel‑like progression
+    setTimeout(() => {
+      card.style.opacity = "1";
+    }, 600 * index);
+  });
+}
+
+// Run fade‑in once the page loads
+window.addEventListener("load", fadeInTitleCards);
+
+
+/* ---------------------------------------------------------
    OPTIONAL CONTROLS
 --------------------------------------------------------- */
 
@@ -75,4 +97,4 @@ setSepia(0.25);            // warm sepia wash
 setScratchIntensity(0.35); // visible scratches
 setGrainIntensity(0.25);   // subtle grain
 
-console.log("Silent‑film overlays initialized.");
+console.log("Silent‑film overlays + title cards initialized.");
