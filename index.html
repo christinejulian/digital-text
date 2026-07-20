@@ -180,25 +180,6 @@
       rgba(0,0,0,0.9) 100%);
   }
 
-  /* FLICKER EFFECT (SUBTLE) */
-  .flicker {
-    animation: flicker 2.5s infinite;
-  }
-
-  @keyframes flicker {
-    0% { opacity: 1; }
-    10% { opacity: 0.95; }
-    20% { opacity: 1; }
-    30% { opacity: 0.9; }
-    40% { opacity: 1; }
-    50% { opacity: 0.92; }
-    60% { opacity: 1; }
-    70% { opacity: 0.96; }
-    80% { opacity: 1; }
-    90% { opacity: 0.93; }
-    100% { opacity: 1; }
-  }
-
   @media (max-width: 600px) {
     .intertitle-text {
       font-size: 24px;
@@ -221,13 +202,13 @@
 
 <!-- INTERTITLE TRANSITION -->
 <div id="intertitleTransition">
-  <div class="intertitle-frame flicker">
+  <div class="intertitle-frame">
     <div id="intertitleText"></div>
   </div>
 </div>
 
 <!-- TITLE SCREEN -->
-<div id="titleScreen" class="flicker">
+<div id="titleScreen">
   <div class="intertitle-frame">
     <div class="intertitle-text">
       Echoes of the Titanic<br>
@@ -243,7 +224,7 @@
 </div>
 
 <!-- MAIN CONTENT -->
-<div class="container flicker">
+<div class="container">
 
   <!-- START -->
   <section id="start" class="section">
@@ -500,49 +481,4 @@
   <!-- HEROIC PATH -->
   <section id="heroic" class="section">
     <div class="frame-border">
-      <h2>The Hero</h2>
-    </div>
-
-    <p>
-      You choose to help—guiding passengers to lifeboats, assisting crew, and calming frightened families.
-      Your actions save lives, even as the ship’s fate becomes clear.
-    </p>
-
-    <p>
-      Whether you survive or not, your courage echoes in the memories of those who live to tell the tale.
-    </p>
-
-    <a class="choice" href="#lifeboat" onclick="showIntertitle('SAFE ESCAPE')">Take a Chance to Escape</a>
-    <a class="choice" href="#explore" onclick="showIntertitle('TOO LATE')">Stay Until the End</a>
-  </section>
-
-</div>
-
-<script>
-  const intertitleOverlay = document.getElementById('intertitleTransition');
-  const intertitleText = document.getElementById('intertitleText');
-  const audioEl = document.getElementById('titanicAudio');
-
-  function showIntertitle(text) {
-    intertitleText.textContent = text;
-    intertitleOverlay.classList.add('active');
-
-    setTimeout(() => {
-      intertitleOverlay.classList.remove('active');
-    }, 1800);
-  }
-
-  function startAudio() {
-    if (!audioEl) return;
-    audioEl.play().catch(() => {});
-  }
-
-  function resetAudio() {
-    if (!audioEl) return;
-    audioEl.currentTime = 0;
-    audioEl.play().catch(() => {});
-  }
-</script>
-
-</body>
-</html>
+      <h2>The Hero
