@@ -22,7 +22,7 @@
     margin: 0 auto;
     padding: 40px 20px 80px;
     position: relative;
-    z-index: 2; /* above film grain */
+    z-index: 5;
   }
 
   h1, h2 {
@@ -86,7 +86,7 @@
     color: #f5f5f5;
     text-align: center;
     overflow: hidden;
-    z-index: 2;
+    z-index: 5;
   }
 
   .intertitle-frame {
@@ -122,33 +122,7 @@
     color: #000;
   }
 
-  /* INTERTITLE OVERLAY */
-  #intertitleTransition {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.8s ease-in-out;
-    z-index: 5;
-  }
-
-  #intertitleTransition.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  #intertitleText {
-    font-size: 30px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    text-align: center;
-  }
-
-  /* 1900 FILM GRAIN + VIGNETTE */
+  /* FILM GRAIN */
   .film-grain {
     pointer-events: none;
     position: fixed;
@@ -169,6 +143,7 @@
     100% { transform: translate(0,0); }
   }
 
+  /* VIGNETTE */
   .vignette {
     pointer-events: none;
     position: fixed;
@@ -180,32 +155,51 @@
       rgba(0,0,0,0.9) 100%);
   }
 
-  @media (max-width: 600px) {
-    .intertitle-text {
-      font-size: 24px;
-    }
-    p {
-      font-size: 16px;
-    }
-    .frame-border {
-      padding: 15px;
-    }
+  /* SEPIA TINT */
+  .sepia {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    background: rgba(112, 66, 20, 0.25);
+    mix-blend-mode: overlay;
   }
+
+  /* SCRATCHES */
+  .scratches {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 3;
+    opacity: 0.35;
+    background-image:
+      linear-gradient(90deg,
+        transparent 0%,
+        rgba(255,255,255,0.15) 2%,
+        transparent 4%),
+      linear-gradient(90deg,
+        transparent 0%,
+        rgba(255,255,255,0.08) 1%,
+        transparent 3%);
+    background-size: 4px 100%, 2px 100%;
+    animation: scratchesMove 12s linear infinite;
+  }
+
+  @keyframes scratchesMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+  }
+
 </style>
 </head>
 
 <body>
 
-<!-- FILM GRAIN + VIGNETTE -->
+<!-- OVERLAYS -->
+<div class="sepia"></div>
+<div class="scratches"></div>
 <div class="film-grain"></div>
 <div class="vignette"></div>
-
-<!-- INTERTITLE TRANSITION -->
-<div id="intertitleTransition">
-  <div class="intertitle-frame">
-    <div id="intertitleText"></div>
-  </div>
-</div>
 
 <!-- TITLE SCREEN -->
 <div id="titleScreen">
@@ -216,9 +210,7 @@
     </div>
   </div>
 
-  <a href="#start"
-     class="beginBtn"
-     onclick="startAudio(); showIntertitle('THE JOURNEY BEGINS')">
+  <a href="#start" class="beginBtn" onclick="startAudio()">
     Begin Journey
   </a>
 </div>
@@ -234,7 +226,6 @@
 
     <audio id="titanicAudio" loop>
       <source src="JulianChristine_SoundObject.mp3" type="audio/mpeg">
-      Your browser does not support audio.
     </audio>
 
     <p>
@@ -259,11 +250,11 @@
 
     <p>What will you do?</p>
 
-    <a class="choice" href="#deck" onclick="showIntertitle('THE BOAT DECK')">Go Outside</a>
-    <a class="choice" href="#inside" onclick="showIntertitle('THE GRAND STAIRCASE')">Stay Inside</a>
-    <a class="choice" href="#wireless" onclick="showIntertitle('THE WIRELESS ROOM')">Visit the Wireless Room</a>
-    <a class="choice" href="#engine" onclick="showIntertitle('THE ENGINE ROOM')">Go to the Engine Room</a>
-    <a class="choice" href="#mystery" onclick="showIntertitle('THE ECHO BELOW')">Investigate the Strange Noise</a>
+    <a class="choice" href="#deck">Go Outside</a>
+    <a class="choice" href="#inside">Stay Inside</a>
+    <a class="choice" href="#wireless">Visit the Wireless Room</a>
+    <a class="choice" href="#engine">Go to the Engine Room</a>
+    <a class="choice" href="#mystery">Investigate the Strange Noise</a>
   </section>
 
   <!-- BOAT DECK -->
@@ -286,9 +277,9 @@
       Titanic carried only 20 lifeboats for more than 2,200 people.
     </div>
 
-    <a class="choice" href="#lifeboat" onclick="showIntertitle('SAFE ESCAPE')">Help the Crew</a>
-    <a class="choice" href="#explore" onclick="showIntertitle('TOO LATE')">Keep Exploring</a>
-    <a class="choice" href="#heroic" onclick="showIntertitle('THE HERO')">Help Passengers</a>
+    <a class="choice" href="#lifeboat">Help the Crew</a>
+    <a class="choice" href="#explore">Keep Exploring</a>
+    <a class="choice" href="#heroic">Help Passengers</a>
   </section>
 
   <!-- GRAND STAIRCASE -->
@@ -304,9 +295,9 @@
 
     <p>You must choose quickly.</p>
 
-    <a class="choice" href="#cabin" onclick="showIntertitle('YOUR CABIN')">Return to Cabin</a>
-    <a class="choice" href="#lifeboat" onclick="showIntertitle('SAFE ESCAPE')">Trust the Crew</a>
-    <a class="choice" href="#romantic" onclick="showIntertitle('A PROMISE IN THE COLD')">Find Someone You Care About</a>
+    <a class="choice" href="#cabin">Return to Cabin</a>
+    <a class="choice" href="#lifeboat">Trust the Crew</a>
+    <a class="choice" href="#romantic">Find Someone You Care About</a>
   </section>
 
   <!-- WIRELESS ROOM -->
@@ -324,8 +315,8 @@
       The urgency is unmistakable. You realize the situation is far worse than most passengers believe.
     </p>
 
-    <a class="choice" href="#lifeboat" onclick="showIntertitle('SAFE ESCAPE')">Warn Others</a>
-    <a class="choice" href="#mystery" onclick="showIntertitle('THE ECHO BELOW')">Investigate the Lower Decks</a>
+    <a class="choice" href="#lifeboat">Warn Others</a>
+    <a class="choice" href="#mystery">Investigate the Lower Decks</a>
   </section>
 
   <!-- ENGINE ROOM -->
@@ -339,8 +330,8 @@
       Their faces reveal the truth: the ship is dying.
     </p>
 
-    <a class="choice" href="#heroic" onclick="showIntertitle('THE HERO')">Help the Engineers</a>
-    <a class="choice" href="#stay" onclick="showIntertitle('WAITING TOO LONG')">Return to Safety</a>
+    <a class="choice" href="#heroic">Help the Engineers</a>
+    <a class="choice" href="#stay">Return to Safety</a>
   </section>
 
   <!-- MYSTERY ENDING -->
@@ -363,7 +354,7 @@
       You vanish into the lower decks, becoming a legend whispered by survivors.
     </p>
 
-    <a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
+    <a class="choice" href="#start" onclick="resetAudio()">Play Again</a>
   </section>
 
   <!-- ENDING 1: SAFE ESCAPE -->
@@ -382,7 +373,7 @@
       The RMS Carpathia rescued approximately 705 survivors.
     </div>
 
-    <a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
+    <a class="choice" href="#start" onclick="resetAudio()">Play Again</a>
   </section>
 
   <!-- ENDING 2: TOO LATE -->
@@ -401,7 +392,7 @@
       Water temperatures were about 28°F (-2°C), cold enough to cause hypothermia within minutes.
     </div>
 
-    <a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
+    <a class="choice" href="#start" onclick="resetAudio()">Play Again</a>
   </section>
 
   <!-- CABIN -->
@@ -414,8 +405,8 @@
       You hurry back for your luggage. A crew member knocks urgently, urging evacuation.
     </p>
 
-    <a class="choice" href="#hidden" onclick="showIntertitle('THE LAST LIFEBOAT')">Follow the Crew Member</a>
-    <a class="choice" href="#stay" onclick="showIntertitle('WAITING TOO LONG')">Wait Longer</a>
+    <a class="choice" href="#hidden">Follow the Crew Member</a>
+    <a class="choice" href="#stay">Wait Longer</a>
   </section>
 
   <!-- ENDING 3: LAST LIFEBOAT -->
@@ -436,7 +427,7 @@
       the great ship.
     </p>
 
-    <a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
+    <a class="choice" href="#start" onclick="resetAudio()">Play Again</a>
   </section>
 
   <!-- ENDING 4: WAITING TOO LONG -->
@@ -455,7 +446,7 @@
       The orchestra plays its final hymn while the Atlantic rises to meet the ship.
     </p>
 
-    <a class="choice" href="#start" onclick="resetAudio(); showIntertitle('THE JOURNEY BEGINS AGAIN')">Play Again</a>
+    <a class="choice" href="#start" onclick="resetAudio()">Play Again</a>
   </section>
 
   <!-- ROMANTIC PATH -->
@@ -474,11 +465,47 @@
       survival, but about how your story will be remembered.
     </p>
 
-    <a class="choice" href="#lifeboat" onclick="showIntertitle('SAFE ESCAPE TOGETHER')">Seek a Lifeboat Together</a>
-    <a class="choice" href="#explore" onclick="showIntertitle('TOO LATE')">Stay and Watch the Ship</a>
+    <a class="choice" href="#lifeboat">Seek a Lifeboat Together</a>
+    <a class="choice" href="#explore">Stay and Watch the Ship</a>
   </section>
 
   <!-- HEROIC PATH -->
   <section id="heroic" class="section">
     <div class="frame-border">
-      <h2>The Hero
+      <h2>The Hero</h2>
+    </div>
+
+    <p>
+      You choose to help—guiding passengers to lifeboats, assisting crew, and calming frightened families.
+      Your actions save lives, even as the ship’s fate becomes clear.
+    </p>
+
+    <p>
+      Whether you survive or not, your courage echoes in the memories of those who live to tell the tale.
+    </p>
+
+    <a class="choice" href="#lifeboat">Take a Chance to Escape</a>
+    <a class="choice" href="#explore">Stay Until the End</a>
+  </section>
+
+</div>
+
+<script>
+  console.log("Silent‑film overlays initialized.");
+
+  const audioEl = document.getElementById("titanicAudio");
+
+  function startAudio() {
+    if (!audioEl) return;
+    audioEl.play().catch(() => {});
+  }
+
+  function resetAudio() {
+    if (!audioEl) return;
+    audioEl.currentTime = 0;
+    audioEl.play().catch(() => {});
+  }
+</script>
+
+</body>
+</html>
