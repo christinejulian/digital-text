@@ -32,7 +32,7 @@
     padding: 30px;
     background: #000;
     box-shadow: 0 0 40px rgba(0,0,0,0.9);
-    max-width: 800px;
+    max-width: 900px;
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
   }
@@ -48,6 +48,17 @@
     font-size: 20px;
     line-height: 1.6;
     white-space: pre-line;
+  }
+
+  .portrait {
+    width: 260px;
+    height: 320px;
+    margin: 20px auto;
+    background-size: cover;
+    background-position: center;
+    border: 6px double #f5f5f5;
+    filter: grayscale(100%) contrast(130%) brightness(90%);
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
   }
 
   .button {
@@ -147,6 +158,7 @@
 <div id="screen">
   <div class="card" id="card">
     <div class="title" id="cardTitle"></div>
+    <div class="portrait" id="portrait"></div>
     <div class="text" id="cardText"></div>
     <div id="cardButtons"></div>
   </div>
@@ -161,6 +173,7 @@
   const cardTitle = document.getElementById("cardTitle");
   const cardText = document.getElementById("cardText");
   const cardButtons = document.getElementById("cardButtons");
+  const portrait = document.getElementById("portrait");
   const audioEl = document.getElementById("titanicAudio");
 
   let courage = 0;
@@ -169,21 +182,30 @@
   let luck = 0;
   let resolve = 0;
 
-  let step = 0;
+  let chapter = 0;
 
   function fadeInCard() {
     card.style.opacity = "1";
   }
 
   function playAudio() {
+    audioEl.currentTime = 0;
     audioEl.play().catch(() => {});
   }
 
-  function showCard(title, text, buttons = []) {
+  function stopAudio() {
+    audioEl.pause();
+    audioEl.currentTime = 0;
+  }
+
+  function showCard(title, text, portraitURL = "", buttons = []) {
     cardTitle.textContent = title;
     cardText.textContent = text;
-    cardButtons.innerHTML = "";
 
+    portrait.style.display = portraitURL ? "block" : "none";
+    if (portraitURL) portrait.style.backgroundImage = `url('${portraitURL}')`;
+
+    cardButtons.innerHTML = "";
     buttons.forEach(btn => {
       const b = document.createElement("button");
       b.className = "button";
@@ -198,9 +220,11 @@
 
   /* MAIN MENU */
   function mainMenu() {
+    stopAudio();
     showCard(
       "Echoes of the Titanic",
       "A silent‑era interactive film.\nYour fate will be shaped by your choices.",
+      "",
       [
         { label: "Start Game", action: startGame },
         { label: "About", action: showAbout },
@@ -212,76 +236,90 @@
   function showAbout() {
     showCard(
       "About",
-      "Created in silent‑film style.\nMultiple endings.\nYour choices determine your fate.",
+      "Created in silent‑film style.\nMultiple chapters.\nCharacter portraits.\nExpanded endings.",
+      "",
       [{ label: "Back", action: mainMenu }]
     );
   }
 
   function quitGame() {
+    stopAudio();
     showCard(
       "Goodbye",
       "Thank you for playing.",
+      "",
       [{ label: "Return to Menu", action: mainMenu }]
     );
   }
 
-  /* GAME START */
+  /* CHAPTERS */
   function startGame() {
     playAudio();
-    step = 1;
+    chapter = 1;
     showCard(
-      "First Choice",
-      "A faint vibration travels through the floor.\nPassengers whisper.\nThe air feels wrong.",
+      "Chapter I — The Grand Staircase",
+      "April 14, 1912.\nThe RMS Titanic glides across a calm Atlantic.\nPassengers admire the elegance of the ship.",
+      "https://upload.wikimedia.org/wikipedia/commons/5/5f/Mary_Pickford_1920.jpg",
       [
-        { label: "Investigate the noise", action: () => choose("awareness", 2) },
-        { label: "Head to the deck", action: () => choose("courage", 2) },
-        { label: "Check on passengers", action: () => choose("compassion", 2) },
-        { label: "Stay still and observe", action: () => choose("luck", 2) },
-        { label: "Brace yourself", action: () => choose("resolve", 2) }
+        { label: "Speak to the woman", action: () => choose("compassion", 2, 2) },
+        { label: "Observe the crowd", action: () => choose("awareness", 2, 2) },
+        { label: "Assist a steward", action: () => choose("courage", 2, 2) }
       ]
     );
   }
 
-  function secondChoice() {
-    step = 2;
+  function chapterTwo() {
+    chapter = 2;
     showCard(
-      "Second Choice",
+      "Chapter II — The Deck",
+      "A faint vibration travels through the floor.\nCrew members hurry toward the bridge.",
+      "https://upload.wikimedia.org/wikipedia/commons/3/3f/Rudolph_Valentino_1920.jpg",
+      [
+        { label: "Investigate the vibration", action: () => choose("awareness", 2, 3) },
+        { label: "Help calm passengers", action: () => choose("compassion", 2, 3) },
+        { label: "Assist the crew", action: () => choose("courage", 2, 3) }
+      ]
+    );
+  }
+
+  function chapterThree() {
+    chapter = 3;
+    showCard(
+      "Chapter III — The Lifeboats",
       "The ship begins to list.\nCrew uncover lifeboats.\nPanic spreads.",
+      "https://upload.wikimedia.org/wikipedia/commons/8/8f/Lillian_Gish_-_1920.jpg",
       [
-        { label: "Find a lifeboat", action: () => choose("awareness", 2) },
-        { label: "Help load women/children", action: () => choose("courage", 2) },
-        { label: "Comfort a child", action: () => choose("compassion", 2) },
-        { label: "Follow a crew member", action: () => choose("luck", 2) },
-        { label: "Hold your ground", action: () => choose("resolve", 2) }
+        { label: "Find a lifeboat", action: () => choose("awareness", 2, 4) },
+        { label: "Help load women/children", action: () => choose("courage", 2, 4) },
+        { label: "Comfort a child", action: () => choose("compassion", 2, 4) }
       ]
     );
   }
 
-  function finalChoice() {
-    step = 3;
+  function chapterFour() {
+    chapter = 4;
     showCard(
-      "Final Choice",
+      "Chapter IV — The Final Moments",
       "The bow sinks lower.\nTime is running out.",
+      "https://upload.wikimedia.org/wikipedia/commons/1/1e/Gloria_Swanson_1920.jpg",
       [
-        { label: "Escape immediately", action: () => choose("awareness", 3) },
-        { label: "Stay to help", action: () => choose("courage", 3) },
-        { label: "Search for missing passengers", action: () => choose("compassion", 3) },
-        { label: "Take a risky shortcut", action: () => choose("luck", 3) },
-        { label: "Prepare for the worst", action: () => choose("resolve", 3) }
+        { label: "Escape immediately", action: () => choose("awareness", 3, 5) },
+        { label: "Stay to help", action: () => choose("courage", 3, 5) },
+        { label: "Search for missing passengers", action: () => choose("compassion", 3, 5) }
       ]
     );
   }
 
-  function choose(stat, amount) {
+  /* CHOICE HANDLER */
+  function choose(stat, amount, nextChapter) {
     if (stat === "awareness") awareness += amount;
     if (stat === "courage") courage += amount;
     if (stat === "compassion") compassion += amount;
-    if (stat === "luck") luck += amount;
-    if (stat === "resolve") resolve += amount;
 
-    if (step === 1) secondChoice();
-    else if (step === 2) finalChoice();
-    else if (step === 3) showEnding();
+    if (nextChapter === 2) chapterTwo();
+    if (nextChapter === 3) chapterThree();
+    if (nextChapter === 4) chapterFour();
+    if (nextChapter === 5) showEnding();
   }
 
   /* ENDINGS */
@@ -302,16 +340,6 @@
         ["Ending P2 — The Caretaker", "You stay with frightened passengers until rescue arrives."],
         ["Ending P3 — The Gentle Soul", "Your empathy shapes your fate in the icy night."]
       ],
-      luck: [
-        ["Ending L1 — The Coin Flip", "Chance favors you in the chaos."],
-        ["Ending L2 — The Lucky Break", "A crew member pulls you aboard at the last second."],
-        ["Ending L3 — The Narrow Escape", "You survive by pure fortune."]
-      ],
-      resolve: [
-        ["Ending R1 — The Stoic", "You face the end with unwavering calm."],
-        ["Ending R2 — The Iron Will", "Your resolve carries you through impossible odds."],
-        ["Ending R3 — The Survivor's Spirit", "You endure the night through sheer determination."]
-      ],
       dark: [
         ["Ending D1 — Too Late", "You hesitate too long. The Atlantic claims the ship."],
         ["Ending D2 — The Echo Below", "You wander into the lower decks. Shadows move."],
@@ -322,8 +350,6 @@
     if (awareness >= 6) return endings.awareness[Math.floor(Math.random() * 3)];
     if (courage >= 6) return endings.courage[Math.floor(Math.random() * 3)];
     if (compassion >= 6) return endings.compassion[Math.floor(Math.random() * 3)];
-    if (luck >= 6) return endings.luck[Math.floor(Math.random() * 3)];
-    if (resolve >= 6) return endings.resolve[Math.floor(Math.random() * 3)];
 
     return endings.dark[Math.floor(Math.random() * 3)];
   }
@@ -333,17 +359,22 @@
     showCard(
       title,
       text,
-      [{ label: "Replay", action: resetGame }]
+      "",
+      [{ label: "Replay Game", action: resetGame }]
     );
   }
 
   function resetGame() {
+    stopAudio();
+    playAudio();
+
     courage = 0;
     awareness = 0;
     compassion = 0;
     luck = 0;
     resolve = 0;
-    step = 0;
+    chapter = 0;
+
     mainMenu();
   }
 
