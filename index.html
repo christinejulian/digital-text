@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Echoes of the Titanic — Silent Film Edition</title>
+<title>Echoes of the Titanic — Silent Film Game Edition</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -12,7 +12,6 @@
     color: #f5f5f5;
     font-family: "Cinzel", Georgia, serif;
     scroll-behavior: smooth;
-    position: relative;
     overflow-x: hidden;
   }
 
@@ -43,15 +42,32 @@
     box-shadow: 0 0 20px rgba(0,0,0,0.8);
   }
 
+  .choice {
+    display: block;
+    margin: 15px 0;
+    padding: 12px 20px;
+    border: 2px solid #f5f5f5;
+    color: #f5f5f5;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: #000;
+    transition: 0.3s;
+    width: fit-content;
+  }
+
+  .choice:hover {
+    background: #f5f5f5;
+    color: #000;
+  }
+
   /* TITLE SCREEN */
   #titleScreen {
-    position: relative;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     background: radial-gradient(circle at center, #222 0%, #000 60%);
-    color: #f5f5f5;
     text-align: center;
     z-index: 5;
   }
@@ -63,13 +79,14 @@
     box-shadow: 0 0 40px rgba(0,0,0,0.9);
     margin: 60px auto;
     max-width: 700px;
+    opacity: 0;
+    transition: opacity 1.8s ease-in-out;
   }
 
   .intertitle-text {
     font-size: 32px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    line-height: 1.4;
     text-align: center;
   }
 
@@ -91,7 +108,7 @@
     color: #000;
   }
 
-  /* FILM GRAIN */
+  /* FILM EFFECTS */
   .film-grain {
     pointer-events: none;
     position: fixed;
@@ -112,7 +129,6 @@
     100% { transform: translate(0,0); }
   }
 
-  /* VIGNETTE */
   .vignette {
     pointer-events: none;
     position: fixed;
@@ -124,7 +140,6 @@
       rgba(0,0,0,0.9) 100%);
   }
 
-  /* SEPIA */
   .sepia {
     pointer-events: none;
     position: fixed;
@@ -134,7 +149,6 @@
     mix-blend-mode: overlay;
   }
 
-  /* SCRATCHES */
   .scratches {
     pointer-events: none;
     position: fixed;
@@ -158,6 +172,10 @@
     0% { transform: translateY(0); }
     100% { transform: translateY(-100%); }
   }
+
+  .ending {
+    display: none;
+  }
 </style>
 </head>
 
@@ -171,16 +189,14 @@
 
 <!-- TITLE SCREEN -->
 <div id="titleScreen">
-  <div class="intertitle-frame">
+  <div class="intertitle-frame" id="titleCard">
     <div class="intertitle-text">
       Echoes of the Titanic<br>
-      <span style="font-size:26px;">A Silent‑Era Experience</span>
+      <span style="font-size:26px;">Silent‑Era Game Edition</span>
     </div>
   </div>
 
-  <a href="#story" class="beginBtn" onclick="startAudio()">
-    Begin Journey
-  </a>
+  <a href="#story" class="beginBtn" onclick="startGame()">Begin Journey</a>
 </div>
 
 <!-- MAIN CONTENT -->
@@ -196,115 +212,45 @@
     </audio>
 
     <p>
-      April 14, 1912. The RMS Titanic sails across a calm Atlantic Ocean beneath a sky overflowing with stars.
-      Passengers admire the elegance of the world's newest luxury liner while enjoying music, fine dining,
-      and lively conversation. No one imagines history is only hours away.
+      April 14, 1912. The RMS Titanic glides across a calm Atlantic. A faint vibration travels through the floor.
     </p>
 
-    <p>
-      You stand beneath the magnificent Grand Staircase. Its polished oak, glittering chandelier, and sweeping
-      staircase make it feel like a floating palace. Nearby, children laugh while wealthy travelers discuss
-      business opportunities awaiting them in New York.
-    </p>
+    <h2>Your First Choice</h2>
+    <p>The ship has struck something. What do you do?</p>
 
-    <p>
-      Suddenly... a faint vibration travels through the floor. The engines slow. Silence spreads through the ship.
-    </p>
+    <a class="choice" onclick="choose('awareness', 2)">Go investigate the noise</a>
+    <a class="choice" onclick="choose('courage', 2)">Head to the deck to help</a>
+    <a class="choice" onclick="choose('compassion', 2)">Check on nearby passengers</a>
 
-    <div class="fact">
-      <b>Historical Fact:</b><br>
-      Titanic struck an iceberg at approximately <strong>11:40 PM</strong> on April 14, 1912.
-    </div>
+    <h2>Your Second Choice</h2>
+    <p>The ship begins to list. Crew members uncover lifeboats.</p>
 
-    <p>
-      Crew members begin uncovering lifeboats. Some passengers laugh, refusing to believe anything could threaten
-      the world's largest ship. Others grow uneasy as the ship lists ever so slightly.
-    </p>
+    <a class="choice" onclick="choose('awareness', 2)">Find the nearest lifeboat</a>
+    <a class="choice" onclick="choose('courage', 2)">Help load women and children</a>
+    <a class="choice" onclick="choose('compassion', 2)">Comfort a crying child</a>
 
-    <p>
-      In the wireless room, frantic operators send distress signals into the night:
-      <strong>"CQD... CQD... SOS..."</strong>
-    </p>
+    <h2>Your Final Choice</h2>
+    <p>The bow sinks lower. Time is running out.</p>
 
-    <p>
-      Down in the engine room, water pours into the lower compartments. The truth becomes undeniable:
-      the Titanic is dying.
-    </p>
-
-    <p>
-      Lifeboats lower into the freezing Atlantic. The orchestra plays its final hymn. The bow sinks deeper,
-      pulling the great ship toward its fate.
-    </p>
-
-    <p>
-      Hours later, survivors drift among stars and ice. A distant glow appears on the horizon—the RMS Carpathia,
-      answering the call of distress.
-    </p>
-
-    <!-- TITLE CARD: ENDING I -->
-    <div class="intertitle-frame">
-      <div class="intertitle-text">Ending I — Safe Escape</div>
-    </div>
+    <a class="choice" onclick="choose('awareness', 3)">Escape immediately</a>
+    <a class="choice" onclick="choose('courage', 3)">Stay to help others</a>
+    <a class="choice" onclick="choose('compassion', 3)">Search for missing passengers</a>
 
     <div class="frame-border">
-      <p>
-        You reach a lifeboat in time. The Carpathia rescues you at dawn, its lights shimmering across the icy sea.
-      </p>
+      <p>Scroll down to reveal your fate…</p>
     </div>
-
-    <!-- TITLE CARD: ENDING II -->
-    <div class="intertitle-frame">
-      <div class="intertitle-text">Ending II — Too Late</div>
-    </div>
-
-    <div class="frame-border">
-      <p>
-        You return to the deck too late. Every lifeboat is gone. The ship tilts sharply as the Atlantic claims it.
-      </p>
-    </div>
-
-    <!-- TITLE CARD: ENDING III -->
-    <div class="intertitle-frame">
-      <div class="intertitle-text">Ending III — The Last Lifeboat</div>
-    </div>
-
-    <div class="frame-border">
-      <p>
-        A crew member guides you through a hidden passage. You escape in one of the final lifeboats, drifting under
-        a sky full of stars.
-      </p>
-    </div>
-
-    <!-- TITLE CARD: ENDING IV -->
-    <div class="intertitle-frame">
-      <div class="intertitle-text">Ending IV — Waiting Too Long</div>
-    </div>
-
-    <div class="frame-border">
-      <p>
-        You hesitate, believing the danger will pass. When you finally act, the ship is already beyond saving.
-      </p>
-    </div>
-
-    <!-- TITLE CARD: ENDING V -->
-    <div class="intertitle-frame">
-      <div class="intertitle-text">Ending V — The Echo Below</div>
-    </div>
-
-    <div class="frame-border">
-      <p>
-        You follow a strange noise into the lower decks. Shadows move. The whisper of the ship’s final breath
-        becomes your last memory.
-      </p>
-    </div>
-
-    <a class="beginBtn" href="#titleScreen" onclick="resetAudio()">Replay</a>
-
   </section>
+
+  <!-- ENDING AREA -->
+  <div id="endingContainer">
+    <div class="intertitle-frame ending" id="endingCard"></div>
+    <div class="frame-border ending" id="endingText"></div>
+  </div>
+
+  <a class="beginBtn" href="#titleScreen" onclick="resetAudio()">Replay</a>
 
 </div>
 
-<!-- JS FILE -->
 <script src="main.js"></script>
 
 </body>
