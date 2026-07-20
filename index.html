@@ -47,18 +47,27 @@
   .text {
     font-size: 20px;
     line-height: 1.6;
-  }
-
-  .choices {
-    margin-top: 25px;
-    font-size: 18px;
     white-space: pre-line;
   }
 
-  .hint {
-    margin-top: 20px;
-    font-size: 16px;
-    opacity: 0.7;
+  .button {
+    display: block;
+    margin: 12px auto;
+    padding: 12px 20px;
+    border: 3px solid #f5f5f5;
+    background: #000;
+    color: #f5f5f5;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 60%;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .button:hover {
+    background: #f5f5f5;
+    color: #000;
   }
 
   /* film overlays */
@@ -139,8 +148,7 @@
   <div class="card" id="card">
     <div class="title" id="cardTitle"></div>
     <div class="text" id="cardText"></div>
-    <div class="choices" id="cardChoices"></div>
-    <div class="hint" id="cardHint"></div>
+    <div id="cardButtons"></div>
   </div>
 </div>
 
@@ -152,8 +160,7 @@
   const card = document.getElementById("card");
   const cardTitle = document.getElementById("cardTitle");
   const cardText = document.getElementById("cardText");
-  const cardChoices = document.getElementById("cardChoices");
-  const cardHint = document.getElementById("cardHint");
+  const cardButtons = document.getElementById("cardButtons");
   const audioEl = document.getElementById("titanicAudio");
 
   let courage = 0;
@@ -172,138 +179,162 @@
     audioEl.play().catch(() => {});
   }
 
-  function showCard(title, text, choices, hint) {
+  function showCard(title, text, buttons = []) {
     cardTitle.textContent = title;
     cardText.textContent = text;
-    cardChoices.textContent = choices || "";
-    cardHint.textContent = hint || "";
+    cardButtons.innerHTML = "";
+
+    buttons.forEach(btn => {
+      const b = document.createElement("button");
+      b.className = "button";
+      b.textContent = btn.label;
+      b.onclick = btn.action;
+      cardButtons.appendChild(b);
+    });
+
     card.style.opacity = "0";
     setTimeout(fadeInCard, 100);
   }
 
+  /* MAIN MENU */
+  function mainMenu() {
+    showCard(
+      "Echoes of the Titanic",
+      "A silent‑era interactive film.\nYour fate will be shaped by your choices.",
+      [
+        { label: "Start Game", action: startGame },
+        { label: "About", action: showAbout },
+        { label: "Quit", action: quitGame }
+      ]
+    );
+  }
+
+  function showAbout() {
+    showCard(
+      "About",
+      "Created in silent‑film style.\nMultiple endings.\nYour choices determine your fate.",
+      [{ label: "Back", action: mainMenu }]
+    );
+  }
+
+  function quitGame() {
+    showCard(
+      "Goodbye",
+      "Thank you for playing.",
+      [{ label: "Return to Menu", action: mainMenu }]
+    );
+  }
+
+  /* GAME START */
   function startGame() {
     playAudio();
     step = 1;
     showCard(
-      "Echoes of the Titanic",
-      "A silent‑era interactive film.\nYour fate will be shaped by your choices.",
-      "",
-      "Press any key to begin."
+      "First Choice",
+      "A faint vibration travels through the floor.\nPassengers whisper.\nThe air feels wrong.",
+      [
+        { label: "Investigate the noise", action: () => choose("awareness", 2) },
+        { label: "Head to the deck", action: () => choose("courage", 2) },
+        { label: "Check on passengers", action: () => choose("compassion", 2) },
+        { label: "Stay still and observe", action: () => choose("luck", 2) },
+        { label: "Brace yourself", action: () => choose("resolve", 2) }
+      ]
     );
   }
 
-  function nextStep() {
-    if (step === 1) {
-      step = 2;
-      showCard(
-        "First Choice",
-        "A faint vibration travels through the floor.\nPassengers whisper.\nThe air feels wrong.",
-        "1 — Investigate the noise (Awareness)\n2 — Head to the deck (Courage)\n3 — Check on passengers (Compassion)\n4 — Stay still and observe (Luck)\n5 — Brace yourself (Resolve)",
-        "Press 1–5"
-      );
-    }
-
-    else if (step === 2) {
-      step = 3;
-      showCard(
-        "Second Choice",
-        "The ship begins to list.\nCrew uncover lifeboats.\nPanic spreads.",
-        "1 — Find a lifeboat (Awareness)\n2 — Help load women/children (Courage)\n3 — Comfort a child (Compassion)\n4 — Follow a crew member (Luck)\n5 — Hold your ground (Resolve)",
-        "Press 1–5"
-      );
-    }
-
-    else if (step === 3) {
-      step = 4;
-      showCard(
-        "Final Choice",
-        "The bow sinks lower.\nTime is running out.",
-        "1 — Escape immediately (Awareness)\n2 — Stay to help (Courage)\n3 — Search for missing passengers (Compassion)\n4 — Take a risky shortcut (Luck)\n5 — Prepare for the worst (Resolve)",
-        "Press 1–5"
-      );
-    }
-
-    else if (step === 4) {
-      step = 5;
-      showEnding();
-    }
+  function secondChoice() {
+    step = 2;
+    showCard(
+      "Second Choice",
+      "The ship begins to list.\nCrew uncover lifeboats.\nPanic spreads.",
+      [
+        { label: "Find a lifeboat", action: () => choose("awareness", 2) },
+        { label: "Help load women/children", action: () => choose("courage", 2) },
+        { label: "Comfort a child", action: () => choose("compassion", 2) },
+        { label: "Follow a crew member", action: () => choose("luck", 2) },
+        { label: "Hold your ground", action: () => choose("resolve", 2) }
+      ]
+    );
   }
 
-  function applyChoice(key) {
-    const amount = step === 3 ? 3 : 2;
-
-    if (key === "1") awareness += amount;
-    if (key === "2") courage += amount;
-    if (key === "3") compassion += amount;
-    if (key === "4") luck += amount;
-    if (key === "5") resolve += amount;
-
-    nextStep();
+  function finalChoice() {
+    step = 3;
+    showCard(
+      "Final Choice",
+      "The bow sinks lower.\nTime is running out.",
+      [
+        { label: "Escape immediately", action: () => choose("awareness", 3) },
+        { label: "Stay to help", action: () => choose("courage", 3) },
+        { label: "Search for missing passengers", action: () => choose("compassion", 3) },
+        { label: "Take a risky shortcut", action: () => choose("luck", 3) },
+        { label: "Prepare for the worst", action: () => choose("resolve", 3) }
+      ]
+    );
   }
 
+  function choose(stat, amount) {
+    if (stat === "awareness") awareness += amount;
+    if (stat === "courage") courage += amount;
+    if (stat === "compassion") compassion += amount;
+    if (stat === "luck") luck += amount;
+    if (stat === "resolve") resolve += amount;
+
+    if (step === 1) secondChoice();
+    else if (step === 2) finalChoice();
+    else if (step === 3) showEnding();
+  }
+
+  /* ENDINGS */
   function determineEnding() {
-    // Awareness endings
-    if (awareness >= 6) {
-      const endings = [
+    const endings = {
+      awareness: [
         ["Ending A1 — The Watchful Survivor", "Your vigilance guides you to safety."],
         ["Ending A2 — The Early Escape", "You act before others realize the danger."],
         ["Ending A3 — The Navigator", "You find a hidden route to a lifeboat."]
-      ];
-      return endings[Math.floor(Math.random() * endings.length)];
-    }
-
-    // Courage endings
-    if (courage >= 6) {
-      const endings = [
+      ],
+      courage: [
         ["Ending C1 — The Hero", "You save lives as the ship sinks beneath you."],
         ["Ending C2 — The Last Stand", "You refuse to leave until the final moment."],
         ["Ending C3 — The Guardian", "Your bravery shields others from panic."]
-      ];
-      return endings[Math.floor(Math.random() * endings.length)];
-    }
-
-    // Compassion endings
-    if (compassion >= 6) {
-      const endings = [
+      ],
+      compassion: [
         ["Ending P1 — The Last Lifeboat", "Your kindness earns you a place in the final boat."],
         ["Ending P2 — The Caretaker", "You stay with frightened passengers until rescue arrives."],
         ["Ending P3 — The Gentle Soul", "Your empathy shapes your fate in the icy night."]
-      ];
-      return endings[Math.floor(Math.random() * endings.length)];
-    }
-
-    // Luck endings
-    if (luck >= 6) {
-      const endings = [
+      ],
+      luck: [
         ["Ending L1 — The Coin Flip", "Chance favors you in the chaos."],
         ["Ending L2 — The Lucky Break", "A crew member pulls you aboard at the last second."],
         ["Ending L3 — The Narrow Escape", "You survive by pure fortune."]
-      ];
-      return endings[Math.floor(Math.random() * endings.length)];
-    }
-
-    // Resolve endings
-    if (resolve >= 6) {
-      const endings = [
+      ],
+      resolve: [
         ["Ending R1 — The Stoic", "You face the end with unwavering calm."],
         ["Ending R2 — The Iron Will", "Your resolve carries you through impossible odds."],
         ["Ending R3 — The Survivor's Spirit", "You endure the night through sheer determination."]
-      ];
-      return endings[Math.floor(Math.random() * endings.length)];
-    }
+      ],
+      dark: [
+        ["Ending D1 — Too Late", "You hesitate too long. The Atlantic claims the ship."],
+        ["Ending D2 — The Echo Below", "You wander into the lower decks. Shadows move."],
+        ["Ending D3 — The Silent Depths", "Your fate disappears beneath the waves."]
+      ]
+    };
 
-    // Dark endings
-    const dark = [
-      ["Ending D1 — Too Late", "You hesitate too long. The Atlantic claims the ship."],
-      ["Ending D2 — The Echo Below", "You wander into the lower decks. Shadows move."],
-      ["Ending D3 — The Silent Depths", "Your fate disappears beneath the waves."]
-    ];
-    return dark[Math.floor(Math.random() * dark.length)];
+    if (awareness >= 6) return endings.awareness[Math.floor(Math.random() * 3)];
+    if (courage >= 6) return endings.courage[Math.floor(Math.random() * 3)];
+    if (compassion >= 6) return endings.compassion[Math.floor(Math.random() * 3)];
+    if (luck >= 6) return endings.luck[Math.floor(Math.random() * 3)];
+    if (resolve >= 6) return endings.resolve[Math.floor(Math.random() * 3)];
+
+    return endings.dark[Math.floor(Math.random() * 3)];
   }
 
   function showEnding() {
     const [title, text] = determineEnding();
-    showCard(title, text, "", "Press R to replay.");
+    showCard(
+      title,
+      text,
+      [{ label: "Replay", action: resetGame }]
+    );
   }
 
   function resetGame() {
@@ -313,38 +344,11 @@
     luck = 0;
     resolve = 0;
     step = 0;
-    startGame();
+    mainMenu();
   }
 
-  document.addEventListener("keydown", (e) => {
-    const key = e.key;
-
-    if (step === 0) {
-      startGame();
-      return;
-    }
-
-    if (step === 1) {
-      nextStep();
-      return;
-    }
-
-    if (["1","2","3","4","5"].includes(key) && step >= 2 && step <= 4) {
-      applyChoice(key);
-      return;
-    }
-
-    if (key.toLowerCase() === "r" && step === 5) {
-      resetGame();
-      return;
-    }
-  });
-
-  showCard(
-    "Echoes of the Titanic",
-    "A silent‑era interactive ending game.\nPress any key to begin.",
-    ""
-  );
+  /* START */
+  mainMenu();
 </script>
 
 </body>
