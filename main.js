@@ -1,6 +1,6 @@
 // main.js
 
-console.log("1900 silent‑film mode active (sepia + scratches + grain)");
+console.log("Silent‑era overlays active (sepia + scratches + grain + vignette)");
 
 /* ---------------------------------------------------------
    CREATE OVERLAY ELEMENTS
@@ -71,7 +71,7 @@ function setGrainIntensity(level = 0.25) {
    DEFAULT LOOK
 --------------------------------------------------------- */
 
-setSepia(0.25);           // warm sepia wash
+setSepia(0.25);            // warm sepia wash
 setScratchIntensity(0.35); // visible scratches
 setGrainIntensity(0.25);   // subtle grain
 
