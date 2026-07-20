@@ -50,17 +50,6 @@
     white-space: pre-line;
   }
 
-  .portrait {
-    width: 260px;
-    height: 320px;
-    margin: 20px auto;
-    background-size: cover;
-    background-position: center;
-    border: 6px double #f5f5f5;
-    filter: grayscale(100%) contrast(130%) brightness(90%);
-    box-shadow: 0 0 25px rgba(0,0,0,0.8);
-  }
-
   .button {
     display: block;
     margin: 12px auto;
@@ -158,7 +147,6 @@
 <div id="screen">
   <div class="card" id="card">
     <div class="title" id="cardTitle"></div>
-    <div class="portrait" id="portrait"></div>
     <div class="text" id="cardText"></div>
     <div id="cardButtons"></div>
   </div>
@@ -173,7 +161,6 @@
   const cardTitle = document.getElementById("cardTitle");
   const cardText = document.getElementById("cardText");
   const cardButtons = document.getElementById("cardButtons");
-  const portrait = document.getElementById("portrait");
   const audioEl = document.getElementById("titanicAudio");
 
   let courage = 0;
@@ -198,12 +185,9 @@
     audioEl.currentTime = 0;
   }
 
-  function showCard(title, text, portraitURL = "", buttons = []) {
+  function showCard(title, text, buttons = []) {
     cardTitle.textContent = title;
     cardText.textContent = text;
-
-    portrait.style.display = portraitURL ? "block" : "none";
-    if (portraitURL) portrait.style.backgroundImage = `url('${portraitURL}')`;
 
     cardButtons.innerHTML = "";
     buttons.forEach(btn => {
@@ -224,7 +208,6 @@
     showCard(
       "Echoes of the Titanic",
       "A silent‑era interactive film.\nYour fate will be shaped by your choices.",
-      "",
       [
         { label: "Start Game", action: startGame },
         { label: "About", action: showAbout },
@@ -236,8 +219,7 @@
   function showAbout() {
     showCard(
       "About",
-      "Created in silent‑film style.\nMultiple chapters.\nCharacter portraits.\nExpanded endings.",
-      "",
+      "Created in silent‑film style.\nMultiple chapters.\nExpanded endings.\nAudio resets on replay.",
       [{ label: "Back", action: mainMenu }]
     );
   }
@@ -247,7 +229,6 @@
     showCard(
       "Goodbye",
       "Thank you for playing.",
-      "",
       [{ label: "Return to Menu", action: mainMenu }]
     );
   }
@@ -259,9 +240,8 @@
     showCard(
       "Chapter I — The Grand Staircase",
       "April 14, 1912.\nThe RMS Titanic glides across a calm Atlantic.\nPassengers admire the elegance of the ship.",
-      "https://upload.wikimedia.org/wikipedia/commons/5/5f/Mary_Pickford_1920.jpg",
       [
-        { label: "Speak to the woman", action: () => choose("compassion", 2, 2) },
+        { label: "Speak to a passenger", action: () => choose("compassion", 2, 2) },
         { label: "Observe the crowd", action: () => choose("awareness", 2, 2) },
         { label: "Assist a steward", action: () => choose("courage", 2, 2) }
       ]
@@ -273,7 +253,6 @@
     showCard(
       "Chapter II — The Deck",
       "A faint vibration travels through the floor.\nCrew members hurry toward the bridge.",
-      "https://upload.wikimedia.org/wikipedia/commons/3/3f/Rudolph_Valentino_1920.jpg",
       [
         { label: "Investigate the vibration", action: () => choose("awareness", 2, 3) },
         { label: "Help calm passengers", action: () => choose("compassion", 2, 3) },
@@ -287,7 +266,6 @@
     showCard(
       "Chapter III — The Lifeboats",
       "The ship begins to list.\nCrew uncover lifeboats.\nPanic spreads.",
-      "https://upload.wikimedia.org/wikipedia/commons/8/8f/Lillian_Gish_-_1920.jpg",
       [
         { label: "Find a lifeboat", action: () => choose("awareness", 2, 4) },
         { label: "Help load women/children", action: () => choose("courage", 2, 4) },
@@ -301,7 +279,6 @@
     showCard(
       "Chapter IV — The Final Moments",
       "The bow sinks lower.\nTime is running out.",
-      "https://upload.wikimedia.org/wikipedia/commons/1/1e/Gloria_Swanson_1920.jpg",
       [
         { label: "Escape immediately", action: () => choose("awareness", 3, 5) },
         { label: "Stay to help", action: () => choose("courage", 3, 5) },
@@ -359,7 +336,6 @@
     showCard(
       title,
       text,
-      "",
       [{ label: "Replay Game", action: resetGame }]
     );
   }
